@@ -11,6 +11,12 @@ export default defineConfig({
   output: 'static',
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      https: {
+        key: './localhost-key.pem',
+        cert: './localhost.pem',
+      },
+    },
   },
   integrations: [
     storyblok({

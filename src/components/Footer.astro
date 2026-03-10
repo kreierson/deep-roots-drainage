@@ -1,5 +1,16 @@
 ---
+import { getSettings } from '../lib/settings'
+
+const settings = await getSettings()
 const currentYear = new Date().getFullYear()
+const companyName = settings.company_name || 'Deep Roots Drainage'
+const phone = settings.phone || '(701) 555-0123'
+const email = settings.email || 'info@deeprootsdrainage.com'
+const location = settings.location || 'North Dakota'
+const description = settings.footer_description || ''
+const ctaText = settings.footer_cta_text || 'Request a Free Estimate'
+const ctaLink = settings.footer_cta_link?.url || settings.footer_cta_link?.cached_url || '/contact'
+const navLinks = settings.nav_links || []
 ---
 
 <footer class="bg-primary-dark text-white">
@@ -7,21 +18,24 @@ const currentYear = new Date().getFullYear()
     <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
       <!-- Company -->
       <div>
-        <h3 class="text-lg font-bold mb-4">Deep Roots Drainage</h3>
-        <p class="text-white/70 text-sm leading-relaxed">
-          Professional agricultural drain tile installation serving 
-          farmers and landowners across North Dakota.
-        </p>
+        <h3 class="text-lg font-bold mb-4">{companyName}</h3>
+        <p class="text-white/70 text-sm leading-relaxed">{description}</p>
       </div>
 
       <!-- Quick Links -->
       <div>
         <h3 class="text-lg font-bold mb-4">Quick Links</h3>
         <ul class="space-y-2">
-          <li><a href="/services" class="text-white/70 hover:text-accent text-sm transition-colors">Services</a></li>
-          <li><a href="/about" class="text-white/70 hover:text-accent text-sm transition-colors">About Us</a></li>
-          <li><a href="/gallery" class="text-white/70 hover:text-accent text-sm transition-colors">Our Work</a></li>
-          <li><a href="/contact" class="text-white/70 hover:text-accent text-sm transition-colors">Free Estimate</a></li>
+          {navLinks.filter((item: any) => item.label !== 'Home').map((item: any) => (
+            <li>
+              <a
+                href={item.link?.url || item.link?.cached_url || '/'}
+                class="text-white/70 hover:text-accent text-sm transition-colors"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -29,21 +43,21 @@ const currentYear = new Date().getFullYear()
       <div>
         <h3 class="text-lg font-bold mb-4">Get In Touch</h3>
         <ul class="space-y-2 text-sm text-white/70">
-          <li>📞 (701) 555-0123</li>
-          <li>✉️ info@deeprootsdrainage.com</li>
-          <li>📍 North Dakota</li>
+          <li>📞 {phone}</li>
+          <li>✉️ {email}</li>
+          <li>📍 {location}</li>
         </ul>
         <a
-          href="/contact"
+          href={ctaLink}
           class="inline-block mt-4 bg-accent hover:bg-accent-light text-primary-dark px-5 py-2 rounded-lg text-sm font-bold transition-colors"
         >
-          Request a Free Estimate
+          {ctaText}
         </a>
       </div>
     </div>
 
     <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm text-white/50">
-      &copy; {currentYear} Deep Roots Drainage. All rights reserved.
+      &copy; {currentYear} {companyName}. All rights reserved.
     </div>
   </div>
 </footer>

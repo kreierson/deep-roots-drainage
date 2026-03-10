@@ -1,11 +1,12 @@
 ---
-const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Services', href: '/services' },
-  { label: 'About', href: '/about' },
-  { label: 'Gallery', href: '/gallery' },
-  { label: 'Contact', href: '/contact' },
-]
+import { getSettings } from '../lib/settings'
+
+const settings = await getSettings()
+const navLinks = settings.nav_links || []
+const ctaText = settings.cta_button_text || 'Free Estimate'
+const ctaLink = settings.cta_button_link?.url || settings.cta_button_link?.cached_url || '/contact'
+const companyName = settings.company_name || 'Deep Roots Drainage'
+const tagline = settings.tagline || 'Drainage'
 ---
 
 <header class="bg-white border-b border-gray-100 sticky top-0 z-50">
@@ -17,26 +18,26 @@ const navLinks = [
           <span class="text-white font-bold text-lg">DR</span>
         </div>
         <div>
-          <span class="text-xl font-bold text-primary">Deep Roots</span>
-          <span class="block text-xs text-earth font-medium -mt-1">Drainage</span>
+          <span class="text-xl font-bold text-primary">{companyName.split(' ').slice(0, 2).join(' ')}</span>
+          <span class="block text-xs text-earth font-medium -mt-1">{companyName.split(' ').slice(2).join(' ') || tagline}</span>
         </div>
       </a>
 
       <!-- Desktop Nav -->
       <div class="hidden md:flex items-center gap-8">
-        {navLinks.map((link) => (
+        {navLinks.map((item: any) => (
           <a
-            href={link.href}
+            href={item.link?.url || item.link?.cached_url || '/'}
             class="text-sm font-semibold text-gray-600 hover:text-primary transition-colors"
           >
-            {link.label}
+            {item.label}
           </a>
         ))}
         <a
-          href="/contact"
+          href={ctaLink}
           class="bg-primary hover:bg-primary-light text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-colors"
         >
-          Free Estimate
+          {ctaText}
         </a>
       </div>
 
@@ -54,19 +55,19 @@ const navLinks = [
 
     <!-- Mobile Nav -->
     <div id="mobile-menu" class="hidden md:hidden pb-4">
-      {navLinks.map((link) => (
+      {navLinks.map((item: any) => (
         <a
-          href={link.href}
+          href={item.link?.url || item.link?.cached_url || '/'}
           class="block py-2 text-sm font-semibold text-gray-600 hover:text-primary"
         >
-          {link.label}
+          {item.label}
         </a>
       ))}
       <a
-        href="/contact"
+        href={ctaLink}
         class="block mt-2 bg-primary text-white text-center px-6 py-2.5 rounded-lg text-sm font-bold"
       >
-        Free Estimate
+        {ctaText}
       </a>
     </div>
   </nav>

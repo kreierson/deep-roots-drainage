@@ -2,12 +2,12 @@
 import Layout from '../layouts/Layout.astro'
 ---
 
-<Layout title="Contact" description="Get a free drain tile estimate from Deep Roots Drainage. Serving all of North Dakota.">
+<Layout title="Contact" description="Get a free drain tile estimate from Deep Roots Drainage. Serving farmers and landowners across North Dakota.">
   <section class="bg-primary-dark py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <p class="text-accent font-semibold text-sm tracking-wider uppercase mb-2">Let's Talk</p>
       <h1 class="text-4xl md:text-5xl font-black text-white">Get Your Free Estimate</h1>
-      <p class="mt-4 text-white/70 text-lg">Tell us about your project and we'll get back to you within 24 hours.</p>
+      <p class="mt-4 text-white/70 text-lg">Tell us about your land and we'll get back to you within 24 hours.</p>
     </div>
   </section>
 
@@ -54,30 +54,43 @@ import Layout from '../layouts/Layout.astro'
             </div>
 
             <div>
-              <label for="service" class="block text-sm font-semibold text-gray-700 mb-1">Service Needed</label>
+              <label for="service" class="block text-sm font-semibold text-gray-700 mb-1">What Do You Need?</label>
               <select
                 id="service"
                 name="service"
                 class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition bg-white"
               >
                 <option value="">Select a service...</option>
-                <option value="exterior">Exterior Drain Tile</option>
-                <option value="interior">Interior Drain Tile</option>
-                <option value="waterproofing">Foundation Waterproofing</option>
-                <option value="sump">Sump Pump Install/Repair</option>
+                <option value="pattern">Pattern Tile System</option>
+                <option value="mains">Main / Submain Lines</option>
+                <option value="outlet">Outlet Construction</option>
+                <option value="survey">Survey & Design Only</option>
+                <option value="repair">Tile Repair / Maintenance</option>
                 <option value="other">Not Sure / Other</option>
               </select>
             </div>
 
-            <div>
-              <label for="city" class="block text-sm font-semibold text-gray-700 mb-1">City / Area</label>
-              <input
-                type="text"
-                id="city"
-                name="city"
-                class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition"
-                placeholder="e.g. Fargo, Bismarck, Grand Forks"
-              />
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label for="location" class="block text-sm font-semibold text-gray-700 mb-1">County / Area</label>
+                <input
+                  type="text"
+                  id="location"
+                  name="location"
+                  class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition"
+                  placeholder="e.g. Cass County, near Fargo"
+                />
+              </div>
+              <div>
+                <label for="acres" class="block text-sm font-semibold text-gray-700 mb-1">Approx. Acres</label>
+                <input
+                  type="text"
+                  id="acres"
+                  name="acres"
+                  class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition"
+                  placeholder="e.g. 160, 320, full section"
+                />
+              </div>
             </div>
 
             <div>
@@ -87,7 +100,7 @@ import Layout from '../layouts/Layout.astro'
                 name="message"
                 rows="4"
                 class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition resize-y"
-                placeholder="Describe your water/drainage issues, property type, etc."
+                placeholder="Describe your drainage issues — wet spots, ponding areas, what crops you're running, etc."
               ></textarea>
             </div>
 
@@ -109,7 +122,7 @@ import Layout from '../layouts/Layout.astro'
                 <span class="text-xl">📞</span>
                 <div>
                   <p class="font-semibold text-gray-900">(701) 555-0123</p>
-                  <p class="text-sm">Call or text anytime</p>
+                  <p class="text-sm">Call or text</p>
                 </div>
               </li>
               <li class="flex items-start gap-3">
@@ -123,7 +136,7 @@ import Layout from '../layouts/Layout.astro'
                 <span class="text-xl">📍</span>
                 <div>
                   <p class="font-semibold text-gray-900">Serving All of North Dakota</p>
-                  <p class="text-sm">Fargo, Bismarck, Grand Forks, Minot & beyond</p>
+                  <p class="text-sm">Based in [City], available statewide</p>
                 </div>
               </li>
             </ul>
@@ -134,17 +147,25 @@ import Layout from '../layouts/Layout.astro'
             <ol class="space-y-3 text-gray-600 text-sm">
               <li class="flex gap-3">
                 <span class="bg-primary text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0">1</span>
-                <span>We'll call you within 24 hours to discuss your project</span>
+                <span>We'll call to discuss your land and drainage goals</span>
               </li>
               <li class="flex gap-3">
                 <span class="bg-primary text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0">2</span>
-                <span>Schedule a free on-site assessment</span>
+                <span>Schedule a field survey and walk-through</span>
               </li>
               <li class="flex gap-3">
                 <span class="bg-primary text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0">3</span>
-                <span>Receive a detailed quote with no hidden fees</span>
+                <span>Receive a custom drainage design and detailed quote</span>
               </li>
             </ol>
+          </div>
+
+          <div class="bg-accent/10 rounded-2xl p-8 border border-accent/20">
+            <h3 class="text-lg font-bold text-gray-900 mb-2">💡 Planning Ahead?</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              The best time to plan a tile project is well before installation season. 
+              Contact us now to get on the schedule — fall and spring slots fill up fast.
+            </p>
           </div>
         </div>
       </div>

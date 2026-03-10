@@ -4,12 +4,13 @@
   --color-primary: #2D5016;
   --color-primary-light: #4A7A2E;
   --color-primary-dark: #1A3009;
-  --color-accent: #C8A23D;
-  --color-accent-light: #D4B85A;
-  --color-earth: #8B7355;
-  --color-earth-light: #A89070;
+  --color-accent: #D4A017;
+  --color-accent-light: #E0B83A;
+  --color-earth: #6B5B3E;
+  --color-earth-light: #8B7755;
   --color-surface: #F5F1EB;
   --color-surface-dark: #E8E0D4;
+  --color-field: #4A6741;
 
   --font-heading: 'Inter', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;

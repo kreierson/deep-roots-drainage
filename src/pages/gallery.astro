@@ -1,28 +1,39 @@
 ---
 import Layout from '../layouts/Layout.astro'
+
+const placeholders = [
+  'Tile plow in field',
+  'Installed lateral lines',
+  'Main line trench',
+  'Outlet structure',
+  'GPS survey equipment',
+  'Before & after drainage',
+  'Pipe staging area',
+  'Completed project aerial',
+]
 ---
 
-<Layout title="Gallery" description="See our drain tile and waterproofing projects across North Dakota.">
+<Layout title="Gallery" description="See our agricultural drain tile projects across North Dakota.">
   <section class="bg-primary-dark py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <p class="text-accent font-semibold text-sm tracking-wider uppercase mb-2">Our Work</p>
       <h1 class="text-4xl md:text-5xl font-black text-white">Project Gallery</h1>
-      <p class="mt-4 text-white/70 text-lg">Real projects. Real results.</p>
+      <p class="mt-4 text-white/70 text-lg">Real fields. Real results.</p>
     </div>
   </section>
 
   <section class="py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {[1,2,3,4,5,6].map((i) => (
+        {placeholders.map((label) => (
           <div class="bg-surface rounded-2xl h-64 flex items-center justify-center text-earth hover:shadow-lg transition-shadow cursor-pointer">
-            [Project Photo {i}]
+            [{label}]
           </div>
         ))}
       </div>
 
       <p class="text-center text-gray-500 mt-12">
-        More photos coming soon. Follow our progress on our projects across North Dakota.
+        More project photos coming soon. We document every job so you can see exactly the kind of work we do.
       </p>
     </div>
   </section>

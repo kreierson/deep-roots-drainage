@@ -1,0 +1,49 @@
+---
+const currentYear = new Date().getFullYear()
+---
+
+<footer class="bg-primary-dark text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <!-- Company -->
+      <div>
+        <h3 class="text-lg font-bold mb-4">Deep Roots Drainage</h3>
+        <p class="text-white/70 text-sm leading-relaxed">
+          Professional drain tile installation and waterproofing services 
+          protecting North Dakota homes and properties.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="/services" class="text-white/70 hover:text-accent text-sm transition-colors">Services</a></li>
+          <li><a href="/about" class="text-white/70 hover:text-accent text-sm transition-colors">About Us</a></li>
+          <li><a href="/gallery" class="text-white/70 hover:text-accent text-sm transition-colors">Our Work</a></li>
+          <li><a href="/contact" class="text-white/70 hover:text-accent text-sm transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div>
+        <h3 class="text-lg font-bold mb-4">Get In Touch</h3>
+        <ul class="space-y-2 text-sm text-white/70">
+          <li>📞 (701) 555-0123</li>
+          <li>✉️ info@deeprootsdrainage.com</li>
+          <li>📍 North Dakota</li>
+        </ul>
+        <a
+          href="/contact"
+          class="inline-block mt-4 bg-accent hover:bg-accent-light text-primary-dark px-5 py-2 rounded-lg text-sm font-bold transition-colors"
+        >
+          Request a Free Estimate
+        </a>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm text-white/50">
+      &copy; {currentYear} Deep Roots Drainage. All rights reserved.
+    </div>
+  </div>
+</footer>

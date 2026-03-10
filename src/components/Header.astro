@@ -1,0 +1,79 @@
+---
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'Services', href: '/services' },
+  { label: 'About', href: '/about' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Contact', href: '/contact' },
+]
+---
+
+<header class="bg-white border-b border-gray-100 sticky top-0 z-50">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+          <span class="text-white font-bold text-lg">DR</span>
+        </div>
+        <div>
+          <span class="text-xl font-bold text-primary">Deep Roots</span>
+          <span class="block text-xs text-earth font-medium -mt-1">Drainage</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-8">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-sm font-semibold text-gray-600 hover:text-primary transition-colors"
+          >
+            {link.label}
+          </a>
+        ))}
+        <a
+          href="/contact"
+          class="bg-primary hover:bg-primary-light text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-colors"
+        >
+          Free Estimate
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden p-2 text-gray-600"
+        aria-label="Toggle menu"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="mobile-menu" class="hidden md:hidden pb-4">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="block py-2 text-sm font-semibold text-gray-600 hover:text-primary"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="/contact"
+        class="block mt-2 bg-primary text-white text-center px-6 py-2.5 rounded-lg text-sm font-bold"
+      >
+        Free Estimate
+      </a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn')
+  const menu = document.getElementById('mobile-menu')
+  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'))
+</script>

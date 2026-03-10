@@ -1,180 +1,87 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
+import { useStoryblokApi } from '@storyblok/astro'
+
+let story = null
+try {
+  const storyblokApi = useStoryblokApi()
+  const { data } = await storyblokApi.get('cdn/stories/home', {
+    version: import.meta.env.DEV ? 'draft' : 'published',
+  })
+  story = data.story
+} catch (e) {
+  // Storyblok not seeded yet — fall through to hardcoded
+}
+
+const seo = story?.content?.seo_title ? story.content : null
 ---
 
+{story ? (
+  <Layout title={seo?.seo_title || 'Home'} description={seo?.seo_description}>
+    <StoryblokComponent blok={story.content} />
+  </Layout>
+) : (
 <Layout title="Home">
-  <!-- Hero -->
   <section class="relative bg-primary-dark overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-br from-primary-dark/95 to-primary/80"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
       <div class="max-w-2xl">
-        <p class="text-accent font-semibold text-sm tracking-wider uppercase mb-4">
-          Agricultural Drainage Solutions · North Dakota
-        </p>
-        <h1 class="text-4xl md:text-6xl font-black text-white leading-tight">
-          Better Drainage. Better Yields.
-        </h1>
-        <p class="mt-6 text-lg text-white/80 leading-relaxed max-w-lg">
-          Professional drain tile installation for North Dakota farmland. 
-          Remove excess water, improve soil health, and maximize every acre's potential.
-        </p>
+        <p class="text-accent font-semibold text-sm tracking-wider uppercase mb-4">Agricultural Drainage Solutions · North Dakota</p>
+        <h1 class="text-4xl md:text-6xl font-black text-white leading-tight">Better Drainage. Better Yields.</h1>
+        <p class="mt-6 text-lg text-white/80 leading-relaxed max-w-lg">Professional drain tile installation for North Dakota farmland. Remove excess water, improve soil health, and maximize every acre's potential.</p>
         <div class="mt-8 flex flex-col sm:flex-row gap-4">
-          <a
-            href="/contact"
-            class="bg-accent hover:bg-accent-light text-primary-dark px-8 py-3.5 rounded-lg font-bold text-center transition-colors"
-          >
-            Get a Free Estimate
-          </a>
-          <a
-            href="/services"
-            class="border-2 border-white/30 hover:border-white/60 text-white px-8 py-3.5 rounded-lg font-bold text-center transition-colors"
-          >
-            Our Services
-          </a>
+          <a href="/contact" class="bg-accent hover:bg-accent-light text-primary-dark px-8 py-3.5 rounded-lg font-bold text-center transition-colors">Get a Free Estimate</a>
+          <a href="/services" class="border-2 border-white/30 hover:border-white/60 text-white px-8 py-3.5 rounded-lg font-bold text-center transition-colors">Our Services</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Trust Bar -->
   <section class="bg-surface py-8 border-b border-surface-dark">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        <div>
-          <p class="text-3xl font-black text-primary">GPS</p>
-          <p class="text-sm text-earth font-medium mt-1">Guided Installation</p>
-        </div>
-        <div>
-          <p class="text-3xl font-black text-primary">24hr</p>
-          <p class="text-sm text-earth font-medium mt-1">Quote Turnaround</p>
-        </div>
-        <div>
-          <p class="text-3xl font-black text-primary">Licensed</p>
-          <p class="text-sm text-earth font-medium mt-1">& Fully Insured</p>
-        </div>
-        <div>
-          <p class="text-3xl font-black text-primary">Local</p>
-          <p class="text-sm text-earth font-medium mt-1">North Dakota Owned</p>
-        </div>
+        <div><p class="text-3xl font-black text-primary">GPS</p><p class="text-sm text-earth font-medium mt-1">Guided Installation</p></div>
+        <div><p class="text-3xl font-black text-primary">24hr</p><p class="text-sm text-earth font-medium mt-1">Quote Turnaround</p></div>
+        <div><p class="text-3xl font-black text-primary">Licensed</p><p class="text-sm text-earth font-medium mt-1">& Fully Insured</p></div>
+        <div><p class="text-3xl font-black text-primary">Local</p><p class="text-sm text-earth font-medium mt-1">North Dakota Owned</p></div>
       </div>
     </div>
   </section>
 
-  <!-- Why Drain Tile -->
   <section class="py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <p class="text-accent font-semibold text-sm tracking-wider uppercase mb-2">Why Drain Tile</p>
         <h2 class="text-3xl md:text-4xl font-black text-gray-900">Turn Wet Acres Into Productive Acres</h2>
-        <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
-          Excess water costs you money every season. Drain tile removes standing water, 
-          reduces soil compaction, and gets you in the field earlier.
-        </p>
+        <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Excess water costs you money every season. Drain tile removes standing water, reduces soil compaction, and gets you in the field earlier.</p>
       </div>
-
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="bg-surface rounded-2xl p-8 hover:shadow-lg transition-shadow">
-          <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-5">
-            <span class="text-2xl">🌾</span>
-          </div>
+          <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-5"><span class="text-2xl">🌾</span></div>
           <h3 class="text-xl font-bold mb-3">Higher Yields</h3>
-          <p class="text-gray-600 leading-relaxed">
-            Properly drained fields consistently produce 15-30% higher yields. 
-            Drain tile pays for itself — often within a few seasons.
-          </p>
+          <p class="text-gray-600 leading-relaxed">Properly drained fields consistently produce 15-30% higher yields. Drain tile pays for itself — often within a few seasons.</p>
         </div>
-
         <div class="bg-surface rounded-2xl p-8 hover:shadow-lg transition-shadow">
-          <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-5">
-            <span class="text-2xl">🚜</span>
-          </div>
+          <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-5"><span class="text-2xl">🚜</span></div>
           <h3 class="text-xl font-bold mb-3">Earlier Planting</h3>
-          <p class="text-gray-600 leading-relaxed">
-            Get into the field days or weeks earlier in spring. Drained soil 
-            warms faster and reaches workable moisture levels sooner.
-          </p>
+          <p class="text-gray-600 leading-relaxed">Get into the field days or weeks earlier in spring. Drained soil warms faster and reaches workable moisture levels sooner.</p>
         </div>
-
         <div class="bg-surface rounded-2xl p-8 hover:shadow-lg transition-shadow">
-          <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-5">
-            <span class="text-2xl">💧</span>
-          </div>
+          <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-5"><span class="text-2xl">💧</span></div>
           <h3 class="text-xl font-bold mb-3">Healthier Soil</h3>
-          <p class="text-gray-600 leading-relaxed">
-            Better aeration, reduced compaction, and improved root development. 
-            Your soil works harder when it's not waterlogged.
-          </p>
+          <p class="text-gray-600 leading-relaxed">Better aeration, reduced compaction, and improved root development. Your soil works harder when it's not waterlogged.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Services Preview -->
-  <section class="bg-surface py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <p class="text-accent font-semibold text-sm tracking-wider uppercase mb-2">What We Do</p>
-        <h2 class="text-3xl md:text-4xl font-black text-gray-900">Our Services</h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="bg-white rounded-2xl p-8 hover:shadow-lg transition-shadow">
-          <h3 class="text-xl font-bold mb-3">Systematic Tile Installation</h3>
-          <p class="text-gray-600 leading-relaxed">
-            GPS-guided pattern tile systems designed for your field's specific topography. 
-            We handle everything from survey to installation to outlet construction.
-          </p>
-        </div>
-
-        <div class="bg-white rounded-2xl p-8 hover:shadow-lg transition-shadow">
-          <h3 class="text-xl font-bold mb-3">Main & Submain Lines</h3>
-          <p class="text-gray-600 leading-relaxed">
-            Large-diameter collector lines that move high volumes of water from your 
-            laterals to the outlet. Properly sized for your drainage area.
-          </p>
-        </div>
-
-        <div class="bg-white rounded-2xl p-8 hover:shadow-lg transition-shadow">
-          <h3 class="text-xl font-bold mb-3">Outlets & Waterways</h3>
-          <p class="text-gray-600 leading-relaxed">
-            Engineered outlet structures and surface waterways that safely discharge 
-            drainage water while meeting all regulatory requirements.
-          </p>
-        </div>
-
-        <div class="bg-white rounded-2xl p-8 hover:shadow-lg transition-shadow">
-          <h3 class="text-xl font-bold mb-3">Survey & Design</h3>
-          <p class="text-gray-600 leading-relaxed">
-            Detailed topographic surveys and custom drainage designs using the latest 
-            GPS technology. We plan every inch before we break ground.
-          </p>
-        </div>
-      </div>
-
-      <div class="text-center mt-12">
-        <a href="/services" class="text-primary font-bold hover:text-primary-light transition-colors">
-          Learn More About Our Services →
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
   <section class="bg-primary py-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl md:text-4xl font-black text-white mb-4">
-        Every Wet Season Is Costing You
-      </h2>
-      <p class="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
-        The ROI on drain tile is one of the best investments you can make in your operation. 
-        Let's look at your fields and put together a plan.
-      </p>
-      <a
-        href="/contact"
-        class="inline-block bg-accent hover:bg-accent-light text-primary-dark px-8 py-4 rounded-lg font-bold text-lg transition-colors"
-      >
-        Get Your Free Estimate
-      </a>
+      <h2 class="text-3xl md:text-4xl font-black text-white mb-4">Every Wet Season Is Costing You</h2>
+      <p class="text-white/80 text-lg mb-8 max-w-2xl mx-auto">The ROI on drain tile is one of the best investments you can make in your operation. Let's look at your fields and put together a plan.</p>
+      <a href="/contact" class="inline-block bg-accent hover:bg-accent-light text-primary-dark px-8 py-4 rounded-lg font-bold text-lg transition-colors">Get Your Free Estimate</a>
     </div>
   </section>
 </Layout>
+)}

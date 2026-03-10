@@ -1,7 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
+import { useStoryblokApi } from '@storyblok/astro'
+
+let story = null
+try {
+  const storyblokApi = useStoryblokApi()
+  const { data } = await storyblokApi.get('cdn/stories/about', {
+    version: import.meta.env.DEV ? 'draft' : 'published',
+  })
+  story = data.story
+} catch (e) {}
+
+const seo = story?.content?.seo_title ? story.content : null
 ---
 
+{story ? (
+  <Layout title={seo?.seo_title || 'About'} description={seo?.seo_description}>
+    <StoryblokComponent blok={story.content} />
+  </Layout>
+) : (
 <Layout title="About" description="Learn about Deep Roots Drainage — agricultural drain tile experts serving North Dakota farmers and landowners.">
   <section class="bg-primary-dark py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -12,54 +30,24 @@ import Layout from '../layouts/Layout.astro'
 
   <section class="py-20">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="text-xl text-gray-600 leading-relaxed mb-8">
-        Deep Roots Drainage is a North Dakota drain tile company built by people who 
-        understand the land. We know what wet fields cost you — lost acres, late planting, 
-        and years of frustration. We're here to fix that.
-      </p>
-
-      <div class="bg-surface rounded-2xl h-64 flex items-center justify-center text-earth mb-12">
-        [Team / Equipment Photo]
-      </div>
+      <p class="text-xl text-gray-600 leading-relaxed mb-8">Deep Roots Drainage is a North Dakota drain tile company built by people who understand the land. We know what wet fields cost you — lost acres, late planting, and years of frustration. We're here to fix that.</p>
+      <div class="bg-surface rounded-2xl h-64 flex items-center justify-center text-earth mb-12">[Team / Equipment Photo]</div>
 
       <h2 class="text-2xl font-black text-gray-900 mb-4">Our Approach</h2>
-      <p class="text-gray-600 leading-relaxed mb-8">
-        We don't believe in one-size-fits-all drainage. Every field is different — different 
-        soil, different topography, different challenges. We survey your land, study the data, 
-        and design a system that actually solves your specific water problems. Then we install 
-        it right the first time.
-      </p>
+      <p class="text-gray-600 leading-relaxed mb-8">We don't believe in one-size-fits-all drainage. Every field is different — different soil, different topography, different challenges. We survey your land, study the data, and design a system that actually solves your specific water problems. Then we install it right the first time.</p>
 
       <h2 class="text-2xl font-black text-gray-900 mb-4">What Sets Us Apart</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
-        <div class="bg-surface rounded-xl p-6">
-          <h3 class="font-bold text-gray-900 mb-2">Precision GPS</h3>
-          <p class="text-gray-600 text-sm">RTK-guided equipment ensures exact depth and grade on every foot of tile we install.</p>
-        </div>
-        <div class="bg-surface rounded-xl p-6">
-          <h3 class="font-bold text-gray-900 mb-2">Honest Pricing</h3>
-          <p class="text-gray-600 text-sm">Straightforward per-foot pricing. No hidden costs, no surprises when the bill comes.</p>
-        </div>
-        <div class="bg-surface rounded-xl p-6">
-          <h3 class="font-bold text-gray-900 mb-2">Local Knowledge</h3>
-          <p class="text-gray-600 text-sm">We know North Dakota soils — the clay, the black dirt, the sand. We design for what's actually under your fields.</p>
-        </div>
-        <div class="bg-surface rounded-xl p-6">
-          <h3 class="font-bold text-gray-900 mb-2">Quality Materials</h3>
-          <p class="text-gray-600 text-sm">We use heavy-duty corrugated pipe and proper fittings. Your tile system should last generations, not just years.</p>
-        </div>
+        <div class="bg-surface rounded-xl p-6"><h3 class="font-bold text-gray-900 mb-2">Precision GPS</h3><p class="text-gray-600 text-sm">RTK-guided equipment ensures exact depth and grade on every foot of tile we install.</p></div>
+        <div class="bg-surface rounded-xl p-6"><h3 class="font-bold text-gray-900 mb-2">Honest Pricing</h3><p class="text-gray-600 text-sm">Straightforward per-foot pricing. No hidden costs, no surprises when the bill comes.</p></div>
+        <div class="bg-surface rounded-xl p-6"><h3 class="font-bold text-gray-900 mb-2">Local Knowledge</h3><p class="text-gray-600 text-sm">We know North Dakota soils — the clay, the black dirt, the sand. We design for what's actually under your fields.</p></div>
+        <div class="bg-surface rounded-xl p-6"><h3 class="font-bold text-gray-900 mb-2">Quality Materials</h3><p class="text-gray-600 text-sm">We use heavy-duty corrugated pipe and proper fittings. Your tile system should last generations, not just years.</p></div>
       </div>
 
       <h2 class="text-2xl font-black text-gray-900 mb-4">Our Equipment</h2>
-      <p class="text-gray-600 leading-relaxed mb-8">
-        We run modern tile plows with RTK GPS grade control, allowing us to install tile 
-        at precise depths and grades even across complex terrain. Our equipment is sized 
-        to handle everything from small targeted runs to full-section pattern tile projects.
-      </p>
-
-      <div class="bg-surface rounded-2xl h-64 flex items-center justify-center text-earth">
-        [Equipment / Tile Plow Photo]
-      </div>
+      <p class="text-gray-600 leading-relaxed mb-8">We run modern tile plows with RTK GPS grade control, allowing us to install tile at precise depths and grades even across complex terrain. Our equipment is sized to handle everything from small targeted runs to full-section pattern tile projects.</p>
+      <div class="bg-surface rounded-2xl h-64 flex items-center justify-center text-earth">[Equipment / Tile Plow Photo]</div>
     </div>
   </section>
 </Layout>
+)}

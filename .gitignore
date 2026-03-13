@@ -3,3 +3,6 @@ dist
 .astro
 .env
 *.pem
+
+# Discovery & strategy docs
+/discovery/

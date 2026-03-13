@@ -34,7 +34,7 @@ export default defineConfig({
         gallery: 'storyblok/Gallery',
       },
       apiOptions: {
-        region: 'us',
+        region: 'eu',
       },
     }),
   ],

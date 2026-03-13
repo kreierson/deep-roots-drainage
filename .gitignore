@@ -6,3 +6,4 @@ dist
 
 # Discovery & strategy docs
 /discovery/
+.vercel

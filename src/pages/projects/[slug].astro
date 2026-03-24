@@ -1,21 +1,21 @@
 ---
 import Layout from '../../layouts/Layout.astro'
-import { useStoryblokApi } from '@storyblok/astro'
 import Project from '../../storyblok/Project.astro'
 
 export async function getStaticPaths() {
-  const storyblokApi = useStoryblokApi()
+  const token = import.meta.env.STORYBLOK_TOKEN || 'KAaKAIFtzAtyOal659brwAtt'
+  const cv = Date.now()
   try {
-    const { data } = await storyblokApi.get('cdn/stories', {
-      version: 'draft',
-      starts_with: 'projects/',
-      is_startpage: false,
-    })
-    return (data.stories || []).map((story: any) => ({
+    const url = `https://api.storyblok.com/v2/cdn/stories?starts_with=projects/&is_startpage=false&version=published&token=${token}&cv=${cv}`
+    const res = await fetch(url)
+    const json = await res.json()
+    console.log(`[projects/slug] Found ${json.stories?.length || 0} projects for static paths`)
+    return (json.stories || []).map((story: any) => ({
       params: { slug: story.slug },
       props: { story },
     }))
-  } catch (e) {
+  } catch (e: any) {
+    console.error('[projects/slug] Failed:', e.message)
     return []
   }
 }

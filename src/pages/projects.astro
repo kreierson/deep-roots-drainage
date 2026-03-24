@@ -1,20 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import { useStoryblokApi } from '@storyblok/astro'
 import ProjectCard from '../storyblok/ProjectCard.astro'
+
+const token = import.meta.env.STORYBLOK_TOKEN || 'KAaKAIFtzAtyOal659brwAtt'
+const version = import.meta.env.DEV ? 'draft' : 'published'
+const cv = Date.now()
 
 let projects: any[] = []
 try {
-  const storyblokApi = useStoryblokApi()
-  const { data } = await storyblokApi.get('cdn/stories', {
-    version: import.meta.env.DEV ? 'draft' : 'published',
-    starts_with: 'projects/',
-    is_startpage: false,
-    cv: Date.now(),
-  })
-  projects = data.stories || []
-} catch (e) {
-  console.error('Failed to fetch projects:', e)
+  const url = `https://api.storyblok.com/v2/cdn/stories?starts_with=projects/&is_startpage=false&version=${version}&token=${token}&cv=${cv}`
+  const res = await fetch(url)
+  const json = await res.json()
+  projects = json.stories || []
+  console.log(`[projects] Fetched ${projects.length} projects from Storyblok (status: ${res.status})`)
+} catch (e: any) {
+  console.error('[projects] Failed to fetch:', e.message)
 }
 ---
 

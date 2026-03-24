@@ -10,9 +10,12 @@ try {
     version: import.meta.env.DEV ? 'draft' : 'published',
     starts_with: 'projects/',
     is_startpage: false,
+    cv: Date.now(),
   })
   projects = data.stories || []
-} catch (e) {}
+} catch (e) {
+  console.error('Failed to fetch projects:', e)
+}
 ---
 
 <Layout title="Our Projects" description="See our agricultural drain tile projects across North Dakota.">

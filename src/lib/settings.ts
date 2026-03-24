@@ -9,6 +9,7 @@ export async function getSettings() {
     const api = useStoryblokApi()
     const { data } = await api.get('cdn/stories/settings', {
       version: import.meta.env.DEV ? 'draft' : 'published',
+      cv: Date.now(),
     })
     _cache = data.story.content
     return _cache
@@ -29,7 +30,7 @@ export async function getSettings() {
         { label: 'Home', link: { url: '/' } },
         { label: 'Services', link: { url: '/services' } },
         { label: 'About', link: { url: '/about' } },
-        { label: 'Gallery', link: { url: '/gallery' } },
+        { label: 'Projects', link: { url: '/projects' } },
         { label: 'Contact', link: { url: '/contact' } },
       ],
     }

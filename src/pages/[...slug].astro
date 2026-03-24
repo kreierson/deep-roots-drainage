@@ -1,17 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
-import { useStoryblokApi } from '@storyblok/astro'
+
+const token = import.meta.env.STORYBLOK_TOKEN || 'KAaKAIFtzAtyOal659brwAtt'
+const cv = Date.now()
 
 export async function getStaticPaths() {
-  const storyblokApi = useStoryblokApi()
+  const token = import.meta.env.STORYBLOK_TOKEN || 'KAaKAIFtzAtyOal659brwAtt'
+  const cv = Date.now()
 
   try {
-    const { data } = await storyblokApi.get('cdn/links', {
-      version: 'draft',
-    })
+    const url = `https://api.storyblok.com/v2/cdn/links?version=published&token=${token}&cv=${cv}`
+    const res = await fetch(url)
+    const json = await res.json()
 
-    const links = data.links
+    const links = json.links
     const paths = Object.values(links)
       .filter((link: any) => !link.is_folder && !link.slug.startsWith('projects/'))
       .map((link: any) => {
@@ -23,20 +26,18 @@ export async function getStaticPaths() {
 
     return paths
   } catch (e) {
-    // No stories in Storyblok yet — return empty
     return []
   }
 }
 
-const storyblokApi = useStoryblokApi()
 const { slug } = Astro.params
 const resolvedSlug = slug || 'home'
+const version = import.meta.env.DEV ? 'draft' : 'published'
 
-const { data } = await storyblokApi.get(`cdn/stories/${resolvedSlug}`, {
-  version: import.meta.env.DEV ? 'draft' : 'published',
-})
+const res = await fetch(`https://api.storyblok.com/v2/cdn/stories/${resolvedSlug}?version=${version}&token=${token}&cv=${cv}`)
+const json = await res.json()
 
-const story = data.story
+const story = json.story
 const seo = story.content.seo || {}
 ---
 

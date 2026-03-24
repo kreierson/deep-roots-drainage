@@ -1,16 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
-import { useStoryblokApi } from '@storyblok/astro'
+
+
+const token = import.meta.env.STORYBLOK_TOKEN || 'KAaKAIFtzAtyOal659brwAtt'
+const version = import.meta.env.DEV ? 'draft' : 'published'
+const cv = Date.now()
 
 let story = null
 try {
-  const storyblokApi = useStoryblokApi()
-  const { data } = await storyblokApi.get('cdn/stories/services', {
-    version: import.meta.env.DEV ? 'draft' : 'published',
-  })
-  story = data.story
-} catch (e) {}
+  const url = `https://api.storyblok.com/v2/cdn/stories/services?version=${version}&token=${token}&cv=${cv}`
+  const res = await fetch(url)
+  const json = await res.json()
+  story = json.story
+} catch (e: any) {
+  console.error(`[services] Failed:`, e.message)
+}
 
 const seo = story?.content?.seo_title ? story.content : null
 ---

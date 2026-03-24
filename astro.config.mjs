@@ -37,7 +37,7 @@ export default defineConfig({
         projects_grid: 'storyblok/ProjectsGrid',
       },
       apiOptions: {
-        region: 'eu',
+        region: '',
       },
     }),
   ],

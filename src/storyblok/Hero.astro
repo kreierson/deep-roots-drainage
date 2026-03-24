@@ -5,12 +5,12 @@ const { blok } = Astro.props
 ---
 
 <section class="relative bg-primary-dark overflow-hidden" {...storyblokEditable(blok)}>
-  <div class="absolute inset-0 bg-gradient-to-br from-primary-dark/95 to-primary/80"></div>
+  <div class="absolute inset-0 bg-gradient-to-br from-primary-dark/70 to-primary/50"></div>
   {blok.background_image?.filename && (
     <img
       src={blok.background_image.filename}
       alt=""
-      class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-30"
+      class="absolute inset-0 w-full h-full object-cover opacity-60"
     />
   )}
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">

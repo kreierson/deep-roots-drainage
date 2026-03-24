@@ -1,0 +1,35 @@
+---
+import { storyblokEditable } from '@storyblok/astro'
+import { useStoryblokApi } from '@storyblok/astro'
+import ProjectCard from './ProjectCard.astro'
+
+const { blok } = Astro.props
+
+let projects: any[] = []
+try {
+  const storyblokApi = useStoryblokApi()
+  const { data } = await storyblokApi.get('cdn/stories', {
+    version: import.meta.env.DEV ? 'draft' : 'published',
+    starts_with: 'projects/',
+    is_startpage: false,
+  })
+  projects = data.stories || []
+} catch (e) {}
+---
+
+<section class="py-20" {...storyblokEditable(blok)}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {blok.headline && (
+      <h2 class="text-3xl font-black text-gray-900 mb-8 text-center">{blok.headline}</h2>
+    )}
+    {projects.length > 0 ? (
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projects.map((story: any) => (
+          <ProjectCard blok={story.content} slug={story.slug} />
+        ))}
+      </div>
+    ) : (
+      <p class="text-center text-gray-500">Projects coming soon.</p>
+    )}
+  </div>
+</section>

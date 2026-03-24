@@ -1,0 +1,28 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import { useStoryblokApi } from '@storyblok/astro'
+import Project from '../../storyblok/Project.astro'
+
+export async function getStaticPaths() {
+  const storyblokApi = useStoryblokApi()
+  try {
+    const { data } = await storyblokApi.get('cdn/stories', {
+      version: 'draft',
+      starts_with: 'projects/',
+      is_startpage: false,
+    })
+    return (data.stories || []).map((story: any) => ({
+      params: { slug: story.slug },
+      props: { story },
+    }))
+  } catch (e) {
+    return []
+  }
+}
+
+const { story } = Astro.props
+---
+
+<Layout title={story.content.title || story.name} description={story.content.summary || undefined}>
+  <Project blok={story.content} />
+</Layout>

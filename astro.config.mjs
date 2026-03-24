@@ -32,6 +32,9 @@ export default defineConfig({
         feature_card: 'storyblok/FeatureCard',
         contact_form: 'storyblok/ContactForm',
         gallery: 'storyblok/Gallery',
+        project: 'storyblok/Project',
+        project_card: 'storyblok/ProjectCard',
+        projects_grid: 'storyblok/ProjectsGrid',
       },
       apiOptions: {
         region: 'eu',

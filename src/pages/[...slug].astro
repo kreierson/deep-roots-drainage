@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
     const links = data.links
     const paths = Object.values(links)
-      .filter((link: any) => !link.is_folder)
+      .filter((link: any) => !link.is_folder && !link.slug.startsWith('projects/'))
       .map((link: any) => {
         const slug = link.slug === 'home' ? undefined : link.slug
         return {

@@ -1,17 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
-import { useStoryblokApi } from '@storyblok/astro'
+
+const token = import.meta.env.STORYBLOK_TOKEN || 'KAaKAIFtzAtyOal659brwAtt'
+const version = import.meta.env.DEV ? 'draft' : 'published'
+const cv = Date.now()
 
 let story = null
 try {
-  const storyblokApi = useStoryblokApi()
-  const { data } = await storyblokApi.get('cdn/stories/home', {
-    version: import.meta.env.DEV ? 'draft' : 'published',
-  })
-  story = data.story
-} catch (e) {
-  // Storyblok not seeded yet — fall through to hardcoded
+  const url = `https://api.storyblok.com/v2/cdn/stories/home?version=${version}&token=${token}&cv=${cv}`
+  const res = await fetch(url)
+  const json = await res.json()
+  story = json.story
+  console.log(`[index] Fetched home story (status: ${res.status}, has body: ${!!story?.content?.body})`)
+} catch (e: any) {
+  console.error('[index] Failed to fetch home:', e.message)
 }
 
 const seo = story?.content?.seo_title ? story.content : null

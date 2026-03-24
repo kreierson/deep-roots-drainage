@@ -36,9 +36,7 @@ export default defineConfig({
         project_card: 'storyblok/ProjectCard',
         projects_grid: 'storyblok/ProjectsGrid',
       },
-      apiOptions: {
-        region: '',
-      },
+      apiOptions: {},
     }),
   ],
 });

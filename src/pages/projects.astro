@@ -1,21 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import ProjectCard from '../storyblok/ProjectCard.astro'
+import { getCollection } from 'astro:content'
 
-const token = import.meta.env.STORYBLOK_TOKEN || 'KAaKAIFtzAtyOal659brwAtt'
-const version = import.meta.env.DEV ? 'draft' : 'published'
-const cv = Date.now()
-
-let projects: any[] = []
-try {
-  const url = `https://api.storyblok.com/v2/cdn/stories?starts_with=projects/&is_startpage=false&version=${version}&token=${token}&cv=${cv}`
-  const res = await fetch(url)
-  const json = await res.json()
-  projects = json.stories || []
-  console.log(`[projects] Fetched ${projects.length} projects from Storyblok (status: ${res.status})`)
-} catch (e: any) {
-  console.error('[projects] Failed to fetch:', e.message)
-}
+const projects = await getCollection('projects')
+const sortedProjects = projects.sort((a, b) => b.data.year - a.data.year)
 ---
 
 <Layout title="Our Projects" description="See our agricultural drain tile projects across North Dakota.">
@@ -31,10 +19,49 @@ try {
 
   <section class="py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      {projects.length > 0 ? (
+      {sortedProjects.length > 0 ? (
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((story: any) => (
-            <ProjectCard blok={story.content} slug={story.slug} />
+          {sortedProjects.map((project) => (
+            <article class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group">
+              <div class="relative h-48 overflow-hidden">
+                <img
+                  src={project.data.featured_image}
+                  alt={project.data.featured_image_alt}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <div class="absolute top-4 left-4">
+                  <span class="bg-primary text-white px-3 py-1 rounded-full text-sm font-bold">
+                    {project.data.year}
+                  </span>
+                </div>
+                {project.data.featured && (
+                  <div class="absolute top-4 right-4">
+                    <span class="bg-accent text-primary-dark px-3 py-1 rounded-full text-sm font-bold">
+                      Featured
+                    </span>
+                  </div>
+                )}
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-2 leading-tight">
+                  {project.data.title}
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  {project.data.summary}
+                </p>
+                <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                  <span>📍 {project.data.location}</span>
+                  <span>🌾 {project.data.acres} acres</span>
+                </div>
+                <a
+                  href={`/projects/${project.slug}`}
+                  class="inline-block bg-primary hover:bg-primary-light text-white px-4 py-2 rounded-lg font-semibold text-sm transition-colors"
+                >
+                  View Project →
+                </a>
+              </div>
+            </article>
           ))}
         </div>
       ) : (

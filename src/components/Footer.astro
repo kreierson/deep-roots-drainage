@@ -1,16 +1,16 @@
 ---
-import { getSettings } from '../lib/settings'
+import { getEntry } from 'astro:content'
 
-const settings = await getSettings()
+const settings = await getEntry('settings', 'global')
 const currentYear = new Date().getFullYear()
-const companyName = settings.company_name || 'Deep Roots Drainage'
-const phone = settings.phone || '(701) 555-0123'
-const email = settings.email || 'info@deeprootsdrainage.com'
-const location = settings.location || 'North Dakota'
-const description = settings.footer_description || ''
-const ctaText = settings.footer_cta_text || 'Request a Free Estimate'
-const ctaLink = settings.footer_cta_link?.url || settings.footer_cta_link?.cached_url || '/contact'
-const navLinks = settings.nav_links || []
+const companyName = settings.data.company_name || 'Deep Roots Drainage'
+const phone = settings.data.phone || '(701) 555-0123'
+const email = settings.data.email || 'info@deeprootsdrainage.com'
+const location = settings.data.location || 'North Dakota'
+const description = settings.data.footer_description || ''
+const ctaText = settings.data.footer_cta_text || 'Request a Free Estimate'
+const ctaLink = settings.data.footer_cta_link || '/contact'
+const navLinks = settings.data.nav_links || []
 ---
 
 <footer class="bg-primary-dark text-white">
@@ -26,10 +26,10 @@ const navLinks = settings.nav_links || []
       <div>
         <h3 class="text-lg font-bold mb-4">Quick Links</h3>
         <ul class="space-y-2">
-          {navLinks.filter((item: any) => item.label !== 'Home').map((item: any) => (
+          {navLinks.filter((item) => item.label !== 'Home').map((item) => (
             <li>
               <a
-                href={item.link?.url || item.link?.cached_url || '/'}
+                href={item.url || '/'}
                 class="text-white/70 hover:text-accent text-sm transition-colors"
               >
                 {item.label}

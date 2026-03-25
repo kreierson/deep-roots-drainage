@@ -1,12 +1,12 @@
 ---
-import { getSettings } from '../lib/settings'
+import { getEntry } from 'astro:content'
 
-const settings = await getSettings()
-const navLinks = settings.nav_links || []
-const ctaText = settings.cta_button_text || 'Free Estimate'
-const ctaLink = settings.cta_button_link?.url || settings.cta_button_link?.cached_url || '/contact'
-const companyName = settings.company_name || 'Deep Roots Drainage'
-const tagline = settings.tagline || 'Drainage'
+const settings = await getEntry('settings', 'global')
+const navLinks = settings.data.nav_links || []
+const ctaText = settings.data.cta_button_text || 'Free Estimate'
+const ctaLink = settings.data.cta_button_link || '/contact'
+const companyName = settings.data.company_name || 'Deep Roots Drainage'
+const tagline = settings.data.tagline || 'Drainage'
 ---
 
 <header class="bg-white border-b border-gray-100 sticky top-0 z-50">
@@ -25,9 +25,9 @@ const tagline = settings.tagline || 'Drainage'
 
       <!-- Desktop Nav -->
       <div class="hidden md:flex items-center gap-8">
-        {navLinks.map((item: any) => (
+        {navLinks.map((item) => (
           <a
-            href={item.link?.url || item.link?.cached_url || '/'}
+            href={item.url || '/'}
             class="text-sm font-semibold text-gray-600 hover:text-primary transition-colors"
           >
             {item.label}
@@ -55,9 +55,9 @@ const tagline = settings.tagline || 'Drainage'
 
     <!-- Mobile Nav -->
     <div id="mobile-menu" class="hidden md:hidden pb-4">
-      {navLinks.map((item: any) => (
+      {navLinks.map((item) => (
         <a
-          href={item.link?.url || item.link?.cached_url || '/'}
+          href={item.url || '/'}
           class="block py-2 text-sm font-semibold text-gray-600 hover:text-primary"
         >
           {item.label}

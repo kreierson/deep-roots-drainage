@@ -1,13 +1,12 @@
 {
-  "headers": [
+  "rewrites": [
     {
-      "source": "/admin/config.yml",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/yaml"
-        }
-      ]
+      "source": "/.netlify/identity/:path*",
+      "destination": "https://deeprootsdrainage.netlify.app/.netlify/identity/:path*"
+    },
+    {
+      "source": "/.netlify/git/:path*",
+      "destination": "https://deeprootsdrainage.netlify.app/.netlify/git/:path*"
     }
   ]
 }

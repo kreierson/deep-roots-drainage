@@ -6,6 +6,9 @@
   <meta name="robots" content="noindex" />
   <title>Content Manager</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    window.netlifyIdentity && window.netlifyIdentity.init({ APIUrl: "https://deeprootsdrainage.netlify.app/.netlify/identity" });
+  </script>
 </head>
 <body>
   <script>
@@ -16,6 +19,7 @@
     CMS.init({
       config: {
         load_config_file: false,
+        site_url: "https://deeprootsdrainage.netlify.app",
         backend: { name: "git-gateway", branch: "main" },
         media_folder: "public/images/uploads",
         public_folder: "/images/uploads",

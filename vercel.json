@@ -1,12 +1,1 @@
-{
-  "rewrites": [
-    {
-      "source": "/.netlify/identity/:path*",
-      "destination": "https://deeprootsdrainage.netlify.app/.netlify/identity/:path*"
-    },
-    {
-      "source": "/.netlify/git/:path*",
-      "destination": "https://deeprootsdrainage.netlify.app/.netlify/git/:path*"
-    }
-  ]
-}
+{}

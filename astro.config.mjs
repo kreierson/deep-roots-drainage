@@ -1,10 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
-import { storyblok } from '@storyblok/astro';
-import { loadEnv } from 'vite';
-
-const env = loadEnv('', process.cwd(), 'STORYBLOK');
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,29 +14,4 @@ export default defineConfig({
       },
     },
   },
-  integrations: [
-    storyblok({
-      accessToken: env.STORYBLOK_TOKEN,
-      components: {
-        page: 'storyblok/Page',
-        hero: 'storyblok/Hero',
-        services_grid: 'storyblok/ServicesGrid',
-        service_card: 'storyblok/ServiceCard',
-        text_section: 'storyblok/TextSection',
-        cta_banner: 'storyblok/CtaBanner',
-        feature_grid: 'storyblok/FeatureGrid',
-        feature_card: 'storyblok/FeatureCard',
-        contact_form: 'storyblok/ContactForm',
-        gallery: 'storyblok/Gallery',
-        before_after: 'storyblok/BeforeAfter',
-        how_it_works: 'storyblok/HowItWorks',
-        stats_bar: 'storyblok/StatsBar',
-        testimonials: 'storyblok/Testimonials',
-        project: 'storyblok/Project',
-        project_card: 'storyblok/ProjectCard',
-        projects_grid: 'storyblok/ProjectsGrid',
-      },
-      apiOptions: {},
-    }),
-  ],
 });

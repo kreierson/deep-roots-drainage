@@ -1,40 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
+import { getEntry } from 'astro:content'
 
-
-const token = import.meta.env.STORYBLOK_TOKEN || 'KAaKAIFtzAtyOal659brwAtt'
-const version = import.meta.env.DEV ? 'draft' : 'published'
-const cv = Date.now()
-
-let story = null
-try {
-  const url = `https://api.storyblok.com/v2/cdn/stories/contact?version=${version}&token=${token}&cv=${cv}`
-  const res = await fetch(url)
-  const json = await res.json()
-  story = json.story
-} catch (e: any) {
-  console.error(`[contact] Failed:`, e.message)
-}
-
-const seo = story?.content?.seo_title ? story.content : null
+const page = await getEntry('pages', 'contact')
+const { data } = page
+const { Content } = await page.render()
 ---
-
-{story ? (
-  <Layout title={seo?.seo_title || 'Contact'} description={seo?.seo_description}>
-    <StoryblokComponent blok={story.content} />
-  </Layout>
-) : (
-<Layout title="Contact" description="Get a free drain tile estimate from Deep Roots Drainage. Serving farmers and landowners across North Dakota.">
-  <section class="relative py-28 md:py-36 overflow-hidden">
-    <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=1400&q=80" alt="Rural farmland in North Dakota" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
-    <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/70 via-primary-dark/50 to-primary-dark/30"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">Let's Talk</p>
-      <h1 class="text-4xl md:text-5xl font-black text-white">Get Your Free Estimate</h1>
-      <p class="mt-4 text-white/80 text-lg">Tell us about your land and we'll get back to you within 24 hours.</p>
-    </div>
-  </section>
+<Layout title={data.seo_title || data.title} description={data.seo_description}>
+  {data.hero && (
+    <section class="relative py-28 md:py-36 overflow-hidden">
+      <img src={data.hero.image} alt={data.hero.image_alt} class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/70 via-primary-dark/50 to-primary-dark/30"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">{data.hero.eyebrow}</p>
+        <h1 class="text-4xl md:text-5xl font-black text-white">{data.hero.title}</h1>
+        <p class="mt-4 text-white/80 text-lg">{data.hero.description}</p>
+      </div>
+    </section>
+  )}
 
   <section class="py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

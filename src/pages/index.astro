@@ -1,53 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
+import { getEntry } from 'astro:content'
 
-const token = import.meta.env.STORYBLOK_TOKEN || 'KAaKAIFtzAtyOal659brwAtt'
-const version = import.meta.env.DEV ? 'draft' : 'published'
-const cv = Date.now()
-
-let story = null
-try {
-  const url = `https://api.storyblok.com/v2/cdn/stories/home?version=${version}&token=${token}&cv=${cv}`
-  const res = await fetch(url)
-  const json = await res.json()
-  story = json.story
-  console.log(`[index] Fetched home story (status: ${res.status}, has body: ${!!story?.content?.body})`)
-} catch (e: any) {
-  console.error('[index] Failed to fetch home:', e.message)
-}
-
-const seo = story?.content?.seo_title ? story.content : null
+const homeContent = await getEntry('pages', 'home')
+const { Content, data } = homeContent
 ---
-
-{story ? (
-  <Layout title={seo?.seo_title || 'Home'} description={seo?.seo_description}>
-    <StoryblokComponent blok={story.content} />
-  </Layout>
-) : (
-<Layout title="Home">
+<Layout title={data.seo_title || data.title} description={data.seo_description}>
 
   <!-- ═══════════ HERO — full-bleed background image ═══════════ -->
   <section class="relative min-h-[85vh] flex items-center overflow-hidden">
     <img
-      src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&q=80"
-      alt="Golden wheat field at sunrise across North Dakota farmland"
+      src={data.hero.image}
+      alt={data.hero.image_alt}
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
     />
     <div class="absolute inset-0 bg-gradient-to-t from-primary-dark via-primary-dark/60 to-transparent"></div>
     <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/70 to-transparent"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 w-full">
-      <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-4">Agricultural Drainage · North Dakota</p>
-      <h1 class="text-5xl md:text-7xl font-black text-white leading-[1.05] max-w-3xl">
-        Better Drainage.<br/>Better Yields.
-      </h1>
+      <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-4">{data.hero.eyebrow}</p>
+      <h1 class="text-5xl md:text-7xl font-black text-white leading-[1.05] max-w-3xl" set:html={data.hero.title}></h1>
       <p class="mt-6 text-lg md:text-xl text-white/85 leading-relaxed max-w-xl">
-        Professional drain tile installation that turns waterlogged acres into your most productive ground.
+        {data.hero.description}
       </p>
       <div class="mt-10 flex flex-col sm:flex-row gap-4">
-        <a href="/contact" class="bg-accent hover:bg-accent-light text-primary-dark px-8 py-4 rounded-lg font-bold text-lg text-center transition-colors shadow-lg">Get a Free Estimate</a>
-        <a href="/services" class="border-2 border-white/30 hover:border-white/60 text-white px-8 py-4 rounded-lg font-bold text-center transition-colors backdrop-blur-sm">Our Services</a>
+        <a href={data.hero.primary_button.url} class="bg-accent hover:bg-accent-light text-primary-dark px-8 py-4 rounded-lg font-bold text-lg text-center transition-colors shadow-lg">{data.hero.primary_button.text}</a>
+        {data.hero.secondary_button && (
+          <a href={data.hero.secondary_button.url} class="border-2 border-white/30 hover:border-white/60 text-white px-8 py-4 rounded-lg font-bold text-center transition-colors backdrop-blur-sm">{data.hero.secondary_button.text}</a>
+        )}
       </div>
     </div>
   </section>
@@ -56,10 +36,12 @@ const seo = story?.content?.seo_title ? story.content : null
   <section class="bg-primary-dark border-t border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div class="border-r border-white/10 last:border-0"><p class="text-2xl md:text-3xl font-black text-accent">GPS</p><p class="text-xs text-white/60 font-medium mt-1 uppercase tracking-wider">Guided Installation</p></div>
-        <div class="border-r border-white/10 last:border-0"><p class="text-2xl md:text-3xl font-black text-accent">24hr</p><p class="text-xs text-white/60 font-medium mt-1 uppercase tracking-wider">Quote Turnaround</p></div>
-        <div class="border-r border-white/10 last:border-0"><p class="text-2xl md:text-3xl font-black text-accent">Licensed</p><p class="text-xs text-white/60 font-medium mt-1 uppercase tracking-wider">& Fully Insured</p></div>
-        <div><p class="text-2xl md:text-3xl font-black text-accent">Local</p><p class="text-xs text-white/60 font-medium mt-1 uppercase tracking-wider">North Dakota Owned</p></div>
+        {data.stats.map((stat, index) => (
+          <div class={`${index !== data.stats.length - 1 ? 'border-r border-white/10' : ''}`}>
+            <p class="text-2xl md:text-3xl font-black text-accent">{stat.value}</p>
+            <p class="text-xs text-white/60 font-medium mt-1 uppercase tracking-wider">{stat.label}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -68,37 +50,37 @@ const seo = story?.content?.seo_title ? story.content : null
   <section class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-2xl mb-14">
-        <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">The Difference</p>
-        <h2 class="text-3xl md:text-5xl font-black text-gray-900 leading-tight">See What Drainage Can Do</h2>
-        <p class="mt-4 text-gray-600 text-lg">The same land, dramatically different results. Drain tile transforms waterlogged fields into high-performing acres.</p>
+        <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">{data.before_after.eyebrow}</p>
+        <h2 class="text-3xl md:text-5xl font-black text-gray-900 leading-tight">{data.before_after.title}</h2>
+        <p class="mt-4 text-gray-600 text-lg">{data.before_after.description}</p>
       </div>
       <div class="grid md:grid-cols-2 gap-3">
         <div class="relative rounded-2xl overflow-hidden group">
           <img
-            src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=800&q=80"
-            alt="Waterlogged, flooded farmland with standing water"
+            src={data.before_after.before_image}
+            alt={data.before_after.before_image_alt}
             class="w-full h-72 md:h-96 object-cover group-hover:scale-105 transition-transform duration-700"
             loading="lazy"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-red-900/80 to-transparent"></div>
           <div class="absolute bottom-0 left-0 p-6">
             <span class="inline-block bg-red-600 text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-2">Before</span>
-            <p class="text-white font-bold text-xl">Standing Water & Lost Acres</p>
-            <p class="text-white/70 text-sm mt-1">Saturated soil, delayed planting, reduced yields</p>
+            <p class="text-white font-bold text-xl">{data.before_after.before_title}</p>
+            <p class="text-white/70 text-sm mt-1">{data.before_after.before_description}</p>
           </div>
         </div>
         <div class="relative rounded-2xl overflow-hidden group">
           <img
-            src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80"
-            alt="Healthy green crop rows in a well-drained field"
+            src={data.before_after.after_image}
+            alt={data.before_after.after_image_alt}
             class="w-full h-72 md:h-96 object-cover group-hover:scale-105 transition-transform duration-700"
             loading="lazy"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent"></div>
           <div class="absolute bottom-0 left-0 p-6">
             <span class="inline-block bg-accent text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-2">After</span>
-            <p class="text-white font-bold text-xl">Productive, Drained Ground</p>
-            <p class="text-white/70 text-sm mt-1">Earlier planting, healthier soil, 15-30% higher yields</p>
+            <p class="text-white font-bold text-xl">{data.before_after.after_title}</p>
+            <p class="text-white/70 text-sm mt-1">{data.before_after.after_description}</p>
           </div>
         </div>
       </div>
@@ -112,49 +94,32 @@ const seo = story?.content?.seo_title ? story.content : null
         <!-- Image side -->
         <div class="relative">
           <img
-            src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=800&q=80"
-            alt="Aerial view of cultivated agricultural field rows"
+            src={data.how_it_works.image}
+            alt={data.how_it_works.image_alt}
             class="rounded-2xl shadow-2xl w-full h-[500px] object-cover"
             loading="lazy"
           />
           <div class="absolute -bottom-6 -right-6 bg-accent text-primary-dark rounded-xl px-6 py-4 shadow-lg hidden md:block">
-            <p class="text-3xl font-black">4</p>
+            <p class="text-3xl font-black">{data.how_it_works.steps.length}</p>
             <p class="text-sm font-bold">Simple Steps</p>
           </div>
         </div>
         <!-- Steps side -->
         <div>
-          <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">How It Works</p>
-          <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-10">From Survey to Results</h2>
+          <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">{data.how_it_works.eyebrow}</p>
+          <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-10">{data.how_it_works.title}</h2>
           <div class="space-y-8">
-            <div class="flex gap-5">
-              <div class="flex-shrink-0 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-black text-lg">1</div>
-              <div>
-                <h3 class="font-bold text-lg text-gray-900">Survey Your Land</h3>
-                <p class="text-gray-600 mt-1">We walk your fields, review topography, and identify problem areas with GPS mapping.</p>
+            {data.how_it_works.steps.map((step, index) => (
+              <div class="flex gap-5">
+                <div class={`flex-shrink-0 w-12 h-12 rounded-full ${index === data.how_it_works.steps.length - 1 ? 'bg-accent text-primary-dark' : 'bg-primary text-white'} flex items-center justify-center font-black text-lg`}>
+                  {index === data.how_it_works.steps.length - 1 ? '✓' : index + 1}
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg text-gray-900">{step.title}</h3>
+                  <p class="text-gray-600 mt-1">{step.description}</p>
+                </div>
               </div>
-            </div>
-            <div class="flex gap-5">
-              <div class="flex-shrink-0 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-black text-lg">2</div>
-              <div>
-                <h3 class="font-bold text-lg text-gray-900">Design the System</h3>
-                <p class="text-gray-600 mt-1">Custom tile layout engineered for your specific soil type, field slope, and drainage needs.</p>
-              </div>
-            </div>
-            <div class="flex gap-5">
-              <div class="flex-shrink-0 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-black text-lg">3</div>
-              <div>
-                <h3 class="font-bold text-lg text-gray-900">Install with Precision</h3>
-                <p class="text-gray-600 mt-1">GPS-guided installation ensures accurate grade and depth. Minimal disruption to your operation.</p>
-              </div>
-            </div>
-            <div class="flex gap-5">
-              <div class="flex-shrink-0 w-12 h-12 rounded-full bg-accent text-primary-dark flex items-center justify-center font-black text-lg">✓</div>
-              <div>
-                <h3 class="font-bold text-lg text-gray-900">See the Results</h3>
-                <p class="text-gray-600 mt-1">Drier fields, earlier planting, and yields that prove the investment — often within the first season.</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -188,26 +153,16 @@ const seo = story?.content?.seo_title ? story.content : null
     </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">By the Numbers</p>
-        <h2 class="text-3xl md:text-5xl font-black text-white">Proven Results Across ND</h2>
+        <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">{data.social_proof.eyebrow}</p>
+        <h2 class="text-3xl md:text-5xl font-black text-white">{data.social_proof.title}</h2>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-        <div class="text-center">
-          <p class="text-5xl md:text-6xl font-black text-accent">15<span class="text-3xl">+</span></p>
-          <p class="text-white/70 mt-2 font-medium">Years Experience</p>
-        </div>
-        <div class="text-center">
-          <p class="text-5xl md:text-6xl font-black text-accent">500<span class="text-3xl">+</span></p>
-          <p class="text-white/70 mt-2 font-medium">Miles of Tile Installed</p>
-        </div>
-        <div class="text-center">
-          <p class="text-5xl md:text-6xl font-black text-accent">30<span class="text-3xl">%</span></p>
-          <p class="text-white/70 mt-2 font-medium">Avg. Yield Increase</p>
-        </div>
-        <div class="text-center">
-          <p class="text-5xl md:text-6xl font-black text-accent">100<span class="text-3xl">%</span></p>
-          <p class="text-white/70 mt-2 font-medium">Satisfaction Rate</p>
-        </div>
+        {data.social_proof.stats.map((stat) => (
+          <div class="text-center">
+            <p class="text-5xl md:text-6xl font-black text-accent" set:html={stat.value.includes('+') ? stat.value.replace('+', '<span class="text-3xl">+</span>') : stat.value.includes('%') ? stat.value.replace('%', '<span class="text-3xl">%</span>') : stat.value}></p>
+            <p class="text-white/70 mt-2 font-medium">{stat.label}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -216,37 +171,20 @@ const seo = story?.content?.seo_title ? story.content : null
   <section class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-2xl mb-14">
-        <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">Testimonials</p>
-        <h2 class="text-3xl md:text-4xl font-black text-gray-900">What Farmers Are Saying</h2>
+        <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">{data.testimonials.eyebrow}</p>
+        <h2 class="text-3xl md:text-4xl font-black text-gray-900">{data.testimonials.title}</h2>
       </div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Testimonial 1 -->
-        <div class="bg-surface rounded-2xl p-8 relative">
-          <svg class="w-10 h-10 text-accent/30 mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-          <p class="text-gray-700 leading-relaxed mb-6">"We had 40 acres that were underwater every spring. Deep Roots put tile in last fall, and this spring we planted the whole quarter on time. Best money I've spent on the farm."</p>
-          <div class="border-t border-surface-dark pt-4">
-            <p class="font-bold text-gray-900">Mark T.</p>
-            <p class="text-sm text-gray-500">Cass County, ND</p>
+        {data.testimonials.items.map((testimonial) => (
+          <div class="bg-surface rounded-2xl p-8 relative">
+            <svg class="w-10 h-10 text-accent/30 mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+            <p class="text-gray-700 leading-relaxed mb-6">"{testimonial.quote}"</p>
+            <div class="border-t border-surface-dark pt-4">
+              <p class="font-bold text-gray-900">{testimonial.name}</p>
+              <p class="text-sm text-gray-500">{testimonial.location}</p>
+            </div>
           </div>
-        </div>
-        <!-- Testimonial 2 -->
-        <div class="bg-surface rounded-2xl p-8 relative">
-          <svg class="w-10 h-10 text-accent/30 mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-          <p class="text-gray-700 leading-relaxed mb-6">"Professional from start to finish. They surveyed the field, showed me exactly where the tile would go, and had it done in three days. Our yields are up 20% on those acres."</p>
-          <div class="border-t border-surface-dark pt-4">
-            <p class="font-bold text-gray-900">Sarah & Jim L.</p>
-            <p class="text-sm text-gray-500">Richland County, ND</p>
-          </div>
-        </div>
-        <!-- Testimonial 3 -->
-        <div class="bg-surface rounded-2xl p-8 relative">
-          <svg class="w-10 h-10 text-accent/30 mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-          <p class="text-gray-700 leading-relaxed mb-6">"I wish I'd done this ten years ago. The GPS precision is impressive — every line is exactly where it should be. These guys know North Dakota ground."</p>
-          <div class="border-t border-surface-dark pt-4">
-            <p class="font-bold text-gray-900">Dave K.</p>
-            <p class="text-sm text-gray-500">Traill County, ND</p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
@@ -254,18 +192,17 @@ const seo = story?.content?.seo_title ? story.content : null
   <!-- ═══════════ CTA ═══════════ -->
   <section class="relative py-24 overflow-hidden">
     <img
-      src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1920&q=80"
-      alt="Expansive farmland at golden hour"
+      src={data.cta.image}
+      alt={data.cta.image_alt}
       class="absolute inset-0 w-full h-full object-cover"
       loading="lazy"
     />
     <div class="absolute inset-0 bg-primary-dark/85"></div>
     <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl md:text-5xl font-black text-white mb-4">Every Wet Season Is Costing You</h2>
-      <p class="text-white/80 text-lg mb-10 max-w-2xl mx-auto">The ROI on drain tile is one of the best investments you can make in your operation. Let's look at your fields and put together a plan.</p>
-      <a href="/contact" class="inline-block bg-accent hover:bg-accent-light text-primary-dark px-10 py-4 rounded-lg font-bold text-lg transition-colors shadow-xl">Get Your Free Estimate →</a>
+      <h2 class="text-3xl md:text-5xl font-black text-white mb-4">{data.cta.title}</h2>
+      <p class="text-white/80 text-lg mb-10 max-w-2xl mx-auto">{data.cta.description}</p>
+      <a href={data.cta.button_url} class="inline-block bg-accent hover:bg-accent-light text-primary-dark px-10 py-4 rounded-lg font-bold text-lg transition-colors shadow-xl">{data.cta.button_text}</a>
     </div>
   </section>
 
 </Layout>
-)}

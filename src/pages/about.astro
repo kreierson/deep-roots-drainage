@@ -1,61 +1,41 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
+import { getEntry } from 'astro:content'
 
-
-const token = import.meta.env.STORYBLOK_TOKEN || 'KAaKAIFtzAtyOal659brwAtt'
-const version = import.meta.env.DEV ? 'draft' : 'published'
-const cv = Date.now()
-
-let story = null
-try {
-  const url = `https://api.storyblok.com/v2/cdn/stories/about?version=${version}&token=${token}&cv=${cv}`
-  const res = await fetch(url)
-  const json = await res.json()
-  story = json.story
-} catch (e: any) {
-  console.error(`[about] Failed:`, e.message)
-}
-
-const seo = story?.content?.seo_title ? story.content : null
+const page = await getEntry('pages', 'about')
+const { data } = page
+const { Content } = await page.render()
 ---
-
-{story ? (
-  <Layout title={seo?.seo_title || 'About'} description={seo?.seo_description}>
-    <StoryblokComponent blok={story.content} />
-  </Layout>
-) : (
-<Layout title="About" description="Learn about Deep Roots Drainage — agricultural drain tile experts serving North Dakota farmers and landowners.">
-  <section class="relative py-28 md:py-36 overflow-hidden">
-    <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=1400&q=80" alt="Farmland at golden hour" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
-    <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/70 via-primary-dark/50 to-primary-dark/30"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">Who We Are</p>
-      <h1 class="text-4xl md:text-5xl font-black text-white">About Deep Roots</h1>
-      <p class="mt-4 text-white/80 text-lg max-w-2xl">North Dakota drain tile experts built by people who understand the land.</p>
-    </div>
-  </section>
+<Layout title={data.seo_title || data.title} description={data.seo_description}>
+  {data.hero && (
+    <section class="relative py-28 md:py-36 overflow-hidden">
+      <img src={data.hero.image} alt={data.hero.image_alt} class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/70 via-primary-dark/50 to-primary-dark/30"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">{data.hero.eyebrow}</p>
+        <h1 class="text-4xl md:text-5xl font-black text-white">{data.hero.title}</h1>
+        <p class="mt-4 text-white/80 text-lg max-w-2xl">{data.hero.description}</p>
+      </div>
+    </section>
+  )}
 
   <section class="py-20">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="text-xl text-gray-600 leading-relaxed mb-8">Deep Roots Drainage is a North Dakota drain tile company built by people who understand the land. We know what wet fields cost you — lost acres, late planting, and years of frustration. We're here to fix that.</p>
-      <div class="bg-surface rounded-2xl h-64 flex items-center justify-center text-earth mb-12">[Team / Equipment Photo]</div>
-
-      <h2 class="text-2xl font-black text-gray-900 mb-4">Our Approach</h2>
-      <p class="text-gray-600 leading-relaxed mb-8">We don't believe in one-size-fits-all drainage. Every field is different — different soil, different topography, different challenges. We survey your land, study the data, and design a system that actually solves your specific water problems. Then we install it right the first time.</p>
-
-      <h2 class="text-2xl font-black text-gray-900 mb-4">What Sets Us Apart</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
-        <div class="bg-surface rounded-xl p-6"><h3 class="font-bold text-gray-900 mb-2">Precision GPS</h3><p class="text-gray-600 text-sm">RTK-guided equipment ensures exact depth and grade on every foot of tile we install.</p></div>
-        <div class="bg-surface rounded-xl p-6"><h3 class="font-bold text-gray-900 mb-2">Honest Pricing</h3><p class="text-gray-600 text-sm">Straightforward per-foot pricing. No hidden costs, no surprises when the bill comes.</p></div>
-        <div class="bg-surface rounded-xl p-6"><h3 class="font-bold text-gray-900 mb-2">Local Knowledge</h3><p class="text-gray-600 text-sm">We know North Dakota soils — the clay, the black dirt, the sand. We design for what's actually under your fields.</p></div>
-        <div class="bg-surface rounded-xl p-6"><h3 class="font-bold text-gray-900 mb-2">Quality Materials</h3><p class="text-gray-600 text-sm">We use heavy-duty corrugated pipe and proper fittings. Your tile system should last generations, not just years.</p></div>
-      </div>
-
-      <h2 class="text-2xl font-black text-gray-900 mb-4">Our Equipment</h2>
-      <p class="text-gray-600 leading-relaxed mb-8">We run modern tile plows with RTK GPS grade control, allowing us to install tile at precise depths and grades even across complex terrain. Our equipment is sized to handle everything from small targeted runs to full-section pattern tile projects.</p>
-      <div class="bg-surface rounded-2xl h-64 flex items-center justify-center text-earth">[Equipment / Tile Plow Photo]</div>
+      <Content />
+      
+      {data.features && (
+        <>
+          <h2 class="text-2xl font-black text-gray-900 mb-4 mt-12">What Sets Us Apart</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+            {data.features.map((feature) => (
+              <div class="bg-surface rounded-xl p-6">
+                <h3 class="font-bold text-gray-900 mb-2">{feature.title}</h3>
+                <p class="text-gray-600 text-sm">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   </section>
 </Layout>
-)}

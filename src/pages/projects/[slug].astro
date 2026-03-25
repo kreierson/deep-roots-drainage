@@ -1,28 +1,128 @@
 ---
 import Layout from '../../layouts/Layout.astro'
-import Project from '../../storyblok/Project.astro'
+import { getCollection } from 'astro:content'
 
 export async function getStaticPaths() {
-  const token = import.meta.env.STORYBLOK_TOKEN || 'KAaKAIFtzAtyOal659brwAtt'
-  const cv = Date.now()
-  try {
-    const url = `https://api.storyblok.com/v2/cdn/stories?starts_with=projects/&is_startpage=false&version=published&token=${token}&cv=${cv}`
-    const res = await fetch(url)
-    const json = await res.json()
-    console.log(`[projects/slug] Found ${json.stories?.length || 0} projects for static paths`)
-    return (json.stories || []).map((story: any) => ({
-      params: { slug: story.slug },
-      props: { story },
-    }))
-  } catch (e: any) {
-    console.error('[projects/slug] Failed:', e.message)
-    return []
-  }
+  const projects = await getCollection('projects')
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }))
 }
 
-const { story } = Astro.props
+const { project } = Astro.props
+const { data } = project
+const { Content } = await project.render()
 ---
 
-<Layout title={story.content.title || story.name} description={story.content.summary || undefined}>
-  <Project blok={story.content} />
+<Layout title={data.title} description={data.summary}>
+  <article class="min-h-screen">
+    <!-- Hero Section -->
+    <section class="relative py-28 md:py-36 overflow-hidden">
+      <img src={data.featured_image} alt={data.featured_image_alt} class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/80 via-primary-dark/50 to-primary-dark/20"></div>
+      <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center gap-3 text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-4">
+          <a href="/projects" class="hover:text-accent-light transition-colors">Projects</a>
+          <span>•</span>
+          <span>{data.year}</span>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-black text-white leading-tight mb-6">{data.title}</h1>
+        <p class="text-white/80 text-xl leading-relaxed max-w-2xl">{data.summary}</p>
+        
+        <div class="flex flex-wrap gap-6 mt-8 text-white/90">
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+            </svg>
+            <span class="text-sm font-medium">{data.location}</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+              <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+            </svg>
+            <span class="text-sm font-medium">{data.acres} acres</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="py-20 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="prose prose-lg max-w-none">
+          <Content />
+        </div>
+
+        {/* Results Summary */}
+        {data.results && (
+          <div class="bg-surface rounded-2xl p-8 mt-12">
+            <h2 class="text-2xl font-black text-gray-900 mb-6">Project Results</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              {data.results.yield_increase && (
+                <div class="text-center">
+                  <div class="text-3xl font-black text-primary">{data.results.yield_increase}</div>
+                  <div class="text-gray-600 text-sm font-medium">Yield Increase</div>
+                </div>
+              )}
+              {data.results.acres_recovered && (
+                <div class="text-center">
+                  <div class="text-3xl font-black text-primary">{data.results.acres_recovered}</div>
+                  <div class="text-gray-600 text-sm font-medium">Acres Recovered</div>
+                </div>
+              )}
+              {data.results.installation_time && (
+                <div class="text-center">
+                  <div class="text-3xl font-black text-primary">{data.results.installation_time}</div>
+                  <div class="text-gray-600 text-sm font-medium">Installation Time</div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Gallery */}
+        {data.gallery && (
+          <div class="mt-16">
+            <h2 class="text-2xl font-black text-gray-900 mb-8">Project Gallery</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {data.gallery.map((item: any) => (
+                <div class="rounded-2xl overflow-hidden shadow-lg">
+                  <img src={item.image} alt={item.alt} class="w-full h-64 object-cover" />
+                  {item.caption && (
+                    <div class="p-4 bg-surface">
+                      <p class="text-sm text-gray-600">{item.caption}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Testimonial */}
+        {data.testimonial && (
+          <div class="bg-primary-dark rounded-2xl p-8 mt-16">
+            <blockquote class="text-white">
+              <svg class="w-8 h-8 text-accent mb-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+              </svg>
+              <p class="text-lg leading-relaxed mb-4">"{data.testimonial.quote}"</p>
+              <cite class="text-accent font-semibold text-sm">— {data.testimonial.author}</cite>
+            </blockquote>
+          </div>
+        )}
+      </div>
+    </section>
+
+    {/* CTA */}
+    <section class="bg-surface py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-2xl font-black text-gray-900 mb-4">Ready for Similar Results?</h2>
+        <p class="text-gray-600 mb-8">Let's discuss how drainage can improve your fields.</p>
+        <a href="/contact" class="inline-block bg-primary hover:bg-primary-light text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors">Get Your Free Estimate</a>
+      </div>
+    </section>
+  </article>
 </Layout>

@@ -9,7 +9,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@storyblok/astro": "^8.0.0",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.2.1",
     "astro": "^5.17.1",

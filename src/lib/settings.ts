@@ -1,4 +1,4 @@
-import { useStoryblokApi } from '@storyblok/astro'
+import { getEntry } from 'astro:content'
 
 let _cache: any = null
 
@@ -6,15 +6,12 @@ export async function getSettings() {
   if (_cache) return _cache
 
   try {
-    const api = useStoryblokApi()
-    const { data } = await api.get('cdn/stories/settings', {
-      version: import.meta.env.DEV ? 'draft' : 'published',
-      cv: Date.now(),
-    })
-    _cache = data.story.content
+    const settings = await getEntry('settings', 'global')
+    _cache = settings.data
     return _cache
   } catch (e) {
-    // Fallback if settings story doesn't exist yet
+    // Fallback if settings don't exist yet
+    console.error('Failed to load settings:', e)
     return {
       company_name: 'Deep Roots Drainage',
       tagline: 'Agricultural Drainage Solutions',
@@ -23,15 +20,15 @@ export async function getSettings() {
       location: 'North Dakota',
       footer_description: 'Professional agricultural drain tile installation serving farmers and landowners across North Dakota.',
       footer_cta_text: 'Request a Free Estimate',
-      footer_cta_link: { url: '/contact' },
+      footer_cta_link: '/contact',
       cta_button_text: 'Free Estimate',
-      cta_button_link: { url: '/contact' },
+      cta_button_link: '/contact',
       nav_links: [
-        { label: 'Home', link: { url: '/' } },
-        { label: 'Services', link: { url: '/services' } },
-        { label: 'About', link: { url: '/about' } },
-        { label: 'Projects', link: { url: '/projects' } },
-        { label: 'Contact', link: { url: '/contact' } },
+        { label: 'Home', url: '/' },
+        { label: 'Services', url: '/services' },
+        { label: 'About', url: '/about' },
+        { label: 'Projects', url: '/projects' },
+        { label: 'Contact', url: '/contact' },
       ],
     }
   }

@@ -6,12 +6,6 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   output: 'static',
   vite: {
-    plugins: [tailwindcss()],
-    server: {
-      https: {
-        key: './localhost-key.pem',
-        cert: './localhost.pem',
-      },
-    },
+    plugins: [tailwindcss()]
   },
 });

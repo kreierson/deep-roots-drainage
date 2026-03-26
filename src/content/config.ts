@@ -86,7 +86,23 @@ const pagesCollection = defineCollection({
       icon: z.string().optional(),
       image: z.string().optional(),
       image_alt: z.string().optional()
-    })).optional()
+    })).optional(),
+    no_openings_title: z.string().optional(),
+    no_openings_text: z.string().optional(),
+    bottom_cta_title: z.string().optional(),
+    bottom_cta_text: z.string().optional()
+  })
+});
+
+const careersCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    location: z.string(),
+    type: z.string(),
+    posted_date: z.coerce.date(),
+    active: z.boolean().default(true)
   })
 });
 
@@ -105,11 +121,10 @@ const projectsCollection = defineCollection({
       alt: z.string(),
       caption: z.string().optional()
     })).optional(),
-    results: z.object({
-      yield_increase: z.string().optional(),
-      acres_recovered: z.string().optional(),
-      installation_time: z.string().optional()
-    }).optional(),
+    results: z.array(z.object({
+      value: z.string(),
+      label: z.string()
+    })).optional(),
     testimonial: z.object({
       quote: z.string(),
       author: z.string()
@@ -141,5 +156,6 @@ const settingsCollection = defineCollection({
 export const collections = {
   'pages': pagesCollection,
   'projects': projectsCollection,
+  'careers': careersCollection,
   'settings': settingsCollection
 };

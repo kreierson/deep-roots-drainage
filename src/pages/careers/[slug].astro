@@ -63,7 +63,7 @@ const postedDate = new Date(data.posted_date).toLocaleDateString('en-US', {
         <div class="bg-surface rounded-2xl p-8 mt-12 text-center">
           <h2 class="text-2xl font-black text-gray-900 mb-4">Interested in This Position?</h2>
           <p class="text-gray-600 mb-6">Send us a message and tell us about yourself. We'd love to hear from you.</p>
-          <a href="/contact" class="inline-block bg-primary hover:bg-primary-light text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors">
+          <a href={`/careers/apply?position=${encodeURIComponent(data.title)}`} class="inline-block bg-primary hover:bg-primary-light text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors">
             Apply Now →
           </a>
         </div>

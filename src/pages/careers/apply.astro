@@ -1,0 +1,122 @@
+---
+import Layout from '../../layouts/Layout.astro'
+
+const position = Astro.url.searchParams.get('position') || ''
+---
+
+<Layout title="Apply Now" description="Apply for a position at Deep Roots Drainage.">
+  <section class="relative py-28 md:py-36 overflow-hidden">
+    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=80" alt="Heavy equipment at work" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+    <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/70 via-primary-dark/50 to-primary-dark/30"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-3 text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-4">
+        <a href="/careers" class="hover:text-accent-light transition-colors">Careers</a>
+        <span>•</span>
+        <span>Apply</span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-black text-white">Apply Now</h1>
+      <p class="mt-4 text-white/80 text-lg">We'd love to hear from you.</p>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <form id="apply-form" class="space-y-6" enctype="multipart/form-data">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div>
+            <label for="first_name" class="block text-sm font-semibold text-gray-700 mb-1">First Name *</label>
+            <input type="text" id="first_name" name="first_name" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition" placeholder="First name" />
+          </div>
+          <div>
+            <label for="last_name" class="block text-sm font-semibold text-gray-700 mb-1">Last Name *</label>
+            <input type="text" id="last_name" name="last_name" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition" placeholder="Last name" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div>
+            <label for="email" class="block text-sm font-semibold text-gray-700 mb-1">Email *</label>
+            <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition" placeholder="you@email.com" />
+          </div>
+          <div>
+            <label for="phone" class="block text-sm font-semibold text-gray-700 mb-1">Phone *</label>
+            <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition" placeholder="(701) 555-0123" />
+          </div>
+        </div>
+
+        <div>
+          <label for="position" class="block text-sm font-semibold text-gray-700 mb-1">Position *</label>
+          <input type="text" id="position" name="position" required value={position} class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition" placeholder="Position you're applying for" />
+        </div>
+
+        <div>
+          <label for="resume" class="block text-sm font-semibold text-gray-700 mb-1">Resume *</label>
+          <input type="file" id="resume" name="resume" required accept=".pdf,.doc,.docx" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 file:cursor-pointer" />
+          <p class="text-xs text-gray-500 mt-1">PDF, DOC, or DOCX — 5MB max</p>
+        </div>
+
+        <div>
+          <label for="message" class="block text-sm font-semibold text-gray-700 mb-1">Cover Letter / Message</label>
+          <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition resize-y" placeholder="Tell us about yourself — experience, availability, why you're interested..."></textarea>
+        </div>
+
+        <button type="submit" id="submit-btn" class="w-full bg-primary hover:bg-primary-light text-white py-4 rounded-lg font-bold text-lg transition-colors">
+          Submit Application
+        </button>
+
+        <div id="form-success" class="hidden bg-green-50 border border-green-200 rounded-lg p-6 text-center">
+          <div class="text-3xl mb-2">✅</div>
+          <h3 class="text-lg font-bold text-green-800 mb-1">Application Submitted!</h3>
+          <p class="text-green-700 text-sm">Thanks for your interest. We'll review your application and get back to you soon.</p>
+        </div>
+
+        <div id="form-error" class="hidden bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+          <div class="text-3xl mb-2">⚠️</div>
+          <h3 class="text-lg font-bold text-red-800 mb-1">Something Went Wrong</h3>
+          <p class="text-red-700 text-sm">Please try again, or email your resume directly to <a href="mailto:careers@deeprootsdrainage.com" class="underline">careers@deeprootsdrainage.com</a>.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const form = document.getElementById('apply-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const successMsg = document.getElementById('form-success') as HTMLElement;
+  const errorMsg = document.getElementById('form-error') as HTMLElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Validate file size (5MB)
+    const fileInput = document.getElementById('resume') as HTMLInputElement;
+    if (fileInput.files && fileInput.files[0] && fileInput.files[0].size > 5 * 1024 * 1024) {
+      alert('Resume file must be under 5MB.');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+    errorMsg.classList.add('hidden');
+
+    try {
+      const formData = new FormData(form);
+      const res = await fetch('/api/apply', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (res.ok) {
+        form.classList.add('hidden');
+        successMsg.classList.remove('hidden');
+      } else {
+        throw new Error('Submit failed');
+      }
+    } catch (err) {
+      errorMsg.classList.remove('hidden');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Application';
+    }
+  });
+</script>

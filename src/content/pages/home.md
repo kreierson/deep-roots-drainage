@@ -27,7 +27,7 @@ stats:
     label: North Dakota Owned
 before_after:
   after_image_alt: Healthy green crop rows in a well-drained field
-  before_image_alt: Waterlogged, flooded farmland with standing water
+  before_image_alt: Waterlogged, flooded farmland with standing water everywhere
   eyebrow: The Difference
   after_title: Productive, Drained Ground
   after_image: https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80

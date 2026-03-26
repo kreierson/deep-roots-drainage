@@ -173,6 +173,44 @@
                   ]},
                   { label: "Content", name: "body", widget: "markdown" }
                 ]
+              },
+              {
+                name: "projects",
+                label: "Projects Page",
+                file: "src/content/pages/projects.md",
+                fields: [
+                  { label: "Title", name: "title", widget: "string" },
+                  { label: "SEO Title", name: "seo_title", widget: "string", required: false },
+                  { label: "SEO Description", name: "seo_description", widget: "text", required: false },
+                  { label: "Hero Section", name: "hero", widget: "object", required: false, fields: [
+                    { label: "Eyebrow Text", name: "eyebrow", widget: "string" },
+                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Description", name: "description", widget: "text" },
+                    { label: "Background Image", name: "image", widget: "image" },
+                    { label: "Image Alt Text", name: "image_alt", widget: "string" }
+                  ]}
+                ]
+              },
+              {
+                name: "careers",
+                label: "Careers Page",
+                file: "src/content/pages/careers.md",
+                fields: [
+                  { label: "Title", name: "title", widget: "string" },
+                  { label: "SEO Title", name: "seo_title", widget: "string", required: false },
+                  { label: "SEO Description", name: "seo_description", widget: "text", required: false },
+                  { label: "Hero Section", name: "hero", widget: "object", required: false, fields: [
+                    { label: "Eyebrow Text", name: "eyebrow", widget: "string" },
+                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Description", name: "description", widget: "text" },
+                    { label: "Background Image", name: "image", widget: "image" },
+                    { label: "Image Alt Text", name: "image_alt", widget: "string" }
+                  ]},
+                  { label: "No Openings Title", name: "no_openings_title", widget: "string" },
+                  { label: "No Openings Text", name: "no_openings_text", widget: "text" },
+                  { label: "Bottom CTA Title", name: "bottom_cta_title", widget: "string" },
+                  { label: "Bottom CTA Text", name: "bottom_cta_text", widget: "text" }
+                ]
               }
             ]
           },

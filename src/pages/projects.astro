@@ -1,21 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import { getCollection } from 'astro:content'
+import { getCollection, getEntry } from 'astro:content'
 
+const page = await getEntry('pages', 'projects')
+const { data: pageData } = page
 const projects = await getCollection('projects')
 const sortedProjects = projects.sort((a, b) => b.data.year - a.data.year)
 ---
 
-<Layout title="Our Projects" description="See our agricultural drain tile projects across North Dakota.">
-  <section class="relative py-28 md:py-36 overflow-hidden">
-    <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1400&q=80" alt="Expansive agricultural landscape" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
-    <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/70 via-primary-dark/50 to-primary-dark/30"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">Our Work</p>
-      <h1 class="text-4xl md:text-5xl font-black text-white">Our Projects</h1>
-      <p class="mt-4 text-white/80 text-lg">Real fields. Real results.</p>
-    </div>
-  </section>
+<Layout title={pageData.seo_title || pageData.title} description={pageData.seo_description}>
+  {pageData.hero && (
+    <section class="relative py-28 md:py-36 overflow-hidden">
+      <img src={pageData.hero.image} alt={pageData.hero.image_alt} class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/70 via-primary-dark/50 to-primary-dark/30"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">{pageData.hero.eyebrow}</p>
+        <h1 class="text-4xl md:text-5xl font-black text-white">{pageData.hero.title}</h1>
+        <p class="mt-4 text-white/80 text-lg">{pageData.hero.description}</p>
+      </div>
+    </section>
+  )}
 
   <section class="py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

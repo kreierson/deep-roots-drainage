@@ -1,23 +1,27 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import { getCollection } from 'astro:content'
+import { getCollection, getEntry } from 'astro:content'
 
+const page = await getEntry('pages', 'careers')
+const { data: pageData } = page
 const allCareers = await getCollection('careers')
 const careers = allCareers
   .filter((job) => job.data.active)
   .sort((a, b) => new Date(b.data.posted_date).getTime() - new Date(a.data.posted_date).getTime())
 ---
 
-<Layout title="Careers" description="Join the Deep Roots Drainage team. View current job openings in agricultural drainage across North Dakota.">
-  <section class="relative py-28 md:py-36 overflow-hidden">
-    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=80" alt="Heavy equipment at work" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
-    <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/70 via-primary-dark/50 to-primary-dark/30"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">Join Our Team</p>
-      <h1 class="text-4xl md:text-5xl font-black text-white">Careers</h1>
-      <p class="mt-4 text-white/80 text-lg">Build your career in agricultural drainage.</p>
-    </div>
-  </section>
+<Layout title={pageData.seo_title || pageData.title} description={pageData.seo_description}>
+  {pageData.hero && (
+    <section class="relative py-28 md:py-36 overflow-hidden">
+      <img src={pageData.hero.image} alt={pageData.hero.image_alt} class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/70 via-primary-dark/50 to-primary-dark/30"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">{pageData.hero.eyebrow}</p>
+        <h1 class="text-4xl md:text-5xl font-black text-white">{pageData.hero.title}</h1>
+        <p class="mt-4 text-white/80 text-lg">{pageData.hero.description}</p>
+      </div>
+    </section>
+  )}
 
   <section class="py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -52,8 +56,8 @@ const careers = allCareers
         </div>
       ) : (
         <div class="text-center py-12">
-          <h2 class="text-2xl font-bold text-gray-900 mb-4">No Open Positions</h2>
-          <p class="text-gray-500 mb-8">We don't have any openings right now, but we're always interested in hearing from talented people.</p>
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">{pageData.no_openings_title}</h2>
+          <p class="text-gray-500 mb-8">{pageData.no_openings_text}</p>
           <a href="/careers/apply" class="inline-block bg-primary hover:bg-primary-light text-white px-6 py-3 rounded-lg font-semibold transition-colors">
             Send Us Your Resume →
           </a>
@@ -64,8 +68,8 @@ const careers = allCareers
 
   <section class="bg-surface py-16">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-2xl font-black text-gray-900 mb-4">Don't See the Right Fit?</h2>
-      <p class="text-gray-600 mb-8">We're always looking for hard-working people to join our team. Send us a message and tell us about yourself.</p>
+      <h2 class="text-2xl font-black text-gray-900 mb-4">{pageData.bottom_cta_title}</h2>
+      <p class="text-gray-600 mb-8">{pageData.bottom_cta_text}</p>
       <a href="/contact" class="inline-block bg-primary hover:bg-primary-light text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors">Contact Us</a>
     </div>
   </section>

@@ -34,7 +34,7 @@ before_after:
   before_title: Standing Water & Lost Acres
   title: See What Drainage Can Do
   after_description: Earlier planting, healthier soil, 15-30% higher yields
-  before_image: /images/uploads/flooded-field.jpg
+  before_image: https://www.agriculture.com/thmb/EQAPn1MPbdvleQ4pPhCp0DMpBHY=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/FloodedCornField2-Wideshot-2000-473d2b9e058b49909aa530ac867d6686.jpg
   before_description: Saturated soil, delayed planting, reduced yields
   description: The same land, dramatically different results. Drain tile
     transforms waterlogged fields into high-performing acres.

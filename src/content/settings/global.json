@@ -14,6 +14,7 @@
     { "label": "Services", "url": "/services" },
     { "label": "About", "url": "/about" },
     { "label": "Projects", "url": "/projects" },
+    { "label": "Careers", "url": "/careers" },
     { "label": "Contact", "url": "/contact" }
   ]
 }

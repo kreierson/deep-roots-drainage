@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { getCollection } from 'astro:content'
+
+const allCareers = await getCollection('careers')
+const careers = allCareers
+  .filter((job) => job.data.active)
+  .sort((a, b) => new Date(b.data.posted_date).getTime() - new Date(a.data.posted_date).getTime())
+---
+
+<Layout title="Careers" description="Join the Deep Roots Drainage team. View current job openings in agricultural drainage across North Dakota.">
+  <section class="relative py-28 md:py-36 overflow-hidden">
+    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=80" alt="Heavy equipment at work" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+    <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/70 via-primary-dark/50 to-primary-dark/30"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">Join Our Team</p>
+      <h1 class="text-4xl md:text-5xl font-black text-white">Careers</h1>
+      <p class="mt-4 text-white/80 text-lg">Build your career in agricultural drainage.</p>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {careers.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {careers.map((job) => (
+            <article class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group flex flex-col">
+              <div class="p-6 flex flex-col flex-1">
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+                    {job.data.type}
+                  </span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2 leading-tight">
+                  {job.data.title}
+                </h3>
+                <p class="text-gray-600 text-sm mb-4 flex-1">
+                  {job.data.summary}
+                </p>
+                <div class="flex items-center text-sm text-gray-500 mb-4">
+                  <span>📍 {job.data.location}</span>
+                </div>
+                <a
+                  href={`/careers/${job.slug}`}
+                  class="inline-block bg-primary hover:bg-primary-light text-white px-4 py-2 rounded-lg font-semibold text-sm transition-colors text-center"
+                >
+                  View Details →
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">No Open Positions</h2>
+          <p class="text-gray-500 mb-8">We don't have any openings right now, but we're always interested in hearing from talented people.</p>
+          <a href="/contact" class="inline-block bg-primary hover:bg-primary-light text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+            Get in Touch →
+          </a>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="bg-surface py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl font-black text-gray-900 mb-4">Don't See the Right Fit?</h2>
+      <p class="text-gray-600 mb-8">We're always looking for hard-working people to join our team. Send us a message and tell us about yourself.</p>
+      <a href="/contact" class="inline-block bg-primary hover:bg-primary-light text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors">Contact Us</a>
+    </div>
+  </section>
+</Layout>

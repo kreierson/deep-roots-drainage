@@ -171,6 +171,7 @@ const featuredProjects = allProjects.filter(p => p.data.featured).sort((a, b) =>
   </section>
 
   <!-- ═══════════ TESTIMONIALS — infinite scroll ═══════════ -->
+  {data.testimonials?.items?.length > 0 && (
   <section class="py-24 bg-white overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-2xl mb-14">
@@ -194,6 +195,7 @@ const featuredProjects = allProjects.filter(p => p.data.featured).sort((a, b) =>
       </div>
     </div>
   </section>
+  )}
 
   <style>
     .testimonial-carousel {
@@ -213,10 +215,12 @@ const featuredProjects = allProjects.filter(p => p.data.featured).sort((a, b) =>
     }
   </style>
 
-  <script define:vars={{ itemCount: data.testimonials.items.length }}>
-    // Scale duration based on number of items so speed stays consistent
-    const duration = Math.max(20, itemCount * 8);
-    document.querySelector('.testimonial-track').style.setProperty('--scroll-duration', duration + 's');
+  <script define:vars={{ itemCount: data.testimonials?.items?.length || 0 }}>
+    const track = document.querySelector('.testimonial-track');
+    if (track) {
+      const duration = Math.max(20, itemCount * 8);
+      track.style.setProperty('--scroll-duration', duration + 's');
+    }
   </script>
 
   <!-- ═══════════ FEATURED PROJECTS ═══════════ -->

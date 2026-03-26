@@ -1,3 +1,5 @@
+export const config = { runtime: "edge" };
+
 export default function handler(req) {
   const clientId = process.env.GITHUB_OAUTH_CLIENT_ID;
   const url = new URL(req.url);

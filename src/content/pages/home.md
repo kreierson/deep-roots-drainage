@@ -35,7 +35,7 @@ before_after:
   title: See What Drainage Can Do
   after_description: Earlier planting, healthier soil, 15-30% higher yields
   before_image: /images/uploads/flooded-field.jpg
-  before_description: Saturated soil, delayed planting, reduced yields
+  before_description: Saturated soil, delayed planting, reduced yields, water everywhere
   description: The same land, dramatically different results. Drain tile
     transforms waterlogged fields into high-performing acres.
 how_it_works:

@@ -170,16 +170,19 @@ const featuredProjects = allProjects.filter(p => p.data.featured).sort((a, b) =>
     </div>
   </section>
 
-  <!-- ═══════════ TESTIMONIALS ═══════════ -->
-  <section class="py-24 bg-white">
+  <!-- ═══════════ TESTIMONIALS — infinite scroll ═══════════ -->
+  <section class="py-24 bg-white overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-2xl mb-14">
         <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">{data.testimonials.eyebrow}</p>
         <h2 class="text-3xl md:text-4xl font-black text-gray-900">{data.testimonials.title}</h2>
       </div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {data.testimonials.items.map((testimonial) => (
-          <div class="bg-surface rounded-2xl p-8 relative">
+    </div>
+    <div class="testimonial-carousel relative">
+      <div class="testimonial-track flex gap-6">
+        {/* Render items twice for seamless infinite loop */}
+        {[...data.testimonials.items, ...data.testimonials.items].map((testimonial) => (
+          <div class="bg-surface rounded-2xl p-8 relative flex-shrink-0 w-[350px] md:w-[400px]">
             <svg class="w-10 h-10 text-accent/30 mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
             <p class="text-gray-700 leading-relaxed mb-6">"{testimonial.quote}"</p>
             <div class="border-t border-surface-dark pt-4">
@@ -191,6 +194,30 @@ const featuredProjects = allProjects.filter(p => p.data.featured).sort((a, b) =>
       </div>
     </div>
   </section>
+
+  <style>
+    .testimonial-carousel {
+      mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    }
+    .testimonial-track {
+      animation: scroll-left var(--scroll-duration, 40s) linear infinite;
+      width: max-content;
+    }
+    .testimonial-track:hover {
+      animation-play-state: paused;
+    }
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+  </style>
+
+  <script define:vars={{ itemCount: data.testimonials.items.length }}>
+    // Scale duration based on number of items so speed stays consistent
+    const duration = Math.max(20, itemCount * 8);
+    document.querySelector('.testimonial-track').style.setProperty('--scroll-duration', duration + 's');
+  </script>
 
   <!-- ═══════════ FEATURED PROJECTS ═══════════ -->
   {featuredProjects.length > 0 && (

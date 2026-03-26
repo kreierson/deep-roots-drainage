@@ -24,6 +24,12 @@ const { Content } = await page.render()
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-16">
         <div class="lg:col-span-3">
           <form id="contact-form" class="space-y-6">
+            <!-- Honeypot — hidden from humans -->
+            <div class="absolute opacity-0 top-0 left-0 h-0 w-0 -z-10 overflow-hidden" aria-hidden="true" tabindex="-1">
+              <label for="company_website">Website</label>
+              <input type="text" id="company_website" name="company_website" tabindex="-1" autocomplete="off" />
+            </div>
+            <input type="hidden" name="_loaded" id="_contact_loaded" value="" />
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
                 <label for="name" class="block text-sm font-semibold text-gray-700 mb-1">Name *</label>
@@ -95,5 +101,9 @@ const { Content } = await page.render()
       </div>
     </div>
   </section>
+<script>
+  const loadedInput = document.getElementById('_contact_loaded');
+  if (loadedInput) loadedInput.value = String(Date.now());
+</script>
 </Layout>
 )}

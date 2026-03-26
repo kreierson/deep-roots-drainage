@@ -1,9 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import { getEntry } from 'astro:content'
+import { getEntry, getCollection } from 'astro:content'
 
 const homeContent = await getEntry('pages', 'home')
 const { Content, data } = homeContent
+
+const allProjects = await getCollection('projects')
+const featuredProjects = allProjects.filter(p => p.data.featured).sort((a, b) => b.data.year - a.data.year)
 ---
 <Layout title={data.seo_title || data.title} description={data.seo_description}>
 
@@ -188,6 +191,61 @@ const { Content, data } = homeContent
       </div>
     </div>
   </section>
+
+  <!-- ═══════════ FEATURED PROJECTS ═══════════ -->
+  {featuredProjects.length > 0 && (
+    <section class="py-24 bg-surface">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mb-14">
+          <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">Our Work</p>
+          <h2 class="text-3xl md:text-4xl font-black text-gray-900">Featured Projects</h2>
+          <p class="mt-4 text-gray-600 text-lg">Real results from real farms across North Dakota.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {featuredProjects.map((project) => (
+            <article class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group">
+              <div class="relative h-48 overflow-hidden">
+                <img
+                  src={project.data.featured_image}
+                  alt={project.data.featured_image_alt}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <div class="absolute top-4 left-4">
+                  <span class="bg-primary text-white px-3 py-1 rounded-full text-sm font-bold">
+                    {project.data.year}
+                  </span>
+                </div>
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-2 leading-tight">
+                  {project.data.title}
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  {project.data.summary}
+                </p>
+                <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                  <span>📍 {project.data.location}</span>
+                  <span>🌾 {project.data.acres} acres</span>
+                </div>
+                <a
+                  href={`/projects/${project.slug}`}
+                  class="inline-block bg-primary hover:bg-primary-light text-white px-4 py-2 rounded-lg font-semibold text-sm transition-colors"
+                >
+                  View Project →
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div class="text-center mt-10">
+          <a href="/projects" class="inline-block border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-lg font-bold transition-colors">
+            View All Projects →
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- ═══════════ CTA ═══════════ -->
   <section class="relative py-24 overflow-hidden">

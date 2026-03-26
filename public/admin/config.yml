@@ -224,12 +224,11 @@ collections:
           - { label: "Caption", name: "caption", widget: "string", required: false }
       - label: "Results"
         name: "results"
-        widget: "object"
+        widget: "list"
         required: false
         fields:
-          - { label: "Yield Increase", name: "yield_increase", widget: "string", required: false }
-          - { label: "Acres Recovered", name: "acres_recovered", widget: "string", required: false }
-          - { label: "Installation Time", name: "installation_time", widget: "string", required: false }
+          - { label: "Value", name: "value", widget: "string" }
+          - { label: "Label", name: "label", widget: "string" }
       - label: "Testimonial"
         name: "testimonial"
         widget: "object"

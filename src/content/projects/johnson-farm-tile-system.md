@@ -17,9 +17,12 @@ gallery:
     alt: "Healthy crop growth after drainage"
     caption: "Uniform crop emergence following installation"
 results:
-  yield_increase: "22%"
-  acres_recovered: "45"
-  installation_time: "8 days"
+  - value: "22%"
+    label: "Yield Increase"
+  - value: "45"
+    label: "Acres Recovered"
+  - value: "8 days"
+    label: "Installation Time"
 testimonial:
   quote: "We gained back 45 acres that were underwater every spring. The tile system paid for itself in two seasons with the yield increase alone."
   author: "Mark Johnson, Farm Owner"

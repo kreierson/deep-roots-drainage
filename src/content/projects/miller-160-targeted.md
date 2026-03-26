@@ -9,9 +9,12 @@ featured_image_alt: "Agricultural machinery working in a well-drained field"
 featured: false
 
 results:
-  yield_increase: "22%"
-  acres_recovered: "30 acres"
-  installation_time: "3 days"
+  - value: "22%"
+    label: "Yield Increase"
+  - value: "30 acres"
+    label: "Acres Recovered"
+  - value: "3 days"
+    label: "Installation Time"
 
 testimonial:
   quote: "Deep Roots helped us identify exactly where the tile needed to go. Instead of tiling the whole quarter, we focused on the problem spots and saved money while still getting great results."

@@ -17,9 +17,12 @@ gallery:
     caption: "Spring 2023 - Same field, planted on schedule"
 
 results:
-  yield_increase: "28%"
-  acres_recovered: "45 acres"
-  installation_time: "6 days"
+  - value: "28%"
+    label: "Yield Increase"
+  - value: "45 acres"
+    label: "Acres Recovered"
+  - value: "6 days"
+    label: "Installation Time"
 
 testimonial:
   quote: "We had 45 acres that were underwater every spring until June. Now we plant the whole quarter in April. The GPS precision is incredible — every line is exactly where it should be."

@@ -234,10 +234,9 @@
                 { label: "Alt Text", name: "alt", widget: "string" },
                 { label: "Caption", name: "caption", widget: "string", required: false }
               ]},
-              { label: "Results", name: "results", widget: "object", required: false, fields: [
-                { label: "Yield Increase", name: "yield_increase", widget: "string", required: false },
-                { label: "Acres Recovered", name: "acres_recovered", widget: "string", required: false },
-                { label: "Installation Time", name: "installation_time", widget: "string", required: false }
+              { label: "Results", name: "results", widget: "list", required: false, fields: [
+                { label: "Value", name: "value", widget: "string" },
+                { label: "Label", name: "label", widget: "string" }
               ]},
               { label: "Testimonial", name: "testimonial", widget: "object", required: false, fields: [
                 { label: "Quote", name: "quote", widget: "text" },

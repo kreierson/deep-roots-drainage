@@ -14,8 +14,10 @@ gallery:
     alt: "Junction box installation"
     caption: "Junction structure connecting lateral lines to main"
 results:
-  acres_recovered: "85"
-  installation_time: "5 days"
+  - value: "85"
+    label: "Acres Recovered"
+  - value: "5 days"
+    label: "Installation Time"
 testimonial:
   quote: "The main line solved water backup issues we'd had for years. Now our entire drainage system works like it should."
   author: "Sarah & Jim Peterson"

@@ -209,6 +209,22 @@
             ]
           },
           {
+            name: "careers",
+            label: "Careers",
+            folder: "src/content/careers",
+            create: true,
+            slug: "{{slug}}",
+            fields: [
+              { label: "Job Title", name: "title", widget: "string" },
+              { label: "Summary", name: "summary", widget: "text" },
+              { label: "Location", name: "location", widget: "string" },
+              { label: "Type", name: "type", widget: "select", options: ["Full-Time", "Part-Time", "Seasonal", "Contract"], default: "Full-Time" },
+              { label: "Date Posted", name: "posted_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false },
+              { label: "Active", name: "active", widget: "boolean", default: true, hint: "Toggle off to hide from the website. The posting will remain here in the CMS." },
+              { label: "Content", name: "body", widget: "markdown" }
+            ]
+          },
+          {
             name: "settings",
             label: "Settings",
             files: [

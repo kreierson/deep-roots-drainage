@@ -87,6 +87,11 @@ testimonials:
         ground.
       name: Dave K.
       location: Traill County, ND
+    - quote: We had 40 acres that were underwater every spring. Deep Roots put tile in
+        last fall, and this spring we planted the whole quarter on time. Best
+        money I've spent on the farm.
+      name: John Doe
+      location: Fargo, ND
 cta:
   title: Every Wet Season Is Costing You
   description: The ROI on drain tile is one of the best investments you can make

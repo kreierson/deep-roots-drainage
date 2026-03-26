@@ -31,7 +31,7 @@ const sortedProjects = projects.sort((a, b) => {
       {sortedProjects.length > 0 ? (
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {sortedProjects.map((project) => (
-            <article class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group flex flex-col">
+            <a href={`/projects/${project.slug}`} class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group flex flex-col cursor-pointer">
               <div class="relative h-48 overflow-hidden">
                 <img
                   src={project.data.featured_image}
@@ -53,24 +53,18 @@ const sortedProjects = projects.sort((a, b) => {
                 )}
               </div>
               <div class="p-6 flex flex-col flex-1">
-                <h3 class="text-xl font-bold text-gray-900 mb-2 leading-tight min-h-[3.5rem]">
+                <h3 class="text-xl font-bold text-gray-900 mb-2 leading-tight">
                   {project.data.title}
                 </h3>
                 <p class="text-gray-600 text-sm mb-4 flex-1 line-clamp-3">
                   {project.data.summary}
                 </p>
-                <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                <div class="flex items-center justify-between text-sm text-gray-500">
                   <span>📍 {project.data.location}</span>
                   <span>🌾 {project.data.acres} acres</span>
                 </div>
-                <a
-                  href={`/projects/${project.slug}`}
-                  class="inline-block bg-primary hover:bg-primary-light text-white px-4 py-2 rounded-lg font-semibold text-sm transition-colors"
-                >
-                  View Project →
-                </a>
               </div>
-            </article>
+            </a>
           ))}
         </div>
       ) : (

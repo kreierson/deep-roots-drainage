@@ -27,7 +27,7 @@ stats:
     label: North Dakota Owned
 before_after:
   after_image_alt: Healthy green crop rows in a well-drained field
-  before_image_alt: Waterlogged, flooded farmland with standing water everywhere
+  before_image_alt: Waterlogged, flooded farmland with standing water
   eyebrow: The Difference
   after_title: Productive, Drained Ground
   after_image: https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80
@@ -35,7 +35,7 @@ before_after:
   title: See What Drainage Can Do
   after_description: Earlier planting, healthier soil, 15-30% higher yields
   before_image: /images/uploads/flooded-field.jpg
-  before_description: Saturated soil, delayed planting, reduced yields, water everywhere
+  before_description: Saturated soil, delayed planting, reduced yields
   description: The same land, dramatically different results. Drain tile
     transforms waterlogged fields into high-performing acres.
 how_it_works:

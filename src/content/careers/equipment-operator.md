@@ -1,10 +1,11 @@
 ---
-title: "Equipment Operator"
-summary: "Operate GPS-guided tile plows and excavation equipment for drain tile installation across North Dakota."
-location: "North Dakota"
-type: "Full-Time"
+title: Equipment Operator
+summary: Operate GPS-guided tile plows and excavation equipment for drain tile
+  installation across North Dakota.
+location: North Dakota
+type: Full-Time
 posted_date: 2024-03-01
-active: true
+active: false
 ---
 
 We're looking for an experienced equipment operator to join our growing team. You'll operate GPS-guided tile plows, excavators, and other heavy equipment to install agricultural drainage systems across North Dakota.

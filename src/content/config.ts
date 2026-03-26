@@ -87,6 +87,7 @@ const pagesCollection = defineCollection({
       image: z.string().optional(),
       image_alt: z.string().optional()
     })).optional(),
+    service_options: z.array(z.string()).optional(),
     no_openings_title: z.string().optional(),
     no_openings_text: z.string().optional(),
     bottom_cta_title: z.string().optional(),

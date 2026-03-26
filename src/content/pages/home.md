@@ -71,27 +71,7 @@ social_proof:
 testimonials:
   eyebrow: Testimonials
   title: What Farmers Are Saying
-  items:
-    - quote: We had 40 acres that were underwater every spring. Deep Roots put tile in
-        last fall, and this spring we planted the whole quarter on time. Best
-        money I've spent on the farm.
-      name: Mark T.
-      location: Cass County, ND
-    - quote: Professional from start to finish. They surveyed the field, showed me
-        exactly where the tile would go, and had it done in three days. Our
-        yields are up 20% on those acres.
-      name: Sarah & Jim L.
-      location: Richland County, ND
-    - quote: I wish I'd done this ten years ago. The GPS precision is impressive —
-        every line is exactly where it should be. These guys know North Dakota
-        ground.
-      name: Dave K.
-      location: Traill County, ND
-    - quote: We had 40 acres that were underwater every spring. Deep Roots put tile in
-        last fall, and this spring we planted the whole quarter on time. Best
-        money I've spent on the farm.
-      name: John Doe
-      location: Fargo, ND
+  items: []
 cta:
   title: Every Wet Season Is Costing You
   description: The ROI on drain tile is one of the best investments you can make

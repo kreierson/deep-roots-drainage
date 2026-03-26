@@ -1,32 +1,26 @@
 ---
-title: "Johnson Farm - Section 23 Pattern Tile"
-summary: "Complete 320-acre pattern tile installation with GPS-guided precision in Cass County heavy clay soils."
-location: "Cass County, ND"
+title: Johnson Farm - Section 23 Pattern Tile
+summary: Complete 320-acre pattern tile installation with GPS-guided precision
+  in Cass County heavy clay soils.
+location: Cass County, ND
 acres: 320
 year: 2023
-featured_image: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80"
-featured_image_alt: "Healthy green crop rows in a well-drained field"
+featured_image: https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80
+featured_image_alt: Healthy green crop rows in a well-drained field
 featured: true
-
 gallery:
-  - image: "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=800&q=80"
-    alt: "Before drainage - standing water"
-    caption: "Spring 2022 - Standing water after snowmelt"
-  - image: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80"
-    alt: "After drainage - healthy crops"
-    caption: "Spring 2023 - Same field, planted on schedule"
-
-results:
-  - value: "28%"
-    label: "Yield Increase"
-  - value: "45 acres"
-    label: "Acres Recovered"
-  - value: "6 days"
-    label: "Installation Time"
-
+  - image: https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=800&q=80
+    alt: Before drainage - standing water
+    caption: Spring 2022 - Standing water after snowmelt
+  - image: https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80
+    alt: After drainage - healthy crops
+    caption: Spring 2023 - Same field, planted on schedule
+results: []
 testimonial:
-  quote: "We had 45 acres that were underwater every spring until June. Now we plant the whole quarter in April. The GPS precision is incredible — every line is exactly where it should be."
-  author: "Mike Johnson, Landowner"
+  quote: We had 45 acres that were underwater every spring until June. Now we
+    plant the whole quarter in April. The GPS precision is incredible — every
+    line is exactly where it should be.
+  author: Mike Johnson, Landowner
 ---
 
 The Johnson farm project involved installing a complete pattern tile system across 320 acres of heavy clay soil in Cass County. The field had chronic drainage issues with 45 acres of standing water every spring that prevented timely planting.

@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro'
 
-const position = Astro.url.searchParams.get('position') || ''
+const position = ''
 ---
 
 <Layout title="Apply Now" description="Apply for a position at Deep Roots Drainage.">
@@ -81,6 +81,14 @@ const position = Astro.url.searchParams.get('position') || ''
 </Layout>
 
 <script>
+  // Pre-fill position from query param
+  const params = new URLSearchParams(window.location.search);
+  const positionParam = params.get('position');
+  const positionInput = document.getElementById('position') as HTMLInputElement;
+  if (positionParam && positionInput) {
+    positionInput.value = positionParam;
+  }
+
   const form = document.getElementById('apply-form') as HTMLFormElement;
   const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
   const successMsg = document.getElementById('form-success') as HTMLElement;

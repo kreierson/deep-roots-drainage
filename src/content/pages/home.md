@@ -7,9 +7,9 @@ seo_description: "Engineered water management systems built to perform—Deep
 hero:
   eyebrow: Agricultural Drainage · Northern Plains
   title: Better Drainage.<br/>Better Yields.
-  description: Engineered water management systems built to perform—Deep Roots
-    Drainage delivers precision tile construction that protects your investment
-    and drives higher-yielding acres.
+  description: Engineered water management systems built to perform. <br/>Deep
+    Roots Drainage delivers precision drain tile construction that protects your
+    investment and drives higher-yielding acres.
   image: https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&q=80
   image_alt: Golden wheat field at sunrise across North Dakota farmland
   primary_button:

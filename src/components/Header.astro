@@ -1,8 +1,10 @@
 ---
-import { getEntry } from 'astro:content'
+import { getEntry, getCollection } from 'astro:content'
 
 const settings = await getEntry('settings', 'global')
-const navLinks = settings.data.nav_links || []
+const activeProjects = await getCollection('projects', ({ data }) => data.active !== false)
+const allNavLinks = settings.data.nav_links || []
+const navLinks = allNavLinks.filter(link => link.url !== '/projects' || activeProjects.length > 0)
 const ctaText = settings.data.cta_button_text || 'Free Estimate'
 const ctaLink = settings.data.cta_button_link || '/contact'
 const companyName = settings.data.company_name || 'Deep Roots Drainage'

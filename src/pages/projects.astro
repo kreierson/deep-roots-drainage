@@ -4,7 +4,7 @@ import { getCollection, getEntry } from 'astro:content'
 
 const page = await getEntry('pages', 'projects')
 const { data: pageData } = page
-const projects = await getCollection('projects')
+const projects = await getCollection('projects', ({ data }) => data.active !== false)
 const sortedProjects = projects.sort((a, b) => {
   // Featured first, then by year
   if (a.data.featured && !b.data.featured) return -1;

@@ -144,7 +144,8 @@ const projectsCollection = defineCollection({
       quote: z.string(),
       author: z.string()
     }).optional(),
-    featured: z.boolean().default(false)
+    featured: z.boolean().default(false),
+    active: z.boolean().default(true)
   })
 });
 

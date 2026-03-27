@@ -5,7 +5,7 @@ import { getEntry, getCollection } from 'astro:content'
 const homeContent = await getEntry('pages', 'home')
 const { Content, data } = homeContent
 
-const allProjects = await getCollection('projects')
+const allProjects = await getCollection('projects', ({ data }) => data.active !== false)
 const featuredProjects = allProjects.filter(p => p.data.featured).sort((a, b) => b.data.year - a.data.year)
 ---
 <Layout title={data.seo_title || data.title} description={data.seo_description}>

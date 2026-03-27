@@ -1,9 +1,9 @@
 ---
 title: Home
 seo_title: Deep Roots Drainage - Professional Agricultural Drainage Solutions
-seo_description: Engineered water management systems built to perform—Deep Roots
-  Drainage delivers precision drain tile construction that protects your
-  investment and drives higher-yielding acres.
+seo_description: "Engineered water management systems built to perform—Deep
+  Roots Drainage delivers precision drain tile construction that protects your
+  investment and drives higher-yielding acres. "
 hero:
   eyebrow: Agricultural Drainage · Northern Plains
   title: Better Drainage.<br/>Better Yields.

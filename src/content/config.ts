@@ -80,6 +80,7 @@ const pagesCollection = defineCollection({
       image_alt: z.string(),
       features: z.array(z.string()).optional()
     })).optional(),
+    features_title: z.string().optional(),
     features: z.array(z.object({
       title: z.string(),
       description: z.string(),

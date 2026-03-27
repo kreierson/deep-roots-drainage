@@ -21,11 +21,13 @@ const { Content } = await page.render()
 
   <section class="py-20">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <Content />
+      <div class="prose prose-lg max-w-none">
+        <Content />
+      </div>
       
       {data.features && (
         <>
-          <h2 class="text-2xl font-black text-gray-900 mb-4 mt-12">What Sets Us Apart</h2>
+          <h2 class="text-2xl font-black text-gray-900 mb-4 mt-12">{data.features_title || 'What Sets Us Apart'}</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
             {data.features.map((feature) => (
               <div class="bg-surface rounded-xl p-6">

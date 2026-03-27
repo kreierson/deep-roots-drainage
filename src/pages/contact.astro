@@ -14,7 +14,7 @@ const { Content } = await page.render()
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">{data.hero.eyebrow}</p>
         <h1 class="text-4xl md:text-5xl font-black text-white">{data.hero.title}</h1>
-        <p class="mt-4 text-white/80 text-lg">{data.hero.description}</p>
+        <p class="mt-4 text-white/80 text-lg" set:html={data.hero.description}></p>
       </div>
     </section>
   )}

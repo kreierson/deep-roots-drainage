@@ -7,7 +7,7 @@ year: 2024
 featured_image: https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&q=80
 featured_image_alt: Large diameter tile being installed
 featured: false
-active: true
+active: false
 gallery:
   - image: https://images.unsplash.com/photo-1560493676-04071c5f467b?w=800&q=80
     alt: Main line installation

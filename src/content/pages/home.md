@@ -1,13 +1,15 @@
 ---
 title: Home
 seo_title: Deep Roots Drainage - Professional Agricultural Drainage Solutions
-seo_description: Professional drain tile installation that turns waterlogged
-  acres into your most productive ground. Serving North Dakota farmers.
+seo_description: Engineered water management systems built to perform—Deep Roots
+  Drainage delivers precision drain tile construction that protects your
+  investment and drives higher-yielding acres.
 hero:
-  eyebrow: Agricultural Drainage · North Dakota
+  eyebrow: Agricultural Drainage · Northern Plains
   title: Better Drainage.<br/>Better Yields.
-  description: Professional drain tile installation that turns waterlogged acres
-    into your most productive ground.
+  description: Engineered water management systems built to perform—Deep Roots
+    Drainage delivers precision tile construction that protects your investment
+    and drives higher-yielding acres.
   image: https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&q=80
   image_alt: Golden wheat field at sunrise across North Dakota farmland
   primary_button:
@@ -45,8 +47,8 @@ how_it_works:
   image_alt: Aerial view of cultivated agricultural field rows
   steps:
     - title: Survey Your Land
-      description: We walk your fields, review topography, and identify problem areas
-        with GPS mapping.
+      description: We walk your fields, get soil types, review topography with lidar,
+        and identify problem areas with GPS mapping.
     - title: Design the System
       description: Custom tile layout engineered for your specific soil type, field
         slope, and drainage needs.

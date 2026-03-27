@@ -1,6 +1,6 @@
 ---
 title: Prairie Ridge Main Line
-summary: 1.2 mile main drainage line connecting multiple fields to improved outlet
+summary: "1.2 mile main drainage line connecting multiple fields to improved outlet "
 location: Richland County, ND
 acres: 480
 year: 2024

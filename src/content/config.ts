@@ -88,6 +88,19 @@ const pagesCollection = defineCollection({
       image: z.string().optional(),
       image_alt: z.string().optional()
     })).optional(),
+    contact_info: z.object({
+      phone: z.string(),
+      phone_note: z.string(),
+      email: z.string(),
+      email_note: z.string(),
+      location: z.string(),
+      location_note: z.string(),
+    }).optional(),
+    steps: z.array(z.string()).optional(),
+    planning_ahead: z.object({
+      title: z.string(),
+      description: z.string(),
+    }).optional(),
     service_options: z.array(z.string()).optional(),
     no_openings_title: z.string().optional(),
     no_openings_text: z.string().optional(),

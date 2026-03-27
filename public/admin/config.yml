@@ -199,6 +199,29 @@ collections:
               - { label: "Description", name: "description", widget: "text" }
               - { label: "Background Image", name: "image", widget: "image" }
               - { label: "Image Alt Text", name: "image_alt", widget: "string" }
+          - label: "Contact Info"
+            name: "contact_info"
+            widget: "object"
+            required: false
+            fields:
+              - { label: "Phone", name: "phone", widget: "string" }
+              - { label: "Phone Note", name: "phone_note", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Email Note", name: "email_note", widget: "string" }
+              - { label: "Location", name: "location", widget: "string" }
+              - { label: "Location Note", name: "location_note", widget: "string" }
+          - label: "What to Expect Steps"
+            name: "steps"
+            widget: "list"
+            required: false
+            field: { label: "Step", widget: "string" }
+          - label: "Planning Ahead Section"
+            name: "planning_ahead"
+            widget: "object"
+            required: false
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
           - { label: "Content", name: "body", widget: "markdown" }
 
   - name: "projects"

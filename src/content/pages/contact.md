@@ -9,6 +9,20 @@ hero:
   description: "Tell us about your land and we'll get back to you within 24 hours."
   image: "https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=1400&q=80"
   image_alt: "Rural farmland in North Dakota"
+contact_info:
+  phone: "(701) 555-0123"
+  phone_note: "Call or text"
+  email: "info@deeprootsdrainage.com"
+  email_note: "We reply within 24 hours"
+  location: "Serving All of North Dakota"
+  location_note: "Based in [City], available statewide"
+steps:
+  - "We'll call to discuss your land and drainage goals"
+  - "Schedule a field survey and walk-through"
+  - "Receive a custom drainage design and detailed quote"
+planning_ahead:
+  title: "💡 Planning Ahead?"
+  description: "The best time to plan a tile project is well before installation season. Contact us now to get on the schedule — fall and spring slots fill up fast."
 service_options:
   - "Pattern Tile System"
   - "Main / Submain Lines"

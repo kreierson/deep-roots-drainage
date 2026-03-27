@@ -72,28 +72,34 @@ const { Content } = await page.render()
         </div>
 
         <div class="lg:col-span-2 space-y-8">
-          <div class="bg-surface rounded-2xl p-8">
-            <h3 class="text-lg font-bold text-gray-900 mb-4">Contact Info</h3>
-            <ul class="space-y-4 text-gray-600">
-              <li class="flex items-start gap-3"><span class="text-xl">📞</span><div><p class="font-semibold text-gray-900">(701) 555-0123</p><p class="text-sm">Call or text</p></div></li>
-              <li class="flex items-start gap-3"><span class="text-xl">✉️</span><div><p class="font-semibold text-gray-900">info@deeprootsdrainage.com</p><p class="text-sm">We reply within 24 hours</p></div></li>
-              <li class="flex items-start gap-3"><span class="text-xl">📍</span><div><p class="font-semibold text-gray-900">Serving All of North Dakota</p><p class="text-sm">Based in [City], available statewide</p></div></li>
-            </ul>
-          </div>
+          {data.contact_info && (
+            <div class="bg-surface rounded-2xl p-8">
+              <h3 class="text-lg font-bold text-gray-900 mb-4">Contact Info</h3>
+              <ul class="space-y-4 text-gray-600">
+                <li class="flex items-start gap-3"><span class="text-xl">📞</span><div><p class="font-semibold text-gray-900">{data.contact_info.phone}</p><p class="text-sm">{data.contact_info.phone_note}</p></div></li>
+                <li class="flex items-start gap-3"><span class="text-xl">✉️</span><div><p class="font-semibold text-gray-900">{data.contact_info.email}</p><p class="text-sm">{data.contact_info.email_note}</p></div></li>
+                <li class="flex items-start gap-3"><span class="text-xl">📍</span><div><p class="font-semibold text-gray-900">{data.contact_info.location}</p><p class="text-sm">{data.contact_info.location_note}</p></div></li>
+              </ul>
+            </div>
+          )}
 
-          <div class="bg-primary/5 rounded-2xl p-8 border border-primary/10">
-            <h3 class="text-lg font-bold text-gray-900 mb-2">What to Expect</h3>
-            <ol class="space-y-3 text-gray-600 text-sm">
-              <li class="flex gap-3"><span class="bg-primary text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0">1</span><span>We'll call to discuss your land and drainage goals</span></li>
-              <li class="flex gap-3"><span class="bg-primary text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0">2</span><span>Schedule a field survey and walk-through</span></li>
-              <li class="flex gap-3"><span class="bg-primary text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0">3</span><span>Receive a custom drainage design and detailed quote</span></li>
-            </ol>
-          </div>
+          {data.steps && (
+            <div class="bg-primary/5 rounded-2xl p-8 border border-primary/10">
+              <h3 class="text-lg font-bold text-gray-900 mb-2">What to Expect</h3>
+              <ol class="space-y-3 text-gray-600 text-sm">
+                {data.steps.map((step, i) => (
+                  <li class="flex gap-3"><span class="bg-primary text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0">{i + 1}</span><span>{step}</span></li>
+                ))}
+              </ol>
+            </div>
+          )}
 
-          <div class="bg-accent/10 rounded-2xl p-8 border border-accent/20">
-            <h3 class="text-lg font-bold text-gray-900 mb-2">💡 Planning Ahead?</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">The best time to plan a tile project is well before installation season. Contact us now to get on the schedule — fall and spring slots fill up fast.</p>
-          </div>
+          {data.planning_ahead && (
+            <div class="bg-accent/10 rounded-2xl p-8 border border-accent/20">
+              <h3 class="text-lg font-bold text-gray-900 mb-2">{data.planning_ahead.title}</h3>
+              <p class="text-gray-600 text-sm leading-relaxed">{data.planning_ahead.description}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

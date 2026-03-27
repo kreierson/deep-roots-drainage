@@ -1,32 +1,35 @@
 ---
-title: "Johnson Farm Tile System"
-summary: "320-acre pattern tile installation with custom main line design for improved water management"
-location: "Cass County, ND"
+title: Johnson Farm Tile System
+summary: 320-acre pattern tile installation with custom main line design for
+  improved water management
+location: Cass County, ND
 acres: 320
 year: 2023
-featured_image: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80"
-featured_image_alt: "Healthy crop rows in well-drained field"
-gallery:
-  - image: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&q=80"
-    alt: "Tile installation equipment working in field"
-    caption: "GPS-guided tile plow installation in progress"
-  - image: "https://images.unsplash.com/photo-1560493676-04071c5f467b?w=800&q=80"
-    alt: "Aerial view of field with drainage pattern"
-    caption: "Completed drainage pattern viewed from above"
-  - image: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80"
-    alt: "Healthy crop growth after drainage"
-    caption: "Uniform crop emergence following installation"
-results:
-  - value: "22%"
-    label: "Yield Increase"
-  - value: "45"
-    label: "Acres Recovered"
-  - value: "8 days"
-    label: "Installation Time"
-testimonial:
-  quote: "We gained back 45 acres that were underwater every spring. The tile system paid for itself in two seasons with the yield increase alone."
-  author: "Mark Johnson, Farm Owner"
+featured_image: https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80
+featured_image_alt: Healthy crop rows in well-drained field
 featured: true
+active: false
+gallery:
+  - image: https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&q=80
+    alt: Tile installation equipment working in field
+    caption: GPS-guided tile plow installation in progress
+  - image: https://images.unsplash.com/photo-1560493676-04071c5f467b?w=800&q=80
+    alt: Aerial view of field with drainage pattern
+    caption: Completed drainage pattern viewed from above
+  - image: https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80
+    alt: Healthy crop growth after drainage
+    caption: Uniform crop emergence following installation
+results:
+  - value: 22%
+    label: Yield Increase
+  - value: "45"
+    label: Acres Recovered
+  - value: 8 days
+    label: Installation Time
+testimonial:
+  quote: We gained back 45 acres that were underwater every spring. The tile
+    system paid for itself in two seasons with the yield increase alone.
+  author: Mark Johnson, Farm Owner
 ---
 
 The Johnson Farm project involved installing a comprehensive drainage system across 320 acres of productive farmland in Cass County. The property had significant water management challenges, with 45 acres regularly flooded during spring months, delaying planting and reducing yields across the entire quarter section.

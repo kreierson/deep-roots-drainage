@@ -27,8 +27,6 @@ Deep Roots Drainage is a North Dakota drain tile company built by people who und
 
 ## Our Approach
 
-![](/images/uploads/flooded-field.jpg)
-
 We don't believe in one-size-fits-all drainage. Every field is different — different soil, different topography, different challenges. We survey your land, study the data, and design a system that actually solves your specific water problems. Then we install it right the first time.
 
 ## Our Equipment

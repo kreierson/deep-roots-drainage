@@ -118,6 +118,7 @@
                     { label: "Background Image", name: "image", widget: "image" },
                     { label: "Image Alt Text", name: "image_alt", widget: "string" }
                   ]},
+                  { label: "Features Section Title", name: "features_title", widget: "string", required: false, default: "What Sets Us Apart" },
                   { label: "Features", name: "features", widget: "list", required: false, fields: [
                     { label: "Title", name: "title", widget: "string" },
                     { label: "Description", name: "description", widget: "text" }
@@ -143,7 +144,7 @@
                   { label: "Services", name: "services", widget: "list", required: false, fields: [
                     { label: "Title", name: "title", widget: "string" },
                     { label: "Description", name: "description", widget: "text" },
-                    { label: "Image", name: "image", widget: "string" },
+                    { label: "Image", name: "image", widget: "image" },
                     { label: "Image Alt Text", name: "image_alt", widget: "string" },
                     { label: "Features", name: "features", widget: "list", required: false, field: { label: "Feature", name: "feature", widget: "string" } }
                   ]},
@@ -170,6 +171,19 @@
                     { label: "Description", name: "description", widget: "text" },
                     { label: "Background Image", name: "image", widget: "image" },
                     { label: "Image Alt Text", name: "image_alt", widget: "string" }
+                  ]},
+                  { label: "Contact Info", name: "contact_info", widget: "object", required: false, fields: [
+                    { label: "Phone", name: "phone", widget: "string" },
+                    { label: "Phone Note", name: "phone_note", widget: "string" },
+                    { label: "Email", name: "email", widget: "string" },
+                    { label: "Email Note", name: "email_note", widget: "string" },
+                    { label: "Location", name: "location", widget: "string" },
+                    { label: "Location Note", name: "location_note", widget: "string" }
+                  ]},
+                  { label: "What to Expect Steps", name: "steps", widget: "list", required: false, field: { label: "Step", name: "step", widget: "string" } },
+                  { label: "Planning Ahead Section", name: "planning_ahead", widget: "object", required: false, fields: [
+                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Description", name: "description", widget: "text" }
                   ]},
                   { label: "Service Options", name: "service_options", widget: "list", field: { label: "Option", name: "option", widget: "string" }, hint: "Options shown in the 'What Do You Need?' dropdown on the contact form." },
                   { label: "Content", name: "body", widget: "markdown" }

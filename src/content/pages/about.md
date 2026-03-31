@@ -25,6 +25,10 @@ features:
   - title: Industry Experience
     description: With years of experience within the agricultural drainage industry,
       you can rest assured that your project will be done right.
+  - title: Honest Pricing
+    description: Straightforward pricing. No Hidden Costs, no surprises when the bill comes.
+  - title: 6 Growing Season Warranty
+    description: Every project is backed by warranty that is 6 growing seasons
 ---
 Deep Roots Drainage is a North Dakota drain tile company built by people who understand the land. We know what wet fields cost you — lost acres, late planting, and years of frustration. We're here to fix that.
 

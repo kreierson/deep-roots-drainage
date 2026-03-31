@@ -69,7 +69,7 @@ const careers = allCareers
   <section class="bg-surface py-16">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="text-2xl font-black text-gray-900 mb-4">{pageData.bottom_cta_title}</h2>
-      <p class="text-gray-600 mb-8">{pageData.bottom_cta_text}</p>
+      <p class="text-gray-600 mb-8" set:html={pageData.bottom_cta_text}></p>
       <a href={pageData.bottom_cta_url || '/contact'} class="inline-block bg-primary hover:bg-primary-light text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors">{pageData.bottom_cta_button_text || 'Contact Us'}</a>
     </div>
   </section>

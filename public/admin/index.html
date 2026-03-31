@@ -33,6 +33,7 @@
                   { label: "Title", name: "title", widget: "string" },
                   { label: "SEO Title", name: "seo_title", widget: "string", required: false },
                   { label: "SEO Description", name: "seo_description", widget: "text", required: false },
+                  { label: "Show Featured Projects", name: "show_featured_projects", widget: "boolean", default: true, required: false },
                   { label: "Hero Section", name: "hero", widget: "object", fields: [
                     { label: "Eyebrow Text", name: "eyebrow", widget: "string" },
                     { label: "Title", name: "title", widget: "string" },
@@ -52,19 +53,6 @@
                     { label: "Value", name: "value", widget: "string" },
                     { label: "Label", name: "label", widget: "string" }
                   ]},
-                  { label: "Before/After Section", name: "before_after", widget: "object", fields: [
-                    { label: "Eyebrow Text", name: "eyebrow", widget: "string" },
-                    { label: "Title", name: "title", widget: "string" },
-                    { label: "Description", name: "description", widget: "text" },
-                    { label: "Before Image", name: "before_image", widget: "image" },
-                    { label: "Before Image Alt", name: "before_image_alt", widget: "string" },
-                    { label: "Before Title", name: "before_title", widget: "string" },
-                    { label: "Before Description", name: "before_description", widget: "string" },
-                    { label: "After Image", name: "after_image", widget: "image" },
-                    { label: "After Image Alt", name: "after_image_alt", widget: "string" },
-                    { label: "After Title", name: "after_title", widget: "string" },
-                    { label: "After Description", name: "after_description", widget: "string" }
-                  ]},
                   { label: "How It Works", name: "how_it_works", widget: "object", fields: [
                     { label: "Eyebrow Text", name: "eyebrow", widget: "string" },
                     { label: "Title", name: "title", widget: "string" },
@@ -76,6 +64,7 @@
                     ]}
                   ]},
                   { label: "Social Proof", name: "social_proof", widget: "object", fields: [
+                    { label: "Show Section", name: "visible", widget: "boolean", default: true, required: false },
                     { label: "Eyebrow Text", name: "eyebrow", widget: "string" },
                     { label: "Title", name: "title", widget: "string" },
                     { label: "Stats", name: "stats", widget: "list", fields: [
@@ -84,6 +73,7 @@
                     ]}
                   ]},
                   { label: "Testimonials", name: "testimonials", widget: "object", fields: [
+                    { label: "Show Section", name: "visible", widget: "boolean", default: true, required: false },
                     { label: "Eyebrow Text", name: "eyebrow", widget: "string" },
                     { label: "Title", name: "title", widget: "string" },
                     { label: "Testimonials", name: "items", widget: "list", fields: [

@@ -1,7 +1,8 @@
 ---
-import { getEntry } from 'astro:content'
+import { getEntry, getCollection } from 'astro:content'
 
 const settings = await getEntry('settings', 'global')
+const activeProjects = await getCollection('projects', ({ data }) => data.active !== false)
 const currentYear = new Date().getFullYear()
 const companyName = settings.data.company_name || 'Deep Roots Drainage'
 const phone = settings.data.phone || '(701) 555-0123'
@@ -10,7 +11,8 @@ const location = settings.data.location || 'North Dakota'
 const description = settings.data.footer_description || ''
 const ctaText = settings.data.footer_cta_text || 'Request a Free Estimate'
 const ctaLink = settings.data.footer_cta_link || '/contact'
-const navLinks = settings.data.nav_links || []
+const allNavLinks = settings.data.nav_links || []
+const navLinks = allNavLinks.filter(link => link.url !== '/projects' || activeProjects.length > 0)
 ---
 
 <footer class="bg-primary-dark text-white">

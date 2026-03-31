@@ -15,11 +15,11 @@ contact_info:
   email: info@deeprootsdrainage.com
   email_note: We reply within 24 hours
   location: Serving All of North Dakota
-  location_note: North Dakota
+  location_note: "Statewide "
 steps:
   - We'll call to discuss your land and drainage goals
-  - Schedule a field survey and walk-through
-  - We'll get back to you within 24 hours
+  - Meet on location to discuss project in detail
+  - We'll be back with drainage design and bid
 planning_ahead:
   title: 💡 Planning Ahead?
   description: The best time to plan a tile project is well before installation

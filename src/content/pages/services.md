@@ -36,12 +36,11 @@ services:
     description: Tree removal and grubbing to clear over burden and bring your acres
       back into production.
     image: /images/uploads/wheat-rocks.jpg
-    image_alt: RTK GPS survey equipment in field
+    image_alt: Rock pile removal
     features:
-      - RTK GPS topographic surveys
-      - Custom drainage design & maps
-      - Soil analysis consideration
-      - Phased installation planning
+      - "Trees and shelterbelt removal "
+      - Clearing unwanted vegitation
+      - Rock Pile burial or removal
 cta:
   title: Ready to Improve Your Land?
   description: We'll listen to your objectives, analyze your fields, design a

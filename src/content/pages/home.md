@@ -30,7 +30,7 @@ stats:
     label: North Dakota Owned
 how_it_works:
   eyebrow: How It Works
-  title: From Survey to Results
+  title: From Design to Results
   image: https://images.unsplash.com/photo-1560493676-04071c5f467b?w=800&q=80
   image_alt: Aerial view of cultivated agricultural field rows
   steps:

@@ -35,7 +35,7 @@ services:
   - title: Land clearing and grubbing
     description: Tree removal and grubbing to clear over burden and bring your acres
       back into production.
-    image: /images/uploads/sunset-pic.jpg
+    image: /images/uploads/wheat-rocks.jpg
     image_alt: RTK GPS survey equipment in field
     features:
       - RTK GPS topographic surveys

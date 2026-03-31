@@ -15,6 +15,6 @@ no_openings_text: We don't have any openings right now, but we're always
 bottom_cta_title: Don't See the Right Fit?
 bottom_cta_text: We're always looking for hard-working people to join our team.
   <br/> Send us your resume and tell us about yourself.
-bottom_cta_button_text: Apply Now
+bottom_cta_button_text: Apply Now →
 bottom_cta_url: /apply
 ---

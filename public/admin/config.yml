@@ -1,3 +1,5 @@
+site_url: https://deep-roots-drainage.vercel.app
+
 backend:
   name: github
   repo: kreierson/deep-roots-drainage

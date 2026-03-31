@@ -35,8 +35,8 @@ how_it_works:
   image_alt: Aerial view of cultivated agricultural field rows
   steps:
     - title: Survey Your Land
-      description: We walk your fields, get soil types, review topography with lidar,
-        and identify problem areas with GPS mapping.
+      description: We identify problem areas using soil types, topography and customer
+        input.
     - title: Design the System
       description: Custom tile layout engineered for your specific soil type, field
         slope, and drainage needs.

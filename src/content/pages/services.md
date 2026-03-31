@@ -22,9 +22,9 @@ services:
       - Professionally designed tile plans
       - Lift Stations, Control Structures or gravity outlets
   - title: Water Conveyance
-    description: "Drain Tile Systems are only as effective as its primary discharge
-      point. By using GPS integrated equipment, we can help ensure your tiled
-      field will operate at its peak performance. "
+    description: "Drain Tile Systems are only as effective as its outlet. By using
+      GPS integrated equipment, we can help ensure your tiled field will operate
+      at its peak performance. "
     image: /images/uploads/flooded-field.jpg
     image_alt: Large diameter main line installation
     features:

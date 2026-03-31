@@ -33,8 +33,7 @@ services:
       - Ditch Reconstruction
       - Snagging and Clearing
   - title: Land clearing and grubbing
-    description: Tree removal and grubbing to clear over burden and bring your acres
-      back into production.
+    description: Transforming and cleaning up nonproductive ground into high value farmland
     image: /images/uploads/wheat-rocks.jpg
     image_alt: Rock pile removal
     features:

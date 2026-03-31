@@ -63,31 +63,7 @@ testimonials:
   visible: false
   eyebrow: "Testimonials "
   title: What Farmers Are Saying
-  items:
-    - quote: We had 45 acres that were underwater every spring until June. Now we
-        plant the whole quarter in April. Best investment we've made on the
-        farm.
-      name: Mike Johnson
-      location: Cass County, ND
-    - quote: The GPS precision is incredible — every line exactly where it should be.
-        Our yields jumped 28% on the tiled acres the very first season.
-      name: Dave Larson
-      location: Richland County, ND
-    - quote: I put off tiling for years thinking it was too expensive. Wish I'd done
-        it sooner. The wet spots that used to drown out our soybeans are now
-        some of our best-producing ground.
-      name: Tom Keller
-      location: Traill County, ND
-    - quote: Deep Roots did our 160 in three days. Professional crew, clean work, and
-        they left the field better than they found it. Already planning to do
-        our other quarter next fall.
-      name: Sarah Peterson
-      location: Grand Forks County, ND
-    - quote: We went from losing 30 acres every spring to planting on schedule for the
-        first time in a decade. The drainage design they put together was
-        spot-on for our clay soils.
-      name: Randy Miller
-      location: Walsh County, ND
+  items: []
 cta:
   title: Every Wet Season Is Costing You
   description: The ROI on drain tile is one of the best investments you can make

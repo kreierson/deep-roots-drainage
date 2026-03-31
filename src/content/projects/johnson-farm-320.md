@@ -8,7 +8,7 @@ year: 2023
 featured_image: https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80
 featured_image_alt: Healthy green crop rows in a well-drained field
 featured: true
-active: true
+active: false
 gallery:
   - image: https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=800&q=80
     alt: Before drainage - standing water

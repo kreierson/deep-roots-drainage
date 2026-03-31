@@ -109,10 +109,12 @@ const email = settings.data.email || ''
   const bot = document.getElementById('hamburger-bot')
   const links = menu?.querySelectorAll('.mobile-nav-link')
   let open = false
+  let savedScrollY = 0
 
   btn?.addEventListener('click', () => {
     open = !open
     if (open) {
+      savedScrollY = window.scrollY
       menu?.classList.remove('pointer-events-none', 'opacity-0')
       menu?.classList.add('pointer-events-auto', 'opacity-100')
       // Animate hamburger to X
@@ -146,12 +148,11 @@ const email = settings.data.email || ''
         (link as HTMLElement).style.transform = i < (links.length - 2) ? 'translateX(-20px)' : 'translateY(10px)';
       })
       // Restore scroll
-      const scrollY = document.body.style.top
       document.body.style.overflow = ''
       document.body.style.position = ''
       document.body.style.width = ''
       document.body.style.top = ''
-      window.scrollTo(0, parseInt(scrollY || '0') * -1)
+      window.scrollTo(0, savedScrollY)
     }
   })
 </script>

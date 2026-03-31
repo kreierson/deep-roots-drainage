@@ -19,18 +19,19 @@ services:
     features:
       - GPS-guided plow installation
       - Custom spacing based on soil type
-      - 4" corrugated lateral lines
-      - Grade control for consistent flow
+      - Professionally designed tile plans
+      - Lift Stations, Control Structures or gravity outlets
   - title: Water Conveyance
-    description: "GPS guided: Ditch cleaning, permitted ditch enhancement, ditch
-      reconstruction, snagging and clearing."
+    description: "Drain Tile Systems are only as effective as its primary discharge
+      point. By using GPS integrated equipment, we can help ensure your tiled
+      field will operate at its peak performance. "
     image: "[Main Line Photo]"
     image_alt: Large diameter main line installation
     features:
-      - 6" - 15"+ diameter pipe
-      - Capacity-matched to drainage area
-      - Proper junction connections
-      - Engineered for long-term performance
+      - Cleaning of existing ditches
+      - "Permitted Ditch Enhancement "
+      - Ditch Reconstruction
+      - Snagging and Clearing
   - title: Land clearing and grubbing
     description: Tree removal and grubbing to clear over burden and bring your acres
       back into production.
@@ -48,5 +49,4 @@ cta:
   button_text: Request a Free Estimate
   button_url: /contact
 ---
-
-Complete agricultural drainage solutions for North Dakota farmers and landowners.
+Complete agricultural drainage and water conveyance solutions for North Dakota farmers and landowners.

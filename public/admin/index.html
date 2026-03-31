@@ -7,6 +7,295 @@
   <title>Content Manager</title>
 </head>
 <body>
+  <script>
+    window.CMS_MANUAL_INIT = true;
+  </script>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    CMS.init({
+      config: {
+        load_config_file: false,
+        site_url: "https://deep-roots-drainage.vercel.app",
+        backend: { name: "github", repo: "kreierson/deep-roots-drainage", branch: "main", base_url: "https://deep-roots-drainage.vercel.app", auth_endpoint: "/api/auth" },
+        media_folder: "public/images/uploads",
+        public_folder: "/images/uploads",
+        collections: [
+          {
+            name: "pages",
+            label: "Pages",
+            files: [
+              {
+                name: "home",
+                label: "Home Page",
+                file: "src/content/pages/home.md",
+                fields: [
+                  { label: "Title", name: "title", widget: "string" },
+                  { label: "SEO Title", name: "seo_title", widget: "string", required: false },
+                  { label: "SEO Description", name: "seo_description", widget: "text", required: false },
+                  { label: "Show Featured Projects", name: "show_featured_projects", widget: "boolean", default: true, required: false },
+                  { label: "Hero Section", name: "hero", widget: "object", fields: [
+                    { label: "Eyebrow Text", name: "eyebrow", widget: "string" },
+                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Description", name: "description", widget: "text" },
+                    { label: "Background Image", name: "image", widget: "image" },
+                    { label: "Image Alt Text", name: "image_alt", widget: "string" },
+                    { label: "Primary Button", name: "primary_button", widget: "object", fields: [
+                      { label: "Text", name: "text", widget: "string" },
+                      { label: "URL", name: "url", widget: "string" }
+                    ]},
+                    { label: "Secondary Button", name: "secondary_button", widget: "object", required: false, fields: [
+                      { label: "Text", name: "text", widget: "string" },
+                      { label: "URL", name: "url", widget: "string" }
+                    ]}
+                  ]},
+                  { label: "Stats Bar", name: "stats", widget: "list", fields: [
+                    { label: "Value", name: "value", widget: "string" },
+                    { label: "Label", name: "label", widget: "string" }
+                  ]},
+                  { label: "How It Works", name: "how_it_works", widget: "object", fields: [
+                    { label: "Eyebrow Text", name: "eyebrow", widget: "string" },
+                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Image", name: "image", widget: "image" },
+                    { label: "Image Alt Text", name: "image_alt", widget: "string" },
+                    { label: "Steps", name: "steps", widget: "list", fields: [
+                      { label: "Title", name: "title", widget: "string" },
+                      { label: "Description", name: "description", widget: "text" }
+                    ]}
+                  ]},
+                  { label: "Social Proof", name: "social_proof", widget: "object", fields: [
+                    { label: "Show Section", name: "visible", widget: "boolean", default: true, required: false },
+                    { label: "Eyebrow Text", name: "eyebrow", widget: "string" },
+                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Stats", name: "stats", widget: "list", fields: [
+                      { label: "Value", name: "value", widget: "string" },
+                      { label: "Label", name: "label", widget: "string" }
+                    ]}
+                  ]},
+                  { label: "Testimonials", name: "testimonials", widget: "object", fields: [
+                    { label: "Show Section", name: "visible", widget: "boolean", default: true, required: false },
+                    { label: "Eyebrow Text", name: "eyebrow", widget: "string" },
+                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Testimonials", name: "items", widget: "list", fields: [
+                      { label: "Quote", name: "quote", widget: "text" },
+                      { label: "Name", name: "name", widget: "string" },
+                      { label: "Location", name: "location", widget: "string" }
+                    ]}
+                  ]},
+                  { label: "Call to Action", name: "cta", widget: "object", fields: [
+                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Description", name: "description", widget: "text" },
+                    { label: "Button Text", name: "button_text", widget: "string" },
+                    { label: "Button URL", name: "button_url", widget: "string" },
+                    { label: "Background Image", name: "image", widget: "image" },
+                    { label: "Image Alt Text", name: "image_alt", widget: "string" }
+                  ]},
+                  { label: "Content", name: "body", widget: "markdown" }
+                ]
+              },
+              {
+                name: "about",
+                label: "About Page",
+                file: "src/content/pages/about.md",
+                fields: [
+                  { label: "Title", name: "title", widget: "string" },
+                  { label: "SEO Title", name: "seo_title", widget: "string", required: false },
+                  { label: "SEO Description", name: "seo_description", widget: "text", required: false },
+                  { label: "Hero Section", name: "hero", widget: "object", required: false, fields: [
+                    { label: "Eyebrow Text", name: "eyebrow", widget: "string" },
+                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Description", name: "description", widget: "text" },
+                    { label: "Background Image", name: "image", widget: "image" },
+                    { label: "Image Alt Text", name: "image_alt", widget: "string" }
+                  ]},
+                  { label: "Features Section Title", name: "features_title", widget: "string", required: false, default: "What Sets Us Apart" },
+                  { label: "Features", name: "features", widget: "list", required: false, fields: [
+                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Description", name: "description", widget: "text" }
+                  ]},
+                  { label: "Content", name: "body", widget: "markdown" }
+                ]
+              },
+              {
+                name: "services",
+                label: "Services Page",
+                file: "src/content/pages/services.md",
+                fields: [
+                  { label: "Title", name: "title", widget: "string" },
+                  { label: "SEO Title", name: "seo_title", widget: "string", required: false },
+                  { label: "SEO Description", name: "seo_description", widget: "text", required: false },
+                  { label: "Hero Section", name: "hero", widget: "object", required: false, fields: [
+                    { label: "Eyebrow Text", name: "eyebrow", widget: "string" },
+                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Description", name: "description", widget: "text" },
+                    { label: "Background Image", name: "image", widget: "image" },
+                    { label: "Image Alt Text", name: "image_alt", widget: "string" }
+                  ]},
+                  { label: "Services", name: "services", widget: "list", required: false, fields: [
+                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Description", name: "description", widget: "text" },
+                    { label: "Image", name: "image", widget: "image" },
+                    { label: "Image Alt Text", name: "image_alt", widget: "string" },
+                    { label: "Features", name: "features", widget: "list", required: false, field: { label: "Feature", name: "feature", widget: "string" } }
+                  ]},
+                  { label: "Call to Action", name: "cta", widget: "object", required: false, fields: [
+                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Description", name: "description", widget: "text" },
+                    { label: "Button Text", name: "button_text", widget: "string" },
+                    { label: "Button URL", name: "button_url", widget: "string" }
+                  ]},
+                  { label: "Content", name: "body", widget: "markdown" }
+                ]
+              },
+              {
+                name: "contact",
+                label: "Contact Page",
+                file: "src/content/pages/contact.md",
+                fields: [
+                  { label: "Title", name: "title", widget: "string" },
+                  { label: "SEO Title", name: "seo_title", widget: "string", required: false },
+                  { label: "SEO Description", name: "seo_description", widget: "text", required: false },
+                  { label: "Hero Section", name: "hero", widget: "object", required: false, fields: [
+                    { label: "Eyebrow Text", name: "eyebrow", widget: "string" },
+                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Description", name: "description", widget: "text" },
+                    { label: "Background Image", name: "image", widget: "image" },
+                    { label: "Image Alt Text", name: "image_alt", widget: "string" }
+                  ]},
+                  { label: "Contact Info", name: "contact_info", widget: "object", required: false, fields: [
+                    { label: "Phone", name: "phone", widget: "string" },
+                    { label: "Phone Note", name: "phone_note", widget: "string" },
+                    { label: "Email", name: "email", widget: "string" },
+                    { label: "Email Note", name: "email_note", widget: "string" },
+                    { label: "Location", name: "location", widget: "string" },
+                    { label: "Location Note", name: "location_note", widget: "string" }
+                  ]},
+                  { label: "What to Expect Steps", name: "steps", widget: "list", required: false, field: { label: "Step", name: "step", widget: "string" } },
+                  { label: "Planning Ahead Section", name: "planning_ahead", widget: "object", required: false, fields: [
+                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Description", name: "description", widget: "text" }
+                  ]},
+                  { label: "Service Options", name: "service_options", widget: "list", field: { label: "Option", name: "option", widget: "string" }, hint: "Options shown in the 'What Do You Need?' dropdown on the contact form." },
+                  { label: "Content", name: "body", widget: "markdown" }
+                ]
+              },
+              {
+                name: "projects",
+                label: "Projects Page",
+                file: "src/content/pages/projects.md",
+                fields: [
+                  { label: "Title", name: "title", widget: "string" },
+                  { label: "SEO Title", name: "seo_title", widget: "string", required: false },
+                  { label: "SEO Description", name: "seo_description", widget: "text", required: false },
+                  { label: "Hero Section", name: "hero", widget: "object", required: false, fields: [
+                    { label: "Eyebrow Text", name: "eyebrow", widget: "string" },
+                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Description", name: "description", widget: "text" },
+                    { label: "Background Image", name: "image", widget: "image" },
+                    { label: "Image Alt Text", name: "image_alt", widget: "string" }
+                  ]}
+                ]
+              },
+              {
+                name: "careers",
+                label: "Careers Page",
+                file: "src/content/pages/careers.md",
+                fields: [
+                  { label: "Title", name: "title", widget: "string" },
+                  { label: "SEO Title", name: "seo_title", widget: "string", required: false },
+                  { label: "SEO Description", name: "seo_description", widget: "text", required: false },
+                  { label: "Hero Section", name: "hero", widget: "object", required: false, fields: [
+                    { label: "Eyebrow Text", name: "eyebrow", widget: "string" },
+                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Description", name: "description", widget: "text" },
+                    { label: "Background Image", name: "image", widget: "image" },
+                    { label: "Image Alt Text", name: "image_alt", widget: "string" }
+                  ]},
+                  { label: "No Openings Title", name: "no_openings_title", widget: "string" },
+                  { label: "No Openings Text", name: "no_openings_text", widget: "text" },
+                  { label: "Bottom CTA Title", name: "bottom_cta_title", widget: "string" },
+                  { label: "Bottom CTA Text", name: "bottom_cta_text", widget: "text" }
+                ]
+              }
+            ]
+          },
+          {
+            name: "projects",
+            label: "Projects",
+            folder: "src/content/projects",
+            create: true,
+            slug: "{{slug}}",
+            fields: [
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Summary", name: "summary", widget: "text" },
+              { label: "Location", name: "location", widget: "string" },
+              { label: "Acres", name: "acres", widget: "number" },
+              { label: "Year", name: "year", widget: "number" },
+              { label: "Featured Image", name: "featured_image", widget: "image" },
+              { label: "Featured Image Alt", name: "featured_image_alt", widget: "string" },
+              { label: "Featured Project", name: "featured", widget: "boolean", default: false },
+              { label: "Active", name: "active", widget: "boolean", default: true, hint: "Toggle off to hide from the website. The project will remain here in the CMS." },
+              { label: "Gallery", name: "gallery", widget: "list", required: false, fields: [
+                { label: "Image", name: "image", widget: "image" },
+                { label: "Alt Text", name: "alt", widget: "string" },
+                { label: "Caption", name: "caption", widget: "string", required: false }
+              ]},
+              { label: "Results", name: "results", widget: "list", required: false, fields: [
+                { label: "Value", name: "value", widget: "string" },
+                { label: "Label", name: "label", widget: "string" }
+              ]},
+              { label: "Testimonial", name: "testimonial", widget: "object", required: false, fields: [
+                { label: "Quote", name: "quote", widget: "text" },
+                { label: "Author", name: "author", widget: "string" }
+              ]},
+              { label: "Content", name: "body", widget: "markdown" }
+            ]
+          },
+          {
+            name: "careers",
+            label: "Careers",
+            folder: "src/content/careers",
+            create: true,
+            slug: "{{slug}}",
+            fields: [
+              { label: "Job Title", name: "title", widget: "string" },
+              { label: "Summary", name: "summary", widget: "text" },
+              { label: "Location", name: "location", widget: "string" },
+              { label: "Type", name: "type", widget: "select", options: ["Full-Time", "Part-Time", "Seasonal", "Contract"], default: "Full-Time" },
+              { label: "Date Posted", name: "posted_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false },
+              { label: "Active", name: "active", widget: "boolean", default: true, hint: "Toggle off to hide from the website. The posting will remain here in the CMS." },
+              { label: "Content", name: "body", widget: "markdown" }
+            ]
+          },
+          {
+            name: "settings",
+            label: "Settings",
+            files: [
+              {
+                name: "global",
+                label: "Global Settings",
+                file: "src/content/settings/global.json",
+                fields: [
+                  { label: "Company Name", name: "company_name", widget: "string" },
+                  { label: "Tagline", name: "tagline", widget: "string" },
+                  { label: "Phone", name: "phone", widget: "string" },
+                  { label: "Email", name: "email", widget: "string" },
+                  { label: "Location", name: "location", widget: "string" },
+                  { label: "Footer Description", name: "footer_description", widget: "text" },
+                  { label: "Footer CTA Text", name: "footer_cta_text", widget: "string" },
+                  { label: "Footer CTA Link", name: "footer_cta_link", widget: "string" },
+                  { label: "CTA Button Text", name: "cta_button_text", widget: "string" },
+                  { label: "CTA Button Link", name: "cta_button_link", widget: "string" },
+                  { label: "Navigation Links", name: "nav_links", widget: "list", fields: [
+                    { label: "Label", name: "label", widget: "string" },
+                    { label: "URL", name: "url", widget: "string" }
+                  ]}
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    });
+  </script>
 </body>
 </html>

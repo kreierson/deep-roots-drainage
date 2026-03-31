@@ -19,7 +19,7 @@ contact_info:
 steps:
   - "We'll call to discuss your land and drainage goals"
   - "Schedule a field survey and walk-through"
-  - "Receive a custom drainage design and detailed quote"
+  - "We'll get back to you within 24 hours"
 planning_ahead:
   title: "💡 Planning Ahead?"
   description: "The best time to plan a tile project is well before installation season. Contact us now to get on the schedule — fall and spring slots fill up fast."

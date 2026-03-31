@@ -4,6 +4,7 @@ seo_title: Deep Roots Drainage - Professional Agricultural Drainage Solutions
 seo_description: "Engineered water management systems built to perform—Deep
   Roots Drainage delivers precision drain tile construction that protects your
   investment and drives higher-yielding acres. "
+show_featured_projects: false
 hero:
   eyebrow: Agricultural Drainage · Northern Plains
   title: Better Drainage.<br/>Better Yields.
@@ -22,24 +23,11 @@ stats:
   - value: GPS
     label: Guided Installation
   - value: 24hr
-    label: Quote Turnaround
+    label: Response Time
   - value: Licensed
     label: "& Fully Insured"
   - value: Local
     label: North Dakota Owned
-before_after:
-  after_image_alt: Healthy green crop rows in a well-drained field
-  before_image_alt: Waterlogged, flooded farmland with standing water
-  eyebrow: The Difference
-  after_title: Productive, Drained Ground
-  after_image: https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80
-  before_title: Standing Water & Lost Acres
-  title: See What Drainage Can Do
-  after_description: Earlier planting, healthier soil, 15-30% higher yields
-  before_image: https://www.agriculture.com/thmb/EQAPn1MPbdvleQ4pPhCp0DMpBHY=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/FloodedCornField2-Wideshot-2000-473d2b9e058b49909aa530ac867d6686.jpg
-  before_description: Saturated soil, delayed planting, reduced yields
-  description: The same land, dramatically different results. Drain tile
-    transforms waterlogged fields into high-performing acres.
 how_it_works:
   eyebrow: How It Works
   title: From Survey to Results
@@ -59,6 +47,7 @@ how_it_works:
       description: Drier fields, earlier planting, and yields that prove the
         investment — often within the first season.
 social_proof:
+  visible: false
   eyebrow: By the Numbers
   title: Proven Results Across ND
   stats:
@@ -71,6 +60,7 @@ social_proof:
     - value: 100%
       label: Satisfaction Rate
 testimonials:
+  visible: false
   eyebrow: "Testimonials "
   title: What Farmers Are Saying
   items:

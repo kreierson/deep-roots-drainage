@@ -5,6 +5,9 @@ import { getEntry, getCollection } from 'astro:content'
 const homeContent = await getEntry('pages', 'home')
 const { Content, data } = homeContent
 
+const globalSettings = await getEntry('settings', 'global')
+const settings = globalSettings.data
+
 const allProjects = await getCollection('projects', ({ data }) => data.active !== false)
 const featuredProjects = allProjects.filter(p => p.data.featured).sort((a, b) => b.data.year - a.data.year)
 ---
@@ -20,6 +23,11 @@ const featuredProjects = allProjects.filter(p => p.data.featured).sort((a, b) =>
     />
     <div class="absolute inset-0 bg-gradient-to-t from-primary-dark via-primary-dark/60 to-transparent"></div>
     <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/70 to-transparent"></div>
+    <!-- Phone number — top right, desktop only -->
+    <a href={`tel:${settings.phone.replace(/[^+\d]/g, '')}`} class="flex absolute top-6 right-4 md:right-6 lg:right-10 z-10 items-center gap-2 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white px-4 py-2 md:px-5 md:py-2.5 rounded-full transition-colors">
+      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+      <span class="font-bold text-sm tracking-wide">{settings.phone}</span>
+    </a>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 w-full">
       <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-4">{data.hero.eyebrow}</p>
       <h1 class="text-5xl md:text-7xl font-black text-white leading-[1.05] max-w-3xl" set:html={data.hero.title}></h1>
@@ -43,47 +51,6 @@ const featuredProjects = allProjects.filter(p => p.data.featured).sort((a, b) =>
             <p class="text-xs text-white/60 font-medium mt-1 uppercase tracking-wider">{stat.label}</p>
           </div>
         ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════ BEFORE / AFTER ═══════════ -->
-  <section class="py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-2xl mb-14">
-        <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">{data.before_after.eyebrow}</p>
-        <h2 class="text-3xl md:text-5xl font-black text-gray-900 leading-tight">{data.before_after.title}</h2>
-        <p class="mt-4 text-gray-600 text-lg">{data.before_after.description}</p>
-      </div>
-      <div class="grid md:grid-cols-2 gap-3">
-        <div class="relative rounded-2xl overflow-hidden group">
-          <img
-            src={data.before_after.before_image}
-            alt={data.before_after.before_image_alt}
-            class="w-full h-72 md:h-96 object-cover group-hover:scale-105 transition-transform duration-700"
-            loading="lazy"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-red-900/80 to-transparent"></div>
-          <div class="absolute bottom-0 left-0 p-6">
-            <span class="inline-block bg-red-600 text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-2">Before</span>
-            <p class="text-white font-bold text-xl">{data.before_after.before_title}</p>
-            <p class="text-white/70 text-sm mt-1">{data.before_after.before_description}</p>
-          </div>
-        </div>
-        <div class="relative rounded-2xl overflow-hidden group">
-          <img
-            src={data.before_after.after_image}
-            alt={data.before_after.after_image_alt}
-            class="w-full h-72 md:h-96 object-cover group-hover:scale-105 transition-transform duration-700"
-            loading="lazy"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent"></div>
-          <div class="absolute bottom-0 left-0 p-6">
-            <span class="inline-block bg-accent text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-2">After</span>
-            <p class="text-white font-bold text-xl">{data.before_after.after_title}</p>
-            <p class="text-white/70 text-sm mt-1">{data.before_after.after_description}</p>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -128,6 +95,7 @@ const featuredProjects = allProjects.filter(p => p.data.featured).sort((a, b) =>
   </section>
 
   <!-- ═══════════ SOCIAL PROOF — topo background ═══════════ -->
+  {data.social_proof?.visible !== false && (
   <section class="relative py-24 bg-primary-dark overflow-hidden">
     <!-- Topographic SVG pattern -->
     <div class="absolute inset-0 opacity-[0.07]">
@@ -167,9 +135,10 @@ const featuredProjects = allProjects.filter(p => p.data.featured).sort((a, b) =>
       </div>
     </div>
   </section>
+  )}
 
   <!-- ═══════════ TESTIMONIALS — infinite scroll ═══════════ -->
-  {data.testimonials?.items?.length > 0 && (
+  {data.testimonials?.visible !== false && data.testimonials?.items?.length > 0 && (
   <section class="py-24 bg-white overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-2xl mb-14">
@@ -222,7 +191,7 @@ const featuredProjects = allProjects.filter(p => p.data.featured).sort((a, b) =>
   </script>
 
   <!-- ═══════════ FEATURED PROJECTS ═══════════ -->
-  {featuredProjects.length > 0 && (
+  {data.show_featured_projects !== false && featuredProjects.length > 0 && (
     <section class="py-24 bg-surface">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-2xl mb-14">

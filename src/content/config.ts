@@ -21,6 +21,7 @@ const pagesCollection = defineCollection({
         url: z.string()
       }).optional()
     }).optional(),
+    show_featured_projects: z.boolean().default(true),
     stats: z.array(z.object({
       value: z.string(),
       label: z.string()
@@ -49,6 +50,7 @@ const pagesCollection = defineCollection({
       }))
     }).optional(),
     social_proof: z.object({
+      visible: z.boolean().default(true),
       eyebrow: z.string(),
       title: z.string(),
       stats: z.array(z.object({
@@ -57,6 +59,7 @@ const pagesCollection = defineCollection({
       }))
     }).optional(),
     testimonials: z.object({
+      visible: z.boolean().default(true),
       eyebrow: z.string(),
       title: z.string(),
       items: z.array(z.object({

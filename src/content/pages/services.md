@@ -7,7 +7,7 @@ hero:
   eyebrow: What We Offer
   title: Our Services
   description: Your results
-  image: /images/uploads/harvesting-pic.jpg
+  image: /images/uploads/wheat-pic.jpg
   image_alt: Pattern Tiled Field
 services:
   - title: Drain Tile Systems
@@ -25,7 +25,7 @@ services:
     description: "Drain Tile Systems are only as effective as its primary discharge
       point. By using GPS integrated equipment, we can help ensure your tiled
       field will operate at its peak performance. "
-    image: "[Main Line Photo]"
+    image: /images/uploads/flooded-field.jpg
     image_alt: Large diameter main line installation
     features:
       - Cleaning of existing ditches
@@ -35,7 +35,7 @@ services:
   - title: Land clearing and grubbing
     description: Tree removal and grubbing to clear over burden and bring your acres
       back into production.
-    image: "[Survey / GPS Photo]"
+    image: /images/uploads/sunset-pic.jpg
     image_alt: RTK GPS survey equipment in field
     features:
       - RTK GPS topographic surveys

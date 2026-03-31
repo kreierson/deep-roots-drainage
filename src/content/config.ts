@@ -108,7 +108,9 @@ const pagesCollection = defineCollection({
     no_openings_title: z.string().optional(),
     no_openings_text: z.string().optional(),
     bottom_cta_title: z.string().optional(),
-    bottom_cta_text: z.string().optional()
+    bottom_cta_text: z.string().optional(),
+    bottom_cta_button_text: z.string().default('Contact Us'),
+    bottom_cta_url: z.string().default('/contact')
   })
 });
 

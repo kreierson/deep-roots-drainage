@@ -22,6 +22,9 @@ features:
   - title: Quality Materials
     description: We use heavy-duty corrugated pipe and proper fittings. Your tile
       system should last generations, not just years.
+  - title: Industry Experience
+    description: With years of experience within the agricultural drainage industry,
+      you can rest assured that your project will be done right.
 ---
 Deep Roots Drainage is a North Dakota drain tile company built by people who understand the land. We know what wet fields cost you — lost acres, late planting, and years of frustration. We're here to fix that.
 

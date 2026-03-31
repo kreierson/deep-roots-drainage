@@ -126,8 +126,11 @@ const email = settings.data.email || ''
         (link as HTMLElement).style.opacity = '1';
         (link as HTMLElement).style.transform = 'translateX(0) translateY(0)';
       })
-      // Lock body scroll
+      // Lock body scroll (works on iOS Safari too)
       document.body.style.overflow = 'hidden'
+      document.body.style.position = 'fixed'
+      document.body.style.width = '100%'
+      document.body.style.top = `-${window.scrollY}px`
     } else {
       menu?.classList.add('pointer-events-none', 'opacity-0')
       menu?.classList.remove('pointer-events-auto', 'opacity-100')
@@ -143,7 +146,12 @@ const email = settings.data.email || ''
         (link as HTMLElement).style.transform = i < (links.length - 2) ? 'translateX(-20px)' : 'translateY(10px)';
       })
       // Restore scroll
+      const scrollY = document.body.style.top
       document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
+      document.body.style.top = ''
+      window.scrollTo(0, parseInt(scrollY || '0') * -1)
     }
   })
 </script>

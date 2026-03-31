@@ -40,6 +40,8 @@ how_it_works:
     - title: Design the System
       description: Custom tile layout engineered for your specific soil type, field
         slope, and drainage needs.
+    - title: Permitting
+      description: "Project permits "
     - title: Install with Precision
       description: GPS-guided installation ensures accurate grade and depth. Minimal
         disruption to your operation.
@@ -70,7 +72,7 @@ cta:
     in your operation. Let's look at your fields and put together a plan.
   button_text: Get Your Free Estimate →
   button_url: /contact
-  image: https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1920&q=80
+  image: /images/uploads/harvesting-pic.jpg
   image_alt: Expansive farmland at golden hour
 ---
 

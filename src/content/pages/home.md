@@ -67,7 +67,7 @@ testimonials:
   title: What Farmers Are Saying
   items: []
 cta:
-  title: Every Wet Season Is Costing You
+  title: Every Season Is Costing You
   description: The ROI on drain tile is one of the best investments you can make
     in your operation. Let's look at your fields and put together a plan.
   button_text: Get Your Free Estimate →

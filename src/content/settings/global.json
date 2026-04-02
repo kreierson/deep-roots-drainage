@@ -1,20 +1,38 @@
 {
-  "company_name": "Deep Roots Drainage",
-  "tagline": "Agricultural Drainage Solutions",
-  "phone": "(701) 555-0123",
-  "email": "info@deeprootsdrainage.com",
-  "location": "North Dakota",
-  "footer_description": "Professional agricultural drain tile installation serving farmers and landowners across North Dakota.",
   "footer_cta_text": "Request a Free Estimate",
-  "footer_cta_link": "/contact",
   "cta_button_text": "Free Estimate",
+  "company_name": "Deep Roots Drainage",
+  "footer_cta_link": "/contact",
+  "phone": "(701) 515-1228",
+  "tagline": "Agricultural Drainage Solutions",
+  "location": "North Dakota",
   "cta_button_link": "/contact",
+  "footer_description": "Professional agricultural drain tile installation serving farmers and landowners across North Dakota.",
+  "email": "info@deeprootsdrainage.com",
   "nav_links": [
-    { "label": "Home", "url": "/" },
-    { "label": "Services", "url": "/services" },
-    { "label": "About", "url": "/about" },
-    { "label": "Projects", "url": "/projects" },
-    { "label": "Careers", "url": "/careers" },
-    { "label": "Contact", "url": "/contact" }
+    {
+      "label": "Home",
+      "url": "/"
+    },
+    {
+      "label": "Services",
+      "url": "/services"
+    },
+    {
+      "label": "About",
+      "url": "/about"
+    },
+    {
+      "label": "Projects",
+      "url": "/projects"
+    },
+    {
+      "label": "Careers",
+      "url": "/careers"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact"
+    }
   ]
 }

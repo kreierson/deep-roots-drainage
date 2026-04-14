@@ -1,10 +1,17 @@
 import { Resend } from "resend";
+import formidable from "formidable";
 
-const json = (body, status = 200) =>
-  new Response(JSON.stringify(body), {
-    status,
-    headers: { "Content-Type": "application/json" },
-  });
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+const json = (res, body, status = 200) => {
+  res.statusCode = status;
+  res.setHeader("Content-Type", "application/json");
+  res.end(JSON.stringify(body));
+};
 
 const normalize = (value) => String(value || "").trim();
 const LOGO_URL = "https://deeprootsdrainage.com/images/logo-footer.png";
@@ -23,33 +30,48 @@ function escapeHtml(value) {
     .replace(/'/g, "&#39;");
 }
 
-export default async function handler(req) {
-  if (req.method !== "POST") return json({ error: "Method not allowed" }, 405);
+function parseForm(req) {
+  const form = formidable({ multiples: false });
+  return new Promise((resolve, reject) => {
+    form.parse(req, (err, fields, files) => {
+      if (err) return reject(err);
+      resolve({ fields, files });
+    });
+  });
+}
+
+function fieldValue(fields, key) {
+  const value = fields[key];
+  return Array.isArray(value) ? value[0] : value;
+}
+
+export default async function handler(req, res) {
+  if (req.method !== "POST") return json(res, { error: "Method not allowed" }, 405);
 
   const missingEnv = getMissingEnv();
   if (missingEnv.length) {
     console.error("Missing contact env vars:", missingEnv);
-    return json({ error: "Form not configured" }, 500);
+    return json(res, { error: "Form not configured" }, 500);
   }
 
   try {
-    const formData = await req.formData();
+    const { fields } = await parseForm(req);
 
-    const honeypot = normalize(formData.get("company_website"));
-    if (honeypot) return json({ success: true });
+    const honeypot = normalize(fieldValue(fields, "company_website"));
+    if (honeypot) return json(res, { success: true });
 
-    const loadedAt = parseInt(normalize(formData.get("_loaded")) || "0", 10);
-    if (loadedAt && Date.now() - loadedAt < 3000) return json({ success: true });
+    const loadedAt = parseInt(normalize(fieldValue(fields, "_loaded")) || "0", 10);
+    if (loadedAt && Date.now() - loadedAt < 3000) return json(res, { success: true });
 
-    const name = normalize(formData.get("name"));
-    const phone = normalize(formData.get("phone"));
-    const email = normalize(formData.get("email"));
-    const service = normalize(formData.get("service"));
-    const location = normalize(formData.get("location"));
-    const acres = normalize(formData.get("acres"));
-    const message = normalize(formData.get("message"));
+    const name = normalize(fieldValue(fields, "name"));
+    const phone = normalize(fieldValue(fields, "phone"));
+    const email = normalize(fieldValue(fields, "email"));
+    const service = normalize(fieldValue(fields, "service"));
+    const location = normalize(fieldValue(fields, "location"));
+    const acres = normalize(fieldValue(fields, "acres"));
+    const message = normalize(fieldValue(fields, "message"));
 
-    if (!name || !phone) return json({ error: "Missing required fields" }, 400);
+    if (!name || !phone) return json(res, { error: "Missing required fields" }, 400);
 
     const resend = new Resend(process.env.RESEND_API_KEY);
     const replyTo = email || undefined;
@@ -70,17 +92,6 @@ export default async function handler(req) {
         "Project Details:",
         message || "No project details provided.",
       ].join("\n"),
-      html: `
-        <h2>New Website Lead</h2>
-        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
-        <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
-        <p><strong>Email:</strong> ${escapeHtml(email || "Not provided")}</p>
-        <p><strong>Service:</strong> ${escapeHtml(service || "Not provided")}</p>
-        <p><strong>County / Area:</strong> ${escapeHtml(location || "Not provided")}</p>
-        <p><strong>Approx. Acres:</strong> ${escapeHtml(acres || "Not provided")}</p>
-        <p><strong>Project Details:</strong></p>
-        <p>${escapeHtml(message || "No project details provided.").replace(/\n/g, "<br>")}</p>
-      `,
     });
 
     if (email) {
@@ -116,9 +127,9 @@ export default async function handler(req) {
       });
     }
 
-    return json({ success: true });
+    return json(res, { success: true });
   } catch (error) {
     console.error("Contact form error:", error);
-    return json({ error: "Internal server error" }, 500);
+    return json(res, { error: "Internal server error" }, 500);
   }
 }

@@ -13,6 +13,7 @@
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.2.1",
     "astro": "^5.17.1",
+    "formidable": "^3.5.4",
     "resend": "^4.6.0",
     "tailwindcss": "^4.2.1"
   }

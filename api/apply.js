@@ -1,10 +1,18 @@
 import { Resend } from "resend";
+import formidable from "formidable";
+import fs from "node:fs/promises";
 
-const json = (body, status = 200) =>
-  new Response(JSON.stringify(body), {
-    status,
-    headers: { "Content-Type": "application/json" },
-  });
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+const json = (res, body, status = 200) => {
+  res.statusCode = status;
+  res.setHeader("Content-Type", "application/json");
+  res.end(JSON.stringify(body));
+};
 
 const normalize = (value) => String(value || "").trim();
 const LOGO_URL = "https://deeprootsdrainage.com/images/logo-footer.png";
@@ -23,41 +31,61 @@ function escapeHtml(value) {
     .replace(/'/g, "&#39;");
 }
 
-export default async function handler(req) {
-  if (req.method !== "POST") return json({ error: "Method not allowed" }, 405);
+function parseForm(req) {
+  const form = formidable({ multiples: false, maxFileSize: 5 * 1024 * 1024 });
+  return new Promise((resolve, reject) => {
+    form.parse(req, (err, fields, files) => {
+      if (err) return reject(err);
+      resolve({ fields, files });
+    });
+  });
+}
+
+function fieldValue(fields, key) {
+  const value = fields[key];
+  return Array.isArray(value) ? value[0] : value;
+}
+
+function fileValue(files, key) {
+  const value = files[key];
+  return Array.isArray(value) ? value[0] : value;
+}
+
+export default async function handler(req, res) {
+  if (req.method !== "POST") return json(res, { error: "Method not allowed" }, 405);
 
   const missingEnv = getMissingEnv();
   if (missingEnv.length) {
     console.error("Missing careers env vars:", missingEnv);
-    return json({ error: "Form not configured" }, 500);
+    return json(res, { error: "Form not configured" }, 500);
   }
 
   try {
-    const formData = await req.formData();
+    const { fields, files } = await parseForm(req);
 
-    const honeypot = normalize(formData.get("website_url"));
-    if (honeypot) return json({ success: true });
+    const honeypot = normalize(fieldValue(fields, "website_url"));
+    if (honeypot) return json(res, { success: true });
 
-    const loadedAt = parseInt(normalize(formData.get("_loaded")) || "0", 10);
-    if (loadedAt && Date.now() - loadedAt < 3000) return json({ success: true });
+    const loadedAt = parseInt(normalize(fieldValue(fields, "_loaded")) || "0", 10);
+    if (loadedAt && Date.now() - loadedAt < 3000) return json(res, { success: true });
 
-    const firstName = normalize(formData.get("first_name"));
-    const lastName = normalize(formData.get("last_name"));
-    const email = normalize(formData.get("email"));
-    const phone = normalize(formData.get("phone"));
-    const position = normalize(formData.get("position"));
-    const message = normalize(formData.get("message")) || "No message provided";
-    const resume = formData.get("resume");
+    const firstName = normalize(fieldValue(fields, "first_name"));
+    const lastName = normalize(fieldValue(fields, "last_name"));
+    const email = normalize(fieldValue(fields, "email"));
+    const phone = normalize(fieldValue(fields, "phone"));
+    const position = normalize(fieldValue(fields, "position"));
+    const message = normalize(fieldValue(fields, "message")) || "No message provided";
+    const resume = fileValue(files, "resume");
 
-    if (!firstName || !lastName || !email || !phone || !position || !(resume instanceof File)) {
-      return json({ error: "Missing required fields" }, 400);
+    if (!firstName || !lastName || !email || !phone || !position || !resume) {
+      return json(res, { error: "Missing required fields" }, 400);
     }
 
     if (resume.size > 5 * 1024 * 1024) {
-      return json({ error: "Resume must be under 5MB" }, 400);
+      return json(res, { error: "Resume must be under 5MB" }, 400);
     }
 
-    const buffer = Buffer.from(await resume.arrayBuffer());
+    const buffer = await fs.readFile(resume.filepath);
     const resend = new Resend(process.env.RESEND_API_KEY);
     const fullName = `${firstName} ${lastName}`;
 
@@ -75,18 +103,9 @@ export default async function handler(req) {
         "Cover Letter / Message:",
         message,
       ].join("\n"),
-      html: `
-        <h2>New Career Application</h2>
-        <p><strong>Name:</strong> ${escapeHtml(fullName)}</p>
-        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-        <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
-        <p><strong>Position:</strong> ${escapeHtml(position)}</p>
-        <p><strong>Cover Letter / Message:</strong></p>
-        <p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>
-      `,
       attachments: [
         {
-          filename: resume.name,
+          filename: resume.originalFilename || "resume",
           content: buffer.toString("base64"),
         },
       ],
@@ -123,9 +142,9 @@ export default async function handler(req) {
       `,
     });
 
-    return json({ success: true });
+    return json(res, { success: true });
   } catch (error) {
     console.error("Application error:", error);
-    return json({ error: "Internal server error" }, 500);
+    return json(res, { error: "Internal server error" }, 500);
   }
 }

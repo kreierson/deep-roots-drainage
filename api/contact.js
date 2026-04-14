@@ -1,7 +1,5 @@
 import { Resend } from "resend";
 
-export const config = { runtime: "edge" };
-
 const json = (body, status = 200) =>
   new Response(JSON.stringify(body), {
     status,

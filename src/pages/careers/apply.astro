@@ -21,6 +21,7 @@ const position = ''
 
   <section class="py-20">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div id="apply-form-wrap">
       <form id="apply-form" class="space-y-6" enctype="multipart/form-data">
         <!-- Honeypot — hidden from humans -->
         <div class="absolute opacity-0 top-0 left-0 h-0 w-0 -z-10 overflow-hidden" aria-hidden="true" tabindex="-1">
@@ -71,18 +72,19 @@ const position = ''
           Submit Application
         </button>
 
-        <div id="form-success" class="hidden bg-green-50 border border-green-200 rounded-lg p-6 text-center">
-          <div class="text-3xl mb-2">✅</div>
-          <h3 class="text-lg font-bold text-green-800 mb-1">Application Submitted!</h3>
-          <p class="text-green-700 text-sm">Thanks for your interest. We'll review your application and get back to you soon.</p>
-        </div>
-
         <div id="form-error" class="hidden bg-red-50 border border-red-200 rounded-lg p-6 text-center">
           <div class="text-3xl mb-2">⚠️</div>
           <h3 class="text-lg font-bold text-red-800 mb-1">Something Went Wrong</h3>
           <p class="text-red-700 text-sm">Please try again, or email your resume directly to <a href="mailto:careers@deeprootsdrainage.com" class="underline">careers@deeprootsdrainage.com</a>.</p>
         </div>
       </form>
+
+      <div id="form-success" class="hidden bg-green-50 border border-green-200 rounded-lg p-6 text-center mt-6">
+        <div class="text-3xl mb-2">✅</div>
+        <h3 class="text-lg font-bold text-green-800 mb-1">Application Submitted!</h3>
+        <p class="text-green-700 text-sm">Thanks for your interest. We received your application and sent a confirmation email. We'll review everything and get back to you soon.</p>
+      </div>
+      </div>
     </div>
   </section>
 </Layout>

@@ -23,6 +23,7 @@ const { Content } = await page.render()
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-16">
         <div class="lg:col-span-3">
+          <div id="contact-form-wrap">
           <form id="contact-form" class="space-y-6">
             <!-- Honeypot — hidden from humans -->
             <div class="absolute opacity-0 top-0 left-0 h-0 w-0 -z-10 overflow-hidden" aria-hidden="true" tabindex="-1">
@@ -67,8 +68,21 @@ const { Content } = await page.render()
               <label for="message" class="block text-sm font-semibold text-gray-700 mb-1">Tell Us About Your Project</label>
               <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition resize-y" placeholder="Describe your drainage issues — wet spots, ponding areas, what crops you're running, etc."></textarea>
             </div>
-            <button type="submit" class="w-full bg-primary hover:bg-primary-light text-white py-4 rounded-lg font-bold text-lg transition-colors">Request Free Estimate</button>
+            <button type="submit" id="contact-submit-btn" class="w-full bg-primary hover:bg-primary-light text-white py-4 rounded-lg font-bold text-lg transition-colors">Request Free Estimate</button>
+
+            <div id="contact-error" class="hidden bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+              <div class="text-3xl mb-2">⚠️</div>
+              <h3 class="text-lg font-bold text-red-800 mb-1">Something Went Wrong</h3>
+              <p class="text-red-700 text-sm">Please try again, call {data.contact_info?.phone}, or email <a class="underline" href={`mailto:${data.contact_info?.email}`}>{data.contact_info?.email}</a>.</p>
+            </div>
           </form>
+
+          <div id="contact-success" class="hidden bg-green-50 border border-green-200 rounded-lg p-6 text-center mt-6">
+            <div class="text-3xl mb-2">✅</div>
+            <h3 class="text-lg font-bold text-green-800 mb-1">Request Sent</h3>
+            <p class="text-green-700 text-sm">Thanks. Deep Roots Drainage will get back to you within 24 hours.</p>
+          </div>
+          </div>
         </div>
 
         <div class="lg:col-span-2 space-y-8">
@@ -107,6 +121,35 @@ const { Content } = await page.render()
 <script>
   const loadedInput = document.getElementById('_contact_loaded');
   if (loadedInput) loadedInput.value = String(Date.now());
+
+  const form = document.getElementById('contact-form');
+  const submitBtn = document.getElementById('contact-submit-btn');
+  const successMsg = document.getElementById('contact-success');
+  const errorMsg = document.getElementById('contact-error');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    submitBtn?.setAttribute('disabled', 'disabled');
+    if (submitBtn) submitBtn.textContent = 'Sending...';
+    errorMsg?.classList.add('hidden');
+
+    try {
+      const formData = new FormData(form);
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!res.ok) throw new Error('Submit failed');
+
+      form?.classList.add('hidden');
+      successMsg?.classList.remove('hidden');
+    } catch (error) {
+      errorMsg?.classList.remove('hidden');
+      submitBtn?.removeAttribute('disabled');
+      if (submitBtn) submitBtn.textContent = 'Request Free Estimate';
+    }
+  });
 </script>
 </Layout>
-)}

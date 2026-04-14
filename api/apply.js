@@ -103,6 +103,22 @@ export default async function handler(req, res) {
         "Cover Letter / Message:",
         message,
       ].join("\n"),
+      html: `
+        <div style="background:#f8fafc;padding:32px 16px;font-family:Inter,Arial,sans-serif;color:#111827;">
+          <div style="max-width:560px;margin:0 auto;background:#ffffff;border:1px solid #e5e7eb;border-radius:16px;padding:32px 24px;text-align:left;">
+            <div style="text-align:center;margin-bottom:24px;">
+              <img src="${LOGO_URL}" alt="Deep Roots Drainage" style="max-width:220px;width:100%;height:auto;display:inline-block;" />
+            </div>
+            <h2 style="margin:0 0 20px;font-size:24px;line-height:1.2;">New Career Application</h2>
+            <p><strong>Name:</strong> ${escapeHtml(fullName)}</p>
+            <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+            <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
+            <p><strong>Position:</strong> ${escapeHtml(position)}</p>
+            <p><strong>Cover Letter / Message:</strong></p>
+            <p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>
+          </div>
+        </div>
+      `,
       attachments: [
         {
           filename: resume.originalFilename || "resume",

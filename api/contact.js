@@ -14,7 +14,7 @@ const json = (res, body, status = 200) => {
 };
 
 const normalize = (value) => String(value || "").trim();
-const LOGO_URL = "https://deeprootsdrainage.com/images/logo-footer.png";
+const LOGO_URL = "https://deeprootsdrainage.com/images/logo-footer-old.png";
 const requiredEnv = ["RESEND_API_KEY", "CONTACT_TO_EMAIL", "FROM_EMAIL"];
 
 function getMissingEnv() {

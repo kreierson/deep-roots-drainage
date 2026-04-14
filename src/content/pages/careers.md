@@ -7,7 +7,7 @@ hero:
   eyebrow: Join Our Team
   title: Careers
   description: Build your career in agricultural drainage.
-  image: /images/uploads/tiled-field.jpg
+  image: /images/uploads/20260410_deeprootsdrainage_jalanpaul_dsc08682.jpg
   image_alt: Tiled Feet
 no_openings_title: No Open Positions
 no_openings_text: We don't have any openings right now, but we're always

@@ -7,7 +7,7 @@ hero:
   eyebrow: What We Offer
   title: Our Services
   description: Your results
-  image: /images/uploads/wheat-pic.jpg
+  image: /images/uploads/soybeans-dusk.jpg
   image_alt: Pattern Tiled Field
 services:
   - title: Drain Tile Systems

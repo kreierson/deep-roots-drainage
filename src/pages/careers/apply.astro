@@ -1,23 +1,30 @@
 ---
 import Layout from '../../layouts/Layout.astro'
+import { getEntry } from 'astro:content'
 
+const page = await getEntry('pages', 'careers-apply')
+const settings = await getEntry('settings', 'global')
 const position = ''
+const { data } = page
+const fallbackEmail = settings?.data?.email || 'info@deeprootsdrainage.com'
 ---
 
-<Layout title="Apply Now" description="Apply for a position at Deep Roots Drainage.">
-  <section class="relative py-28 md:py-36 overflow-hidden">
-    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=80" alt="Heavy equipment at work" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
-    <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/70 via-primary-dark/50 to-primary-dark/30"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center gap-3 text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-4">
-        <a href="/careers" class="hover:text-accent-light transition-colors">Careers</a>
-        <span>•</span>
-        <span>Apply</span>
+<Layout title={data.seo_title || data.title} description={data.seo_description}>
+  {data.hero && (
+    <section class="relative py-28 md:py-36 overflow-hidden">
+      <img src={data.hero.image} alt={data.hero.image_alt} class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/70 via-primary-dark/50 to-primary-dark/30"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center gap-3 text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-4">
+          <a href="/careers" class="hover:text-accent-light transition-colors">Careers</a>
+          <span>•</span>
+          <span>{data.hero.eyebrow}</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-black text-white">{data.hero.title}</h1>
+        <p class="mt-4 text-white/80 text-lg">{data.hero.description}</p>
       </div>
-      <h1 class="text-4xl md:text-5xl font-black text-white">Apply Now</h1>
-      <p class="mt-4 text-white/80 text-lg">We'd love to hear from you.</p>
-    </div>
-  </section>
+    </section>
+  )}
 
   <section class="py-20">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -75,7 +82,7 @@ const position = ''
         <div id="form-error" class="hidden bg-red-50 border border-red-200 rounded-lg p-6 text-center">
           <div class="text-3xl mb-2">⚠️</div>
           <h3 class="text-lg font-bold text-red-800 mb-1">Something Went Wrong</h3>
-          <p class="text-red-700 text-sm">Please try again, or email your resume directly to <a href="mailto:careers@deeprootsdrainage.com" class="underline">careers@deeprootsdrainage.com</a>.</p>
+          <p class="text-red-700 text-sm">Please try again, or email your resume directly to <a href={`mailto:${fallbackEmail}`} class="underline">{fallbackEmail}</a>.</p>
         </div>
       </form>
 

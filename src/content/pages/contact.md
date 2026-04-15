@@ -10,7 +10,7 @@ hero:
   image: https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=1400&q=80
   image_alt: Rural farmland in North Dakota
 contact_info:
-  phone: 701-515-1228
+  phone: 701-499-3917
   phone_note: Call or text
   email: info@deeprootsdrainage.com
   email_note: We reply within 24 hours

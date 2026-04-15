@@ -6,6 +6,6 @@ hero:
   eyebrow: Our Work
   title: Our Projects
   description: Real fields. Real results.
-  image: /images/uploads/corn-harvest.jpg
+  image: /images/uploads/jd-shelter-belt.jpg
   image_alt: Expansive agricultural landscape
 ---

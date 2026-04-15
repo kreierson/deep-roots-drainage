@@ -7,7 +7,7 @@ hero:
   eyebrow: Join Our Team
   title: Careers
   description: Build your career in agricultural drainage.
-  image: /images/uploads/corn-harvest.jpg
+  image: /images/uploads/drd-group-crop-2.jpg
   image_alt: Tiled Feet
 no_openings_title: No Open Positions
 no_openings_text: We don't have any openings right now, but we're always

@@ -18,14 +18,8 @@ active: true
 
 **About the Job**
 
-Deep Roots Drainage is a locally owned
-company specializing in high‑quality drain tile installation for farms and
-rural properties across North Dakota. We’re looking for a reliable Pump
-Technician that will assist in the installation of lift and pump stations,
-service lift stations, and diagnose non-working lift-stations, and all other related
-pump and lift station related work. This role is ideal for someone who enjoys
-physical work, problem‑solving, and working outdoors with a small, hardworking
-crew.
+Deep Roots Drainage is a locally owned company specializing in high‑quality drain tile installation for farms and
+rural properties across North Dakota. We’re looking for a reliable Pump Technician that will assist in the installation of lift and pump stations, service lift stations, and diagnose non-working lift-stations, and all other related pump and lift station related work. This role is ideal for someone who enjoys physical work, problem‑solving, and working outdoors with a small, hardworking crew.
 
 **Responsibilities** 
 

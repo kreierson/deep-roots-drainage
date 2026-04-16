@@ -3,12 +3,12 @@ title: "Office Administrator "
 summary: "Support both field and office operations, helping ensure our crews
   have what they need to deliver high quality drainage systems for farmers and
   landowners. "
-location: Eastern ND
+location: North Dakota
 type: Full-Time
 posted_date: 2026-04-02
 active: true
 ---
-**Office Administrator Eastern North
+**Office Administrator - North
 Dakota**
 
 **Job Type:** Full or part time

@@ -62,6 +62,12 @@
                       { label: "Description", name: "description", widget: "text" }
                     ]}
                   ]},
+                  { label: "Team Section", name: "team_section", widget: "object", required: false, fields: [
+                    { label: "Image", name: "image", widget: "image" },
+                    { label: "Image Alt Text", name: "image_alt", widget: "string" },
+                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Description", name: "description", widget: "text" }
+                  ]},
                   { label: "Social Proof", name: "social_proof", widget: "object", fields: [
                     { label: "Show Section", name: "visible", widget: "boolean", default: true, required: false },
                     { label: "Eyebrow Text", name: "eyebrow", widget: "string" },

@@ -48,6 +48,11 @@ how_it_works:
     - title: See the Results
       description: Drier fields, earlier planting, and yields that prove the
         investment — often within the first season.
+team_section:
+  image: /images/uploads/drd-group-crop-2.jpg
+  image_alt: Deep Roots Drainage team members
+  title: Built by People Who Know the Land
+  description: Deep Roots Drainage is a North Dakota team that understands what wet fields cost a farm operation. We bring practical experience, straight answers, and a commitment to doing the job right from design through installation.
 social_proof:
   visible: false
   eyebrow: By the Numbers

@@ -94,6 +94,29 @@ const featuredProjects = allProjects.filter(p => p.data.featured).sort((a, b) =>
     </div>
   </section>
 
+  <!-- ═══════════ TEAM ═══════════ -->
+  {data.team_section && (
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+        <div class="relative">
+          <img
+            src={data.team_section.image}
+            alt={data.team_section.image_alt}
+            class="w-full rounded-2xl shadow-2xl object-cover"
+            loading="lazy"
+          />
+        </div>
+        <div class="max-w-xl">
+          <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-3">Our Team</p>
+          <h2 class="text-3xl md:text-4xl font-black text-gray-900 leading-tight">{data.team_section.title}</h2>
+          <p class="mt-6 text-lg text-gray-600 leading-relaxed">{data.team_section.description}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  )}
+
   <!-- ═══════════ SOCIAL PROOF — topo background ═══════════ -->
   {data.social_proof?.visible !== false && (
   <section class="relative py-24 bg-primary-dark overflow-hidden">

@@ -49,6 +49,12 @@ const pagesCollection = defineCollection({
         description: z.string()
       }))
     }).optional(),
+    team_section: z.object({
+      image: z.string(),
+      image_alt: z.string(),
+      title: z.string(),
+      description: z.string()
+    }).optional(),
     social_proof: z.object({
       visible: z.boolean().default(true),
       eyebrow: z.string(),

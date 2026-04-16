@@ -3,7 +3,7 @@ title: Heavy Hauler
 summary: This role is essential to keeping our projects moving efficiently. The
   ideal candidate is safety minded, experienced with heavy hauling, and
   comfortable working in a rural, fast paced environment.
-location: Eastern North Dakota
+location: North Dakota
 type: Full-Time
 posted_date: 2026-04-06
 active: true

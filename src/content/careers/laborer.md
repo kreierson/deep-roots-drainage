@@ -3,12 +3,12 @@ title: Laborer
 summary: "This role is hands‑on, outdoors, and essential to ensuring our
   projects are completed safely and efficiently. No prior drain tile experience
   is required.  On the job training with advancement opportunities. "
-location: Eastern North dakota
+location: North Dakota
 type: Full-Time
 posted_date: 2026-04-06
 active: true
 ---
-**Laborer – Eastern North Dakota**
+**Laborer – North Dakota**
 
 **Job Type:** Full Time 
 

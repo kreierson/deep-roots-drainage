@@ -285,6 +285,8 @@
               { label: "Summary", name: "summary", widget: "text" },
               { label: "Location", name: "location", widget: "string" },
               { label: "Type", name: "type", widget: "select", options: ["Full-Time", "Part-Time", "Seasonal", "Contract"], default: "Full-Time" },
+              { label: "Hero Image", name: "image", widget: "image", required: false, hint: "Optional image shown at the top of this job posting page." },
+              { label: "Hero Image Alt Text", name: "image_alt", widget: "string", required: false },
               { label: "Date Posted", name: "posted_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false },
               { label: "Active", name: "active", widget: "boolean", default: true, hint: "Toggle off to hide from the website. The posting will remain here in the CMS." },
               { label: "Content", name: "body", widget: "markdown" }

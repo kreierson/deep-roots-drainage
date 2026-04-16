@@ -17,6 +17,8 @@ export async function getStaticPaths() {
 const { job } = Astro.props
 const { data } = job
 const { Content } = await job.render()
+const heroImage = data.image || '/images/uploads/drd-group-crop-2.jpg'
+const heroImageAlt = data.image_alt || 'Deep Roots Drainage team members'
 
 const postedDate = new Date(data.posted_date).toLocaleDateString('en-US', {
   year: 'numeric',
@@ -28,7 +30,7 @@ const postedDate = new Date(data.posted_date).toLocaleDateString('en-US', {
 <Layout title={data.title} description={data.summary}>
   <article class="min-h-screen">
     <section class="relative py-28 md:py-36 overflow-hidden">
-      <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=80" alt="Heavy equipment at work" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+      <img src={heroImage} alt={heroImageAlt} class="absolute inset-0 w-full h-full object-cover" loading="eager" />
       <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/80 via-primary-dark/50 to-primary-dark/20"></div>
       <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center gap-3 text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-4">

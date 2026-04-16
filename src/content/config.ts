@@ -127,6 +127,8 @@ const careersCollection = defineCollection({
     summary: z.string(),
     location: z.string(),
     type: z.string(),
+    image: z.string().optional(),
+    image_alt: z.string().optional(),
     posted_date: z.coerce.date(),
     active: z.boolean().default(true)
   })

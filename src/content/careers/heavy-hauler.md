@@ -8,7 +8,7 @@ type: Full-Time
 posted_date: 2026-04-06
 active: true
 ---
-**Heavy Hauler– Eastern North Dakota**
+**Heavy Hauler– North Dakota**
 
 **Job Type:** Full Time 
 

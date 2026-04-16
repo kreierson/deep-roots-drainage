@@ -3,12 +3,12 @@ title: Pump Technician
 summary: "Pump Technician will assist in the installation of lift and pump
   stations, service lift stations, and diagnose non-working lift-stations, and
   all other related pump and lift station related work. "
-location: Eastern - North Dakota
+location: North Dakota
 type: Full-Time
 posted_date: 2026-04-06
 active: true
 ---
-**Pump Technician Eastern North Dakota**
+**Pump Technician- North Dakota**
 
 **Job Type:** Full Time 
 

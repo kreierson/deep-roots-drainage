@@ -38,7 +38,7 @@ crew.
 **Qualifications**
 
 * Experience in construction, plumbing, excavation, or related field preferred
-* Ability to lift 50–75 lbs and work outdoors in varying conditions
+* Ability to lift 50–75lbs and work outdoors in varying conditions
 * Comfortable using hand tools, power tools, and small machinery
 * Basic understanding of pumps, plumbing, or electrical systems is a plus
 * Valid driver’s license 

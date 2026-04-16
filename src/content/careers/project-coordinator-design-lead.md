@@ -3,7 +3,7 @@ title: Project Coordinator-Design Lead
 summary: Someone who enjoys problem solving, working with mapping and design
   tools, and staying organized in a fast-paced environment. Your work directly
   supports high quality installations and long-term land stewardship.
-location: Eastern ND/Remote
+location: North Dakota / Remote
 type: Full-Time
 posted_date: 2026-04-06
 active: true

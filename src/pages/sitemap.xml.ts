@@ -8,6 +8,7 @@ const SITE_URL = 'https://deeprootsdrainage.com';
 const staticRoutes = [
   '',
   '/about',
+  '/team',
   '/services',
   '/projects',
   '/contact',

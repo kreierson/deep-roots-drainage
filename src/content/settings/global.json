@@ -23,6 +23,10 @@
       "url": "/about"
     },
     {
+      "label": "Our Team",
+      "url": "/team"
+    },
+    {
       "label": "Projects",
       "url": "/projects"
     },

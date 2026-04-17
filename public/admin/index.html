@@ -152,6 +152,30 @@
                 ]
               },
               {
+                name: "team",
+                label: "Our Team Page",
+                file: "src/content/pages/team.md",
+                fields: [
+                  { label: "Title", name: "title", widget: "string" },
+                  { label: "SEO Title", name: "seo_title", widget: "string", required: false },
+                  { label: "SEO Description", name: "seo_description", widget: "text", required: false },
+                  { label: "Hero Section", name: "hero", widget: "object", required: false, fields: [
+                    { label: "Eyebrow Text", name: "eyebrow", widget: "string" },
+                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Description", name: "description", widget: "text" },
+                    { label: "Background Image", name: "image", widget: "image" },
+                    { label: "Image Alt Text", name: "image_alt", widget: "string" }
+                  ]},
+                  { label: "Call to Action", name: "cta", widget: "object", required: false, fields: [
+                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Description", name: "description", widget: "text" },
+                    { label: "Button Text", name: "button_text", widget: "string" },
+                    { label: "Button URL", name: "button_url", widget: "string" }
+                  ]},
+                  { label: "Content", name: "body", widget: "markdown" }
+                ]
+              },
+              {
                 name: "contact",
                 label: "Contact Page",
                 file: "src/content/pages/contact.md",
@@ -290,6 +314,23 @@
               { label: "Date Posted", name: "posted_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false },
               { label: "Active", name: "active", widget: "boolean", default: true, hint: "Toggle off to hide from the website. The posting will remain here in the CMS." },
               { label: "Content", name: "body", widget: "markdown" }
+            ]
+          },
+          {
+            name: "team",
+            label: "Team Members",
+            folder: "src/content/team",
+            create: true,
+            slug: "{{slug}}",
+            fields: [
+              { label: "Name", name: "name", widget: "string" },
+              { label: "Role", name: "role", widget: "string" },
+              { label: "Summary", name: "summary", widget: "text", hint: "Short intro shown above the full bio." },
+              { label: "Photo", name: "image", widget: "image", required: false },
+              { label: "Photo Alt Text", name: "image_alt", widget: "string", required: false },
+              { label: "Sort Order", name: "sort_order", widget: "number", default: 100, required: false, value_type: "int", hint: "Lower numbers show first." },
+              { label: "Active", name: "active", widget: "boolean", default: true, hint: "Toggle off to hide this team member from the website." },
+              { label: "Bio", name: "body", widget: "markdown" }
             ]
           },
           {

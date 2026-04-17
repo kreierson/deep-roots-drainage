@@ -134,6 +134,19 @@ const careersCollection = defineCollection({
   })
 });
 
+const teamCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    name: z.string(),
+    role: z.string(),
+    summary: z.string(),
+    image: z.string().optional(),
+    image_alt: z.string().optional(),
+    sort_order: z.number().default(100),
+    active: z.boolean().default(true)
+  })
+});
+
 const projectsCollection = defineCollection({
   type: 'content',
   schema: z.object({
@@ -186,5 +199,6 @@ export const collections = {
   'pages': pagesCollection,
   'projects': projectsCollection,
   'careers': careersCollection,
+  'team': teamCollection,
   'settings': settingsCollection
 };

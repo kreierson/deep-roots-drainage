@@ -14,7 +14,7 @@ const featuredProjects = allProjects.filter(p => p.data.featured).sort((a, b) =>
 <Layout title={data.seo_title || data.title} description={data.seo_description}>
 
   <!-- ═══════════ HERO — full-bleed background image ═══════════ -->
-  <section class="relative min-h-[85vh] flex items-center overflow-hidden">
+  <section class="relative h-[clamp(460px,56vh,560px)] md:h-[clamp(500px,58vh,620px)] flex items-center overflow-hidden">
     <img
       src={data.hero.image}
       alt={data.hero.image_alt}
@@ -28,7 +28,7 @@ const featuredProjects = allProjects.filter(p => p.data.featured).sort((a, b) =>
       <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
       <span class="font-bold text-sm tracking-wide">{settings.phone}</span>
     </a>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 w-full">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 w-full">
       <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-4">{data.hero.eyebrow}</p>
       <h1 class="text-5xl md:text-7xl font-black text-white leading-[1.05] max-w-3xl" set:html={data.hero.title}></h1>
       <p class="mt-6 text-lg md:text-xl text-white/85 leading-relaxed max-w-xl" set:html={data.hero.description}></p>
@@ -40,6 +40,29 @@ const featuredProjects = allProjects.filter(p => p.data.featured).sort((a, b) =>
       </div>
     </div>
   </section>
+
+  <!-- ═══════════ TEAM ═══════════ -->
+  {data.team_section && (
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+        <div class="relative">
+          <img
+            src={data.team_section.image}
+            alt={data.team_section.image_alt}
+            class="w-full rounded-2xl shadow-2xl object-cover"
+            loading="lazy"
+          />
+        </div>
+        <div class="max-w-xl">
+          <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-3">Our Team</p>
+          <h2 class="text-3xl md:text-4xl font-black text-gray-900 leading-tight">{data.team_section.title}</h2>
+          <p class="mt-6 text-lg text-gray-600 leading-relaxed">{data.team_section.description}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  )}
 
   <!-- ═══════════ STATS BAR ═══════════ -->
   <section class="bg-primary-dark border-t border-white/10">
@@ -93,29 +116,6 @@ const featuredProjects = allProjects.filter(p => p.data.featured).sort((a, b) =>
       </div>
     </div>
   </section>
-
-  <!-- ═══════════ TEAM ═══════════ -->
-  {data.team_section && (
-  <section class="py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
-        <div class="relative">
-          <img
-            src={data.team_section.image}
-            alt={data.team_section.image_alt}
-            class="w-full rounded-2xl shadow-2xl object-cover"
-            loading="lazy"
-          />
-        </div>
-        <div class="max-w-xl">
-          <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-3">Our Team</p>
-          <h2 class="text-3xl md:text-4xl font-black text-gray-900 leading-tight">{data.team_section.title}</h2>
-          <p class="mt-6 text-lg text-gray-600 leading-relaxed">{data.team_section.description}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  )}
 
   <!-- ═══════════ SOCIAL PROOF — topo background ═══════════ -->
   {data.social_proof?.visible !== false && (

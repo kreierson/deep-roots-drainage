@@ -76,18 +76,26 @@ export default async function handler(req, res) {
     const position = normalize(fieldValue(fields, "position"));
     const message = normalize(fieldValue(fields, "message")) || "No message provided";
     const resume = fileValue(files, "resume");
+    const hasResume = Boolean(resume && resume.size > 0);
 
-    if (!firstName || !lastName || !email || !phone || !position || !resume) {
+    if (!firstName || !lastName || !email || !phone || !position) {
       return json(res, { error: "Missing required fields" }, 400);
     }
 
-    if (resume.size > 5 * 1024 * 1024) {
+    if (hasResume && resume.size > 5 * 1024 * 1024) {
       return json(res, { error: "Resume must be under 5MB" }, 400);
     }
 
-    const buffer = await fs.readFile(resume.filepath);
     const resend = new Resend(process.env.RESEND_API_KEY);
     const fullName = `${firstName} ${lastName}`;
+    const attachments = hasResume
+      ? [
+          {
+            filename: resume.originalFilename || "resume",
+            content: (await fs.readFile(resume.filepath)).toString("base64"),
+          },
+        ]
+      : undefined;
 
     await resend.emails.send({
       from: `Deep Roots Drainage <${process.env.FROM_EMAIL}>`,
@@ -119,12 +127,7 @@ export default async function handler(req, res) {
           </div>
         </div>
       `,
-      attachments: [
-        {
-          filename: resume.originalFilename || "resume",
-          content: buffer.toString("base64"),
-        },
-      ],
+      attachments,
     });
 
     await resend.emails.send({

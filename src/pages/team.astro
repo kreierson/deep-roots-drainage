@@ -47,21 +47,39 @@ const teamMembers = await Promise.all(
               <div class={index % 2 === 1 ? 'md:order-2' : ''}>
                 <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">{member.data.role}</p>
                 <h2 class="text-3xl font-black text-gray-900 mb-4">{member.data.name}</h2>
-                <p class="text-lg text-gray-600 leading-relaxed mb-6">{member.data.summary}</p>
+                {member.data.summary && (
+                  <p class="text-lg font-semibold text-gray-800 leading-relaxed mb-6 border-l-4 border-accent bg-surface px-5 py-4 rounded-r-lg">
+                    {member.data.summary}
+                  </p>
+                )}
+                <div class="md:hidden mb-8 flex justify-center">
+                  {member.data.image ? (
+                    <img
+                      src={member.data.image}
+                      alt={member.data.image_alt || member.data.name}
+                      class="w-full max-w-md aspect-[4/5] rounded-2xl object-cover object-top shadow-xl"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="w-full max-w-md aspect-[4/5] rounded-2xl bg-surface flex items-center justify-center text-earth font-semibold">
+                      Photo Coming Soon
+                    </div>
+                  )}
+                </div>
                 <div class="prose prose-lg max-w-none text-gray-700">
                   <member.Content />
                 </div>
               </div>
-              <div class={index % 2 === 1 ? 'md:order-1' : ''}>
+              <div class={`hidden md:flex justify-center ${index % 2 === 1 ? 'md:order-1 md:justify-start' : 'md:justify-end'}`}>
                 {member.data.image ? (
                   <img
                     src={member.data.image}
                     alt={member.data.image_alt || member.data.name}
-                    class="w-full h-[420px] rounded-2xl object-cover shadow-xl"
+                    class="w-full max-w-md aspect-[4/5] rounded-2xl object-cover object-top shadow-xl"
                     loading="lazy"
                   />
                 ) : (
-                  <div class="w-full h-[420px] rounded-2xl bg-surface flex items-center justify-center text-earth font-semibold">
+                  <div class="w-full max-w-md aspect-[4/5] rounded-2xl bg-surface flex items-center justify-center text-earth font-semibold">
                     Photo Coming Soon
                   </div>
                 )}

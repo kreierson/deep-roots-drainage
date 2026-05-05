@@ -325,7 +325,7 @@
             fields: [
               { label: "Name", name: "name", widget: "string" },
               { label: "Role", name: "role", widget: "string" },
-              { label: "Summary", name: "summary", widget: "text", hint: "Short intro shown above the full bio." },
+              { label: "Summary", name: "summary", widget: "text", required: false, hint: "Optional highlighted intro shown above the full bio." },
               { label: "Photo", name: "image", widget: "image", required: false },
               { label: "Photo Alt Text", name: "image_alt", widget: "string", required: false },
               { label: "Sort Order", name: "sort_order", widget: "number", default: 100, required: false, value_type: "int", hint: "Lower numbers show first." },

@@ -139,7 +139,7 @@ const teamCollection = defineCollection({
   schema: z.object({
     name: z.string(),
     role: z.string(),
-    summary: z.string(),
+    summary: z.string().optional(),
     image: z.string().optional(),
     image_alt: z.string().optional(),
     sort_order: z.number().default(100),

@@ -1,7 +1,7 @@
 ---
 name: Levi Otis
 role: " "
-image: /images/uploads/20260410_deeprootsdrainage_jalanpaul_dsc08644-2.jpg
+image: /images/uploads/sk-headshot.jpg
 sort_order: 100
 active: true
 ---

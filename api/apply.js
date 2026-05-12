@@ -17,6 +17,8 @@ const json = (res, body, status = 200) => {
 const normalize = (value) => String(value || "").trim();
 const LOGO_URL = "https://deeprootsdrainage.com/images/logo-footer-old.png";
 const requiredEnv = ["RESEND_API_KEY", "CAREERS_TO_EMAIL", "FROM_EMAIL"];
+const RESUME_MAX_MB = 10;
+const RESUME_MAX_BYTES = RESUME_MAX_MB * 1024 * 1024;
 
 function getMissingEnv() {
   return requiredEnv.filter((key) => !process.env[key]);
@@ -32,7 +34,7 @@ function escapeHtml(value) {
 }
 
 function parseForm(req) {
-  const form = formidable({ multiples: false, maxFileSize: 5 * 1024 * 1024 });
+  const form = formidable({ multiples: false, maxFileSize: RESUME_MAX_BYTES });
   return new Promise((resolve, reject) => {
     form.parse(req, (err, fields, files) => {
       if (err) return reject(err);
@@ -49,6 +51,10 @@ function fieldValue(fields, key) {
 function fileValue(files, key) {
   const value = files[key];
   return Array.isArray(value) ? value[0] : value;
+}
+
+function isPayloadTooLargeError(error) {
+  return error?.code === 1009 || /maxFileSize|larger than maxFileSize|maxTotalFileSize/i.test(error?.message || "");
 }
 
 export default async function handler(req, res) {
@@ -82,8 +88,8 @@ export default async function handler(req, res) {
       return json(res, { error: "Missing required fields" }, 400);
     }
 
-    if (hasResume && resume.size > 5 * 1024 * 1024) {
-      return json(res, { error: "Resume must be under 5MB" }, 400);
+    if (hasResume && resume.size > RESUME_MAX_BYTES) {
+      return json(res, { error: `Resume must be under ${RESUME_MAX_MB}MB` }, 413);
     }
 
     const resend = new Resend(process.env.RESEND_API_KEY);
@@ -163,6 +169,10 @@ export default async function handler(req, res) {
 
     return json(res, { success: true });
   } catch (error) {
+    if (isPayloadTooLargeError(error)) {
+      return json(res, { error: `Resume must be under ${RESUME_MAX_MB}MB` }, 413);
+    }
+
     console.error("Application error:", error);
     return json(res, { error: "Internal server error" }, 500);
   }

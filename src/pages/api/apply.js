@@ -13,6 +13,8 @@ const normalize = (value) => String(value || "").trim();
 const env = import.meta.env;
 const LOGO_URL = "https://deeprootsdrainage.com/images/logo-footer-old.png";
 const requiredEnv = ["RESEND_API_KEY", "CAREERS_TO_EMAIL", "FROM_EMAIL"];
+const RESUME_MAX_MB = 10;
+const RESUME_MAX_BYTES = RESUME_MAX_MB * 1024 * 1024;
 
 function getMissingEnv() {
   return requiredEnv.filter((key) => !env[key]);
@@ -60,8 +62,8 @@ export async function POST({ request }) {
       return json({ error: "Missing required fields" }, 400);
     }
 
-    if (hasResume && resume.size > 5 * 1024 * 1024) {
-      return json({ error: "Resume must be under 5MB" }, 400);
+    if (hasResume && resume.size > RESUME_MAX_BYTES) {
+      return json({ error: `Resume must be under ${RESUME_MAX_MB}MB` }, 413);
     }
 
     const resend = new Resend(env.RESEND_API_KEY);

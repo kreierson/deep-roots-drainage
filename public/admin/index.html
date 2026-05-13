@@ -15,8 +15,8 @@
     CMS.init({
       config: {
         load_config_file: false,
-        site_url: "https://deep-roots-drainage.vercel.app",
-        backend: { name: "github", repo: "kreierson/deep-roots-drainage", branch: "main", base_url: "https://deep-roots-drainage.vercel.app", auth_endpoint: "/api/auth" },
+        site_url: window.location.origin,
+        backend: { name: "github", repo: "kreierson/deep-roots-drainage", branch: "main", base_url: window.location.origin, auth_endpoint: "/api/auth" },
         media_folder: "public/images/uploads",
         public_folder: "/images/uploads",
         collections: [

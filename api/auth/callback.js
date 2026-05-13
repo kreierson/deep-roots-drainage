@@ -3,6 +3,7 @@ export const config = { runtime: "edge" };
 export default async function handler(req) {
   const url = new URL(req.url);
   const code = url.searchParams.get("code");
+  const siteUrl = `${url.protocol}//${url.host}`;
 
   const response = await fetch("https://github.com/login/oauth/access_token", {
     method: "POST",
@@ -14,6 +15,7 @@ export default async function handler(req) {
       client_id: process.env.GITHUB_OAUTH_CLIENT_ID,
       client_secret: process.env.GITHUB_OAUTH_CLIENT_SECRET,
       code,
+      redirect_uri: `${siteUrl}/api/auth/callback`,
     }),
   });
 

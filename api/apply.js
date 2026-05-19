@@ -34,7 +34,11 @@ function escapeHtml(value) {
 }
 
 function parseForm(req) {
-  const form = formidable({ multiples: false, maxFileSize: RESUME_MAX_BYTES });
+  const form = formidable({
+    multiples: false,
+    maxFileSize: RESUME_MAX_BYTES,
+    allowEmptyFiles: true,
+  });
   return new Promise((resolve, reject) => {
     form.parse(req, (err, fields, files) => {
       if (err) return reject(err);

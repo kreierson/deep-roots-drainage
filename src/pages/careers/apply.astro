@@ -143,6 +143,9 @@ const fallbackEmail = settings?.data?.email || 'info@deeprootsdrainage.com'
 
     try {
       const formData = new FormData(form);
+      if (!fileInput.files?.[0]) {
+        formData.delete('resume');
+      }
       const res = await fetch('/api/apply', {
         method: 'POST',
         body: formData,

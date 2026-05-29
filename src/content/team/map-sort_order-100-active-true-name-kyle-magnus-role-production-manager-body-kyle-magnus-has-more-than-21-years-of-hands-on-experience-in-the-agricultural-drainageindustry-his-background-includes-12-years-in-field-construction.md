@@ -1,6 +1,6 @@
 ---
 name: Kyle Magnus
-role: Production Manager
+role: "-"
 image: /images/uploads/20260410_deeprootsdrainage_jalanpaul_dsc08664.jpg
 sort_order: 100
 active: true

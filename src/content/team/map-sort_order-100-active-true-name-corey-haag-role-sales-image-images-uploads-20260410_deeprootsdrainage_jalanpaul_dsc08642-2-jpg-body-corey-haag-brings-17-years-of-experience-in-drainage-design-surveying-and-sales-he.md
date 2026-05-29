@@ -1,6 +1,6 @@
 ---
 name: Corey Haag
-role: Sales
+role: "-"
 summary: ""
 image: /images/uploads/20260410_deeprootsdrainage_jalanpaul_dsc08642-2.jpg
 sort_order: 100

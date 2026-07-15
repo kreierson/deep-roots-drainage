@@ -1,4 +1,18 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "npm run build",
-  "framework": "astro"
+  "framework": "astro",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "deeprootsdrainage.com"
+        }
+      ],
+      "destination": "https://www.deeprootsdrainage.com/:path*",
+      "statusCode": 301
+    }
+  ]
 }

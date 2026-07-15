@@ -5,7 +5,7 @@ import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://deeprootsdrainage.com',
+  site: 'https://www.deeprootsdrainage.com',
   output: 'server',
   adapter: vercel(),
   vite: {

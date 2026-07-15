@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 
 export const prerender = true;
 
-const SITE_URL = 'https://deeprootsdrainage.com';
+const SITE_URL = 'https://www.deeprootsdrainage.com';
 
 const staticRoutes = [
   '',

@@ -9,6 +9,93 @@ interface Props {
 }
 
 const { title, description = 'Deep Roots Drainage — Professional drain tile installation and waterproofing services in North Dakota.' } = Astro.props
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': 'https://www.deeprootsdrainage.com/#organization',
+  name: 'Deep Roots Drainage',
+  url: 'https://www.deeprootsdrainage.com/',
+  telephone: '+17014993917',
+  email: 'info@deeprootsdrainage.com',
+  description:
+    'Professional agricultural drain tile installation serving farmers and landowners across North Dakota. Deep Roots Drainage delivers precision drain tile construction, water conveyance, and land clearing services.',
+  image: 'https://www.deeprootsdrainage.com/images/uploads/drd-group-crop-2.jpg',
+  logo: 'https://www.deeprootsdrainage.com/images/logo.png',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Fargo',
+    addressRegion: 'ND',
+    addressCountry: 'US',
+  },
+  areaServed: [
+    { '@type': 'AdministrativeArea', name: 'Renville County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Ward County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Bottineau County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Rollette County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Towner County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Cavalier County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Pembina County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Walsh County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Ramsey County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Benson County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Pierce County, ND' },
+    { '@type': 'AdministrativeArea', name: 'McHenry County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Wells County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Eddy County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Nelson County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Grand Forks County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Foster County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Griggs County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Steele County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Traill County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Stutsman County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Barnes County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Cass County, ND' },
+    { '@type': 'AdministrativeArea', name: 'LaMoure County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Ransom County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Richland County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Sargent County, ND' },
+    { '@type': 'AdministrativeArea', name: 'Dickey County, ND' },
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Agricultural Drainage Services',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Agricultural Drain Tile Installation',
+          description:
+            'GPS-guided drain tile installation including pattern tiling, custom spacing based on soil type, professionally designed tile plans, lift stations, control structures, and gravity outlets.',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Water Conveyance Systems',
+          description:
+            'Ditch cleaning, permitted ditch enhancement, ditch reconstruction, and snagging and clearing to ensure tiled fields operate at peak performance.',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Land Clearing and Grubbing',
+          description:
+            'Transforming nonproductive ground into high value farmland including tree and shelterbelt removal, clearing unwanted vegetation, and rock pile burial or removal.',
+        },
+      },
+    ],
+  },
+  sameAs: [
+    'https://www.facebook.com/people/Deep-Roots-Drainage/61589146087600/',
+    'https://www.instagram.com/deeprootsdrainage/',
+  ],
+}
 ---
 
 <!DOCTYPE html>
@@ -40,6 +127,7 @@ const { title, description = 'Deep Roots Drainage — Professional drain tile in
       gtag('js', new Date());
       gtag('config', 'G-D8PTN81KHM');
     </script>
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
     <!-- CMS admin at /admin/ -->
   </head>
   <body class="bg-white text-gray-900 font-body antialiased">

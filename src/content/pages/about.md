@@ -1,8 +1,9 @@
 ---
 title: About
-seo_title: About Deep Roots Drainage - North Dakota Drain Tile Experts
-seo_description: Learn about Deep Roots Drainage — agricultural drain tile
-  experts serving North Dakota farmers and landowners.
+seo_title: About Deep Roots Drainage | North Dakota Drain Tile Experts
+seo_description: Deep Roots Drainage is a North Dakota drain tile company using
+  RTK GPS grade control, quality materials, and a 6-growing-season craftsmanship
+  warranty.
 hero:
   eyebrow: Who We Are
   title: About Deep Roots
@@ -29,7 +30,7 @@ features:
       system should last generations, not just years. All materials covered by
       our manufacturer partners standard warranties. "
 ---
-Deep Roots Drainage is a North Dakota drain tile company built by people who understand the land. We know what wet fields cost you — lost acres, late planting, and years of frustration. We're here to fix that.
+Deep Roots Drainage is a [North Dakota drain tile company](/) built by people who understand the land. We know what wet fields cost you — lost acres, late planting, and years of frustration. We're here to fix that.
 
 ## Our Approach
 

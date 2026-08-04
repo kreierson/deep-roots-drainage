@@ -9,6 +9,8 @@ interface Props {
 }
 
 const { title, description = 'Deep Roots Drainage — Professional drain tile installation and waterproofing services in North Dakota.' } = Astro.props
+const siteName = 'Deep Roots Drainage'
+const documentTitle = title.includes(siteName) ? title : `${title} | ${siteName}`
 
 const localBusinessSchema = {
   '@context': 'https://schema.org',
@@ -117,7 +119,7 @@ const localBusinessSchema = {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <title>{title} | Deep Roots Drainage</title>
+    <title>{documentTitle}</title>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8PTN81KHM"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];

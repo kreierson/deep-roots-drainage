@@ -1,13 +1,12 @@
 ---
 title: Home
-seo_title: Deep Roots Drainage - Professional Agricultural Drainage Solutions
-seo_description: "Engineered water management systems built to perform—Deep
-  Roots Drainage delivers precision drain tile construction that protects your
-  investment and drives higher-yielding acres. "
+seo_title: Agricultural Drainage in North Dakota | Deep Roots Drainage
+seo_description: Deep Roots Drainage delivers custom-engineered agricultural
+  drainage systems in North Dakota, from design through GPS-guided installation.
 show_featured_projects: false
 hero:
   eyebrow: Agricultural Drainage · Northern Plains
-  title: Better Drainage.<br/>Better Yields.
+  title: Agricultural Drainage in North Dakota
   description: Engineered water management systems built to perform. <br/>Deep
     Roots Drainage delivers precision drain tile construction that protects your
     investment and drives higher-yielding acres.

@@ -29,7 +29,7 @@ stats:
     label: North Dakota Owned
 how_it_works:
   eyebrow: How It Works
-  title: From Design to Results
+  title: 'Our Drain Tile Process: From Design to Results'
   image: https://images.unsplash.com/photo-1560493676-04071c5f467b?w=800&q=80
   image_alt: Aerial view of cultivated agricultural field rows
   steps:
@@ -50,7 +50,7 @@ how_it_works:
 team_section:
   image: /images/uploads/drd-group-crop-2.jpg
   image_alt: Deep Roots Drainage team members
-  title: Built by People Who Know the Land
+  title: Local North Dakota Agricultural Drainage Experts
   description: Deep Roots Drainage is a North Dakota team that understands what wet fields cost a farm operation. We bring practical experience, straight answers, and a commitment to doing the job right from design through installation.
 social_proof:
   visible: false

@@ -14,7 +14,7 @@ services:
   - title: Drain Tile Systems
     description: "From complex pattern tiling to targeted systems, we design systems
       that manage water table levels, reduce soil erosion, and maximize your
-      bushel per acre potential. "
+      bushel per acre potential in North Dakota."
     image: /images/uploads/tiled-field.jpg
     image_alt: Pattern tile installation in progress
     features:

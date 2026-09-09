@@ -1,11 +1,11 @@
 ---
 title: Our Team
-seo_title: Meet the Deep Roots Drainage Team
-seo_description: Meet the Deep Roots Drainage team and learn more about the
-  people behind our agricultural drainage work across North Dakota.
+seo_title: Meet Our North Dakota Drainage Team | Deep Roots Drainage
+seo_description: Get to know the team at Deep Roots Drainage. Learn more about our
+  dedicated drainage specialists and our commitment to supporting North Dakota farmers.
 hero:
   eyebrow: Our Team
-  title: Meet the People Behind the Work
+  title: Meet Our Drainage Specialists
   description: Real experience, practical problem-solving, and a commitment to
     doing the job right for every customer we serve.
   image: /images/uploads/drd-group-crop-2.jpg

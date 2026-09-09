@@ -3,9 +3,48 @@ import Layout from '../layouts/Layout.astro'
 import { getEntry } from 'astro:content'
 
 const page = await getEntry('pages', 'services')
-const { Content, data } = page
+const { data } = page
+const serviceMetadata: Record<string, { id: string; catalogName: string }> = {
+  'Drain Tile Systems': { id: 'drain-tile-systems', catalogName: 'Drain Tile Systems Features' },
+  'Water Conveyance': { id: 'water-conveyance', catalogName: 'Water Conveyance Features' },
+  'Land clearing and grubbing': { id: 'land-clearing', catalogName: 'Land Clearing Features' },
+}
+const servicesUrl = 'https://www.deeprootsdrainage.com/services'
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [{
+    '@type': 'Service',
+    '@id': `${servicesUrl}#main-service`,
+    name: 'Agricultural Drainage Services in North Dakota',
+    url: servicesUrl,
+    provider: { '@id': 'https://www.deeprootsdrainage.com/#organization' },
+    areaServed: { '@type': 'State', name: 'North Dakota' },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Agricultural Drainage Services',
+      itemListElement: data.services?.map((service) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          '@id': `${servicesUrl}#${serviceMetadata[service.title]?.id || service.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`,
+          name: service.title,
+          description: service.description.trim(),
+          hasOfferCatalog: {
+            '@type': 'OfferCatalog',
+            name: serviceMetadata[service.title]?.catalogName || `${service.title} Features`,
+            itemListElement: service.features?.map((feature) => ({
+              '@type': 'Offer',
+              itemOffered: { '@type': 'Service', name: feature.trim() },
+            })),
+          },
+        },
+      })),
+    },
+  }],
+}
 ---
 <Layout title={data.seo_title || data.title} description={data.seo_description}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(serviceSchema).replace(/</g, '\\u003c')} />
   {data.hero && (
     <section class="relative py-28 md:py-36 overflow-hidden">
       <img src={data.hero.image} alt={data.hero.image_alt} class="absolute inset-0 w-full h-full object-cover" loading="eager" />

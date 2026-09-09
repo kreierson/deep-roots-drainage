@@ -1,18 +1,31 @@
 ---
-title: "Agricultural Drain Tile Installation in Fargo, ND"
-nav_title: "Drain Tile Installation"
-seo_title: "Agricultural Drain Tile Installation in Fargo, ND | Deep Roots Drainage"
-seo_description: "Custom drain tile design and GPS-guided installation for farmland in Fargo and across North Dakota."
-description: "Custom drain tile design and GPS-guided installation for farmland in Fargo and across North Dakota."
-image: "/images/uploads/drain-tile-installation.webp"
-image_alt: "Drainage pipe laid out across an agricultural field"
-image_credit: "N. Mitchell / Shutterstock"
-cta_title: "Ready to Improve Your Land?"
-cta_description: "Talk with our team about your land and request a free project estimate."
-cta_button_text: "Request a Free Estimate"
-cta_button_url: "/contact"
-service_type: "Agricultural Drain Tile Installation"
-service_offerings: [{"name": "Precision Survey and Custom Drain Tile Design", "description": "Land survey process utilizing high-resolution topography data and soil assessments to determine optimal depth, spacing, routing, pipe sizing, and permitting assistance."}, {"name": "GPS-Guided Installation Technology", "description": "Advanced GPS-guided installation technology to control the depth and grade of the drainage plow with extreme precision for optimal sub-surface pipe performance."}, {"name": "Comprehensive Drainage Assessment", "description": "On-site drainage assessment and free estimate to evaluate field moisture challenges and design a precision-engineered system."}]
+title: Agricultural Drain Tile Installation in Fargo, ND
+nav_title: Drain Tile Installation
+seo_title: Agricultural Drain Tile Installation in Fargo, ND | Deep Roots Drainage
+seo_description: Custom drain tile design and GPS-guided installation for
+  farmland in Fargo and across North Dakota.
+description: Custom drain tile design and GPS-guided installation for farmland
+  in Fargo and across North Dakota.
+image: /images/uploads/drain-tile-installation.webp
+image_alt: Drainage pipe laid out across an agricultural field
+image_credit: ""
+service_type: Agricultural Drain Tile Installation
+service_offerings:
+  - name: Precision Survey and Custom Drain Tile Design
+    description: Land survey process utilizing high-resolution topography data and
+      soil assessments to determine optimal depth, spacing, routing, pipe
+      sizing, and permitting assistance.
+  - name: GPS-Guided Installation Technology
+    description: Advanced GPS-guided installation technology to control the depth
+      and grade of the drainage plow with extreme precision for optimal
+      sub-surface pipe performance.
+  - name: Comprehensive Drainage Assessment
+    description: On-site drainage assessment and free estimate to evaluate field
+      moisture challenges and design a precision-engineered system.
+cta_title: Ready to Improve Your Land?
+cta_description: Talk with our team about your land and request a free project estimate.
+cta_button_text: Request a Free Estimate
+cta_button_url: /contact
 ---
 
 Your farm is your livelihood. When you are looking for a drain tile company to install tile in your land, you need someone you can trust. [Deep Roots Drainage](/) is familiar with the unique characteristics of the Red River Valley and North Dakota farmland, and we have perfected our drain tile installation process to protect farmland from high levels of saturation and maximize crop yields. We are ready to improve your land.

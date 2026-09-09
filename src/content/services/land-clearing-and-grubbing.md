@@ -1,16 +1,18 @@
 ---
-title: "Land Clearing and Grubbing Services in North Dakota"
-nav_title: "Land Clearing and Grubbing"
-seo_title: "Land Clearing and Grubbing Services in North Dakota | Deep Roots Drainage"
-seo_description: "Reclaim productive acres with tree, shelterbelt, and rock removal services across North Dakota."
-description: "Reclaim productive acres with tree, shelterbelt, and rock removal services across North Dakota."
-image: "/images/uploads/land-clearing-and-grubbing.webp"
-image_alt: "Cut logs stacked after tree removal"
-image_credit: "Audiznam260921 / Shutterstock"
-cta_title: "Ready to Improve Your Land?"
-cta_description: "Talk with our team about your land and request a free project estimate."
-cta_button_text: "Request a Free Estimate"
-cta_button_url: "/contact"
+title: Land Clearing and Grubbing Services in North Dakota
+nav_title: Land Clearing and Grubbing
+seo_title: Land Clearing and Grubbing Services in North Dakota | Deep Roots Drainage
+seo_description: Reclaim productive acres with tree, shelterbelt, and rock
+  removal services across North Dakota.
+description: Reclaim productive acres with tree, shelterbelt, and rock removal
+  services across North Dakota.
+image: /images/uploads/land-clearing-and-grubbing.webp
+image_alt: Cut logs stacked after tree removal
+image_credit: ""
+cta_title: Ready to Improve Your Land?
+cta_description: Talk with our team about your land and request a free project estimate.
+cta_button_text: Request a Free Estimate
+cta_button_url: /contact
 ---
 
 For North Dakota property owners who depend on agricultural production as a source of income, idle acres represent a loss every year. When mature trees, rock piles, and massive shelterbelts sit where tillable acres could be earning a profit, you need comprehensive land clearing services from a trusted company with experience working in the local terrain.

@@ -28,6 +28,7 @@ const serviceSchema = {
           '@type': 'Service',
           '@id': `${servicesUrl}#${serviceMetadata[service.title]?.id || service.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`,
           name: service.title,
+          ...(service.detail_url ? { url: new URL(service.detail_url, servicesUrl).href } : {}),
           description: service.description.trim(),
           hasOfferCatalog: {
             '@type': 'OfferCatalog',
@@ -71,6 +72,9 @@ const serviceSchema = {
                     <li class="flex items-start gap-2"><span class="text-primary font-bold">✓</span> {feature}</li>
                   ))}
                 </ul>
+              )}
+              {service.detail_url && (
+                <a href={service.detail_url} class="inline-block mt-6 bg-primary hover:bg-primary-light text-white px-6 py-3 rounded-lg font-bold transition-colors" aria-label={`Learn more about ${service.title}`}>Learn More <span aria-hidden="true">→</span></a>
               )}
             </div>
             <div class={`bg-surface rounded-2xl h-64 flex items-center justify-center text-earth ${index % 2 === 1 ? "md:order-1" : ""}`}>

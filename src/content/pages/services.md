@@ -12,6 +12,7 @@ hero:
   image_alt: Pattern Tiled Field
 services:
   - title: Drain Tile Systems
+    detail_url: /services/drain-tile-installation
     description: "From complex pattern tiling to targeted systems, we design systems
       that manage water table levels, reduce soil erosion, and maximize your
       bushel per acre potential in North Dakota."
@@ -23,6 +24,7 @@ services:
       - Professionally designed tile plans
       - Lift Stations, Control Structures or gravity outlets
   - title: Water Conveyance
+    detail_url: /services/water-conveyance
     description: "Drain Tile Systems are only as effective as its outlet. By using
       GPS integrated equipment, we can help ensure your tiled field will operate
       at its peak performance. "
@@ -34,6 +36,7 @@ services:
       - Ditch Reconstruction
       - Snagging and Clearing
   - title: Land clearing and grubbing
+    detail_url: /services/land-clearing-and-grubbing
     description: Transforming and cleaning up nonproductive ground into high value farmland
     image: /images/uploads/wheat-rocks.jpg
     image_alt: Rock pile removal

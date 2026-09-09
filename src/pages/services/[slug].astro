@@ -1,0 +1,77 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import { getCollection } from 'astro:content'
+
+export const prerender = true
+export async function getStaticPaths() {
+  return (await getCollection('services')).map((page) => ({ params: { slug: page.slug }, props: { page } }))
+}
+const { page } = Astro.props
+const { data } = page
+const { Content } = await page.render()
+const services = await getCollection('services')
+const url = `https://www.deeprootsdrainage.com/services/${page.slug}`
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [{
+    '@type': 'Service',
+    '@id': `${url}#service`,
+    name: data.title,
+    serviceType: data.service_type || data.nav_title,
+    url,
+    description: data.description,
+    image: new URL(data.image, url).href,
+    provider: { '@id': 'https://www.deeprootsdrainage.com/#organization' },
+    areaServed: { '@type': 'State', name: 'North Dakota' },
+    ...(data.service_offerings?.length ? { hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: `${data.nav_title} Services`,
+      itemListElement: data.service_offerings.map((offer) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', ...offer } })),
+    } } : {}),
+  }],
+}
+---
+<Layout title={data.seo_title} description={data.seo_description}>
+  <Fragment slot="head">
+    <link rel="canonical" href={url} />
+    <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />
+  </Fragment>
+  <section class="bg-surface py-12 md:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav aria-label="Breadcrumb" class="text-sm text-gray-600 mb-8"><a href="/" class="hover:underline">Home</a><span class="mx-2" aria-hidden="true">/</span><a href="/services" class="hover:underline">Services</a><span class="mx-2" aria-hidden="true">/</span><span aria-current="page">{data.nav_title}</span></nav>
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div>
+          <p class="text-earth font-semibold text-sm tracking-[0.2em] uppercase mb-4">Deep Roots Drainage</p>
+          <h1 class="text-4xl md:text-5xl font-black leading-tight">{data.title}</h1>
+          <p class="text-lg text-gray-600 leading-relaxed mt-6">{data.description}</p>
+          <a href={data.cta_button_url} class="inline-block mt-8 bg-primary hover:bg-primary-light text-white px-8 py-4 rounded-lg font-bold transition-colors">{data.cta_button_text}</a>
+        </div>
+        <figure>
+          <img src={data.image} alt={data.image_alt} class="w-full aspect-[3/2] object-cover rounded-2xl shadow-xl" loading="eager" fetchpriority="high" decoding="async" />
+          {data.image_credit && <figcaption class="text-xs text-gray-500 mt-3">Photo: {data.image_credit}</figcaption>}
+        </figure>
+      </div>
+    </div>
+  </section>
+  <section class="py-14 md:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[minmax(0,1fr)_280px] gap-12 lg:gap-20 items-start">
+      <article class="prose prose-lg max-w-none prose-headings:font-black prose-headings:tracking-tight prose-a:text-primary prose-a:underline">
+        <Content />
+      </article>
+      <aside class="bg-surface rounded-2xl p-7 lg:sticky lg:top-28">
+        <h2 class="text-xl font-bold mb-5">Our Services</h2>
+        <nav aria-label="Service pages" class="space-y-4">
+          {services.map((service) => <a href={`/services/${service.slug}`} aria-current={service.slug === page.slug ? 'page' : undefined} class={`block text-sm leading-relaxed ${service.slug === page.slug ? 'font-bold border-l-4 border-accent pl-3' : 'text-gray-600 hover:underline'}`}>{service.data.nav_title}</a>)}
+        </nav>
+        <a href="/services" class="inline-block text-sm font-bold mt-7 hover:underline">← All Services</a>
+      </aside>
+    </div>
+  </section>
+  <section class="bg-primary-dark py-16 md:py-20">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-black text-white">{data.cta_title}</h2>
+      <p class="text-lg text-white/80 mt-5">{data.cta_description}</p>
+      <a href={data.cta_button_url} class="inline-block mt-8 bg-accent hover:bg-accent-light text-primary-dark px-8 py-4 rounded-lg font-bold transition-colors">{data.cta_button_text}</a>
+    </div>
+  </section>
+</Layout>

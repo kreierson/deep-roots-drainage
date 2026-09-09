@@ -137,6 +137,7 @@
                   ]},
                   { label: "Services", name: "services", widget: "list", required: false, fields: [
                     { label: "Title", name: "title", widget: "string" },
+                    { label: "Detail Page URL", name: "detail_url", widget: "string", required: false, hint: "For example: /services/drain-tile-installation" },
                     { label: "Description", name: "description", widget: "text" },
                     { label: "Image", name: "image", widget: "image" },
                     { label: "Image Alt Text", name: "image_alt", widget: "string" },
@@ -296,6 +297,34 @@
                 { label: "Author", name: "author", widget: "string" }
               ]},
               { label: "Content", name: "body", widget: "markdown" }
+            ]
+          },
+          {
+            name: "service_details",
+            label: "Service Detail Pages",
+            folder: "src/content/services",
+            create: false,
+            delete: false,
+            preview_path: "services/{{slug}}",
+            fields: [
+              { label: "Page Heading", name: "title", widget: "string" },
+              { label: "Navigation Title", name: "nav_title", widget: "string" },
+              { label: "SEO Title", name: "seo_title", widget: "string" },
+              { label: "SEO Description", name: "seo_description", widget: "text" },
+              { label: "Introduction", name: "description", widget: "text" },
+              { label: "Page Image", name: "image", widget: "image" },
+              { label: "Image Alt Text", name: "image_alt", widget: "string" },
+              { label: "Photo Credit", name: "image_credit", widget: "string", required: false },
+              { label: "Service Type", name: "service_type", widget: "string", required: false },
+              { label: "Services Included", name: "service_offerings", widget: "list", required: false, hint: "Service details supplied to search engines. Keep these consistent with the page content.", fields: [
+                { label: "Name", name: "name", widget: "string" },
+                { label: "Description", name: "description", widget: "text" }
+              ]},
+              { label: "Contact Section Heading", name: "cta_title", widget: "string" },
+              { label: "Contact Section Description", name: "cta_description", widget: "text" },
+              { label: "Contact Button Text", name: "cta_button_text", widget: "string" },
+              { label: "Contact Button URL", name: "cta_button_url", widget: "string" },
+              { label: "Page Content", name: "body", widget: "markdown" }
             ]
           },
           {

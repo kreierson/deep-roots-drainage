@@ -84,6 +84,7 @@ const pagesCollection = defineCollection({
     }).optional(),
     services: z.array(z.object({
       title: z.string(),
+      detail_url: z.string().optional(),
       description: z.string(),
       image: z.string(),
       image_alt: z.string(),
@@ -195,7 +196,28 @@ const settingsCollection = defineCollection({
   })
 });
 
+const servicesCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    nav_title: z.string(),
+    seo_title: z.string(),
+    seo_description: z.string(),
+    description: z.string(),
+    image: z.string(),
+    image_alt: z.string(),
+    image_credit: z.string().optional(),
+    service_type: z.string().optional(),
+    service_offerings: z.array(z.object({ name: z.string(), description: z.string() })).optional(),
+    cta_title: z.string(),
+    cta_description: z.string(),
+    cta_button_text: z.string(),
+    cta_button_url: z.string(),
+  }),
+});
+
 export const collections = {
+  'services': servicesCollection,
   'pages': pagesCollection,
   'projects': projectsCollection,
   'careers': careersCollection,

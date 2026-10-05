@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import teamSeo from '../data/team-seo.json'
 import { getCollection, getEntry } from 'astro:content'
 
 const page = await getEntry('pages', 'team')
@@ -15,11 +16,38 @@ const teamMembers = await Promise.all(
     })
     .map(async (member) => {
       const rendered = await member.render()
-      return { ...member, Content: rendered.Content }
+      return { ...member, anchor: member.data.name.toLowerCase().replace(/[^a-z0-9]+/g, '-'), Content: rendered.Content }
     })
 )
+const teamUrl = 'https://www.deeprootsdrainage.com/team'
+const organization = { '@type': 'Organization', '@id': 'https://www.deeprootsdrainage.com/#organization' }
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [{
+    '@type': 'WebPage',
+    '@id': `${teamUrl}#webpage`,
+    url: teamUrl,
+    name: 'Meet Our Drainage Specialists',
+    description: 'Real experience, practical problem-solving, and a commitment to doing the job right for every customer we serve. Our team brings field experience, practical knowledge, and a hands-on approach to every drainage project.',
+    about: organization,
+    mainEntity: {
+      '@type': 'ItemList',
+      name: 'Deep Roots Drainage Team',
+      itemListElement: teamMembers.map((member, index) => ({
+        '@type': 'ListItem', position: index + 1, item: { '@id': `${teamUrl}#${member.anchor}` },
+      })),
+    },
+  }, ...teamMembers.map((member) => ({
+    '@type': 'Person',
+    '@id': `${teamUrl}#${member.anchor}`,
+    name: member.data.name,
+    worksFor: organization,
+    ...teamSeo[member.data.name as keyof typeof teamSeo],
+  }))],
+}
 ---
 <Layout title={data.seo_title || data.title} description={data.seo_description}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />
   {data.hero && (
     <section class="relative min-h-[270px] sm:min-h-[420px] md:min-h-[520px] overflow-hidden">
       <img src={data.hero.image} alt={data.hero.image_alt} class="absolute inset-0 w-full h-full object-cover object-center" loading="eager" />
@@ -45,7 +73,7 @@ const teamMembers = await Promise.all(
       {teamMembers.length > 0 ? (
         <div class="mt-16 space-y-20">
           {teamMembers.map((member, index) => (
-            <article class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            <article id={member.anchor} class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start [overflow-wrap:anywhere]">
               <div class={index % 2 === 1 ? 'md:order-2' : ''}>
                 <p class="text-accent font-semibold text-sm tracking-[0.2em] uppercase mb-2">{member.data.role}</p>
                 <h2 class="text-3xl font-black text-gray-900 mb-4">{member.data.name}</h2>

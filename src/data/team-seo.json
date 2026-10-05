@@ -1,0 +1,56 @@
+{
+  "Colin Anderson": {
+    "email": "canderson@deeprootsdrainage.com",
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "North Dakota State University"
+    },
+    "knowsAbout": [
+      "Agricultural Drain Tile",
+      "Water Management",
+      "Construction Management"
+    ],
+    "description": "Born in Grand Forks and a graduate of North Dakota State University with a degree in Construction Management, Colin has spent his career finding practical solutions for the construction and agricultural industries. For nearly a decade, Colin has focused on sales and operations within the agricultural drain tile industry."
+  },
+  "Corey Haag": {
+    "email": "chaag@deeprootsdrainage.com",
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Minnesota State University Moorhead"
+    },
+    "knowsAbout": [
+      "Drainage Design",
+      "Land Surveying",
+      "Agricultural Drainage"
+    ],
+    "description": "Corey Haag brings 17 years of experience in drainage design, surveying, and sales. Originally from Garfield, Minnesota, Corey moved to the Fargo-Moorhead area to pursue a degree in Construction Management from Minnesota State University Moorhead, where he began his career in the drainage industry immediately after graduating."
+  },
+  "Dustin Lundeby": {
+    "email": "dlundeby@deeprootsdrainage.com",
+    "knowsAbout": [
+      "Agricultural Drainage",
+      "Seed Sales"
+    ],
+    "description": "Dustin Lundeby brings over 20 years of experience in agricultural drainage and seed sales. He serves the northern Red River Valley and northeastern North Dakota. Dustin splits time between West Fargo and Langdon where he continues to farm."
+  },
+  "Kyle Magnus": {
+    "email": "kmagnus@deeprootsdrainage.com",
+    "knowsAbout": [
+      "Agricultural Drainage",
+      "Field Construction",
+      "Rural Water Line Projects"
+    ],
+    "description": "Kyle Magnus has more than 21 years of hands-on experience in the agricultural drainage industry. His background includes 12 years in field construction, six years leading production, and three years in sales, all while continuing to manage complex drainage and rural water line projects. Raised on a farm near Niagara, North Dakota, Kyle brings deep practical knowledge to every project."
+  },
+  "Levi Otis": {
+    "email": "lotis@deeprootsdrainage.com",
+    "knowsAbout": [
+      "North Dakota Drainage Law",
+      "Water Policy",
+      "Agricultural Drainage",
+      "Rural Infrastructure",
+      "Private Property Rights"
+    ],
+    "description": "Raised in Devils Lake, North Dakota, near where his family homesteaded in 1889, Levi attended North Dakota State University and began his career managing hotels in Fargo before transitioning into agriculture and infrastructure development. Levi has become a strong advocate for private property rights, agricultural drainage, water policy, and rural infrastructure."
+  }
+}

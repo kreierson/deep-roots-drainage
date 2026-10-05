@@ -11,4 +11,4 @@ Levi has become a strong advocate for private property rights, agricultural drai
 
 Levi and his family along with their two dogs, Boomer and Nakota, reside in rural Cass County. 
 
-He can be reached at lotis@deeprootsdrainage.com or 701-499-3917.
+He can be reached at lotis@deeprootsdrainage.com or [701-499-3917](tel:+17014993917).

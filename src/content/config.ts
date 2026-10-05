@@ -204,6 +204,7 @@ const servicesCollection = defineCollection({
     seo_title: z.string(),
     seo_description: z.string(),
     description: z.string(),
+    schema_description: z.string().optional(),
     image: z.string(),
     image_alt: z.string(),
     image_credit: z.string().optional(),

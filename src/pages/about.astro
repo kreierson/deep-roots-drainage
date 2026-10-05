@@ -5,8 +5,22 @@ import { getEntry } from 'astro:content'
 const page = await getEntry('pages', 'about')
 const { data } = page
 const { Content } = await page.render()
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [{
+    '@type': 'AboutPage',
+    '@id': 'https://www.deeprootsdrainage.com/about#webpage',
+    url: 'https://www.deeprootsdrainage.com/about',
+    name: 'About Deep Roots Drainage',
+    description: 'North Dakota drain tile experts built by people who understand the land. Deep Roots Drainage surveys your land, studies the data, and designs a drainage system that solves your specific water problems.',
+    mainEntity: { '@id': 'https://www.deeprootsdrainage.com/#organization' },
+    about: { '@id': 'https://www.deeprootsdrainage.com/#organization' },
+    primaryImageOfPage: { '@type': 'ImageObject', url: new URL(data.hero.image, 'https://www.deeprootsdrainage.com').href },
+  }],
+}
 ---
 <Layout title={data.seo_title || data.title} description={data.seo_description}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />
   {data.hero && (
     <section class="relative py-28 md:py-36 overflow-hidden">
       <img src={data.hero.image} alt={data.hero.image_alt} class="absolute inset-0 w-full h-full object-cover" loading="eager" />
@@ -27,6 +41,7 @@ const { Content } = await page.render()
       
       {data.features && (
         <>
+          <a href="/contact" class="inline-block mt-8 bg-primary hover:bg-primary-light text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors">Request a Free Estimate</a>
           <h2 class="text-2xl font-black text-gray-900 mb-4 mt-12">{data.features_title || 'What Sets Us Apart'}</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
             {data.features.map((feature) => (

@@ -6,6 +6,16 @@ seo_description: Reclaim productive acres with tree, shelterbelt, and rock
   removal services across North Dakota.
 description: Reclaim productive acres with tree, shelterbelt, and rock removal
   services across North Dakota.
+schema_description: "Reclaim productive acres with tree, shelterbelt, and rock removal services across North Dakota. Deep Roots Drainage uses specialized equipment to access challenging terrain and remove barriers both above and below the soil surface, converting idle acreage into productive farmland."
+service_offerings:
+  - name: "Tree Removal"
+    description: "Tree removal is typically carried out by cutting trees above ground and grinding down leftover stumps. Trees may be disposed of mechanically or hauled away."
+  - name: "Shelterbelt Removal"
+    description: "Custom attachments push trees over or grab trees at the base and extract large root masses cleanly."
+  - name: "Rock Removal"
+    description: "Large rocks and boulders are extracted using special equipment, and smaller stones are removed or crushed on site."
+  - name: "Soil Leveling"
+    description: "Leveling remaining soil depressions after clearing so the land can be used immediately."
 image: /images/uploads/land-clearing-and-grubbing.webp
 image_alt: Cut logs stacked after tree removal
 image_credit: ""
@@ -17,7 +27,7 @@ cta_button_url: /contact
 
 For North Dakota property owners who depend on agricultural production as a source of income, idle acres represent a loss every year. When mature trees, rock piles, and massive shelterbelts sit where tillable acres could be earning a profit, you need comprehensive land clearing services from a trusted company with experience working in the local terrain.
 
-[Deep Roots Drainage](/) approaches every job with the unique services the land demands and commercial tools to get the job done right. Our customized approach and decades of local experience allow us to identify the most effective and efficient way to remove the barriers between you and profitable, tillable land.
+As a land clearing contractor, [Deep Roots Drainage](/) approaches every job with the unique services the land demands and commercial tools to get the job done right. Our customized approach and decades of local experience allow us to identify the most effective and efficient way to remove the barriers between you and profitable, tillable land.
 
 ## Maximize ROI: Converting Idle Acreage into Productive Farmland
 

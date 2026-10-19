@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import { getCollection } from 'astro:content'
+export const prerender = true
+const locations = (await getCollection('locations', ({data}) => data.active)).sort((a,b) => a.data.city.localeCompare(b.data.city))
+---
+<Layout title="North Dakota Agricultural Drainage Service Areas" description="Explore Deep Roots Drainage agricultural drain tile installation services in Fargo, Grand Forks, Valley City, and Wahpeton, North Dakota.">
+  <link slot="head" rel="canonical" href="https://www.deeprootsdrainage.com/service-areas" />
+  <section class="bg-surface py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-earth font-semibold text-sm tracking-[0.2em] uppercase mb-4">Service Areas</p>
+      <h1 class="text-4xl md:text-5xl font-black max-w-3xl">Agricultural Drainage Across North Dakota</h1>
+      <p class="text-lg text-gray-600 leading-relaxed mt-6 max-w-2xl">Explore our local drain tile installation services and find out how we approach the drainage needs of your land.</p>
+    </div>
+  </section>
+  <section class="py-16 md:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 gap-6">
+        {locations.map(page => <a href={`/service-areas/${page.slug}`} class="block rounded-2xl border border-surface-dark p-8 hover:bg-surface transition-colors focus-visible:outline-3 focus-visible:outline-accent focus-visible:outline-offset-4">
+          <h2 class="text-2xl font-bold">{page.data.city}, ND <span aria-hidden="true">→</span></h2>
+          <p class="text-gray-600 mt-4 leading-relaxed">{page.data.seo_description}</p>
+        </a>)}
+      </div>
+      <div class="mt-12 bg-surface p-8 rounded-2xl">
+        <h2 class="text-2xl font-bold">Let’s Talk About Your Land</h2>
+        <p class="text-gray-600 mt-3">For a project in another North Dakota community, contact our team to discuss your drainage needs.</p>
+        <a href="/contact" class="inline-block mt-6 bg-primary text-white px-6 py-3 rounded-lg font-bold hover:bg-primary-light">Request a Free Estimate</a>
+        <a href="/services" class="inline-block mt-6 ml-6 font-bold underline">Explore Our Services</a>
+      </div>
+    </div>
+  </section>
+</Layout>

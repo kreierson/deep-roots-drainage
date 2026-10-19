@@ -218,6 +218,17 @@ const servicesCollection = defineCollection({
 });
 
 export const collections = {
+  'locations': defineCollection({
+    type: 'content',
+    schema: z.object({
+      city: z.string(),
+      title: z.string(),
+      seo_title: z.string(),
+      seo_description: z.string(),
+      description: z.string(),
+      active: z.boolean().default(true),
+    }),
+  }),
   'services': servicesCollection,
   'pages': pagesCollection,
   'projects': projectsCollection,

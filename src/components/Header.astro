@@ -1,158 +1,109 @@
 ---
 import { getEntry, getCollection } from 'astro:content'
-
 const settings = await getEntry('settings', 'global')
-const activeProjects = await getCollection('projects', ({ data }) => data.active !== false)
-const allNavLinks = settings.data.nav_links || []
-const navLinks = allNavLinks.filter(link => link.url !== '/projects' || activeProjects.length > 0)
-const ctaText = settings.data.cta_button_text || 'Free Estimate'
-const ctaLink = settings.data.cta_button_link || '/contact'
-const companyName = settings.data.company_name || 'Deep Roots Drainage'
-const tagline = settings.data.tagline || 'Drainage'
-const phone = settings.data.phone || ''
-const email = settings.data.email || ''
+const [projects, services, locations] = await Promise.all([
+  getCollection('projects', ({ data }) => data.active !== false),
+  getCollection('services'),
+  getCollection('locations', ({ data }) => data.active),
+])
+const serviceOrder = ['drain-tile-installation', 'water-conveyance', 'land-clearing-and-grubbing']
+services.sort((a,b) => serviceOrder.indexOf(a.slug) - serviceOrder.indexOf(b.slug))
+locations.sort((a,b) => a.data.city.localeCompare(b.data.city))
+const links = (settings.data.nav_links || []).filter(link => link.url !== '/projects' || projects.length)
+const groups = links.flatMap(link => link.url === '/services' ? [
+  { ...link, children: [{ label: 'All Services', url: '/services' }, ...services.map(s => ({label:s.data.nav_title, url:`/services/${s.slug}`}))] },
+  ...(locations.length ? [{label:'Service Areas', url:'/service-areas', children:[{label:'All Service Areas',url:'/service-areas'}, ...locations.map(l => ({label:`${l.data.city}, ND`,url:`/service-areas/${l.slug}`}))]}] : []),
+] : [{...link, children:[]}])
+const current = Astro.url.pathname.replace(/\/$/, '') || '/'
 ---
-
-<header class="bg-white border-b border-gray-100 sticky top-0 z-[60]">
-  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-20">
-      <!-- Logo -->
-      <a href="/" class="flex items-center -my-2">
-        <img src="/images/logo.png" alt={companyName} class="h-20" />
-      </a>
-
-      <!-- Desktop Nav -->
-      <div class="hidden md:flex items-center gap-8">
-        {navLinks.map((item) => (
-          <a
-            href={item.url || '/'}
-            class="text-sm font-semibold text-gray-600 hover:text-primary transition-colors"
-          >
-            {item.label}
-          </a>
-        ))}
-        <a
-          href={ctaLink}
-          class="bg-accent-red hover:bg-red-700 text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-colors"
-        >
-          {ctaText}
-        </a>
-      </div>
-
-      <!-- Mobile menu button -->
-      <button
-        id="mobile-menu-btn"
-        class="md:hidden relative w-10 h-10 flex items-center justify-center"
-        aria-label="Toggle menu"
-      >
-        <span id="hamburger-top" class="absolute w-6 h-0.5 bg-gray-700 transition-all duration-300 -translate-y-2"></span>
-        <span id="hamburger-mid" class="absolute w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
-        <span id="hamburger-bot" class="absolute w-6 h-0.5 bg-gray-700 transition-all duration-300 translate-y-2"></span>
-      </button>
-    </div>
-  </nav>
-</header>
-
-<!-- Mobile Nav Overlay -->
-<div id="mobile-menu" class="fixed inset-0 top-20 z-50 pointer-events-none opacity-0 transition-opacity duration-300 md:hidden">
-  <!-- Backdrop -->
-  <div class="absolute inset-0 bg-primary-dark/95 backdrop-blur-sm"></div>
-  
-  <!-- Content -->
-  <div class="relative h-full flex flex-col px-8 pt-8 pb-8">
-    <!-- Nav Links -->
-    <nav class="flex-1 flex flex-col justify-center -mt-16">
-      {navLinks.map((item, i) => (
-        <a
-          href={item.url || '/'}
-          class="mobile-nav-link block py-4 text-2xl font-bold text-white/90 hover:text-accent border-b border-white/10 transition-all duration-300"
-          style={`transition-delay: ${i * 50}ms; opacity: 0; transform: translateX(-20px);`}
-        >
-          {item.label}
-        </a>
-      ))}
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo"><img src="/images/logo.png" alt={settings.data.company_name} width="150" height="80" /></a>
+    <button id="mobile-menu-btn" class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false">Menu <span aria-hidden="true">☰</span></button>
+    <nav id="primary-navigation" aria-label="Main navigation">
+      <ul class="nav-items">
+        {groups.map((item,i) => <li>
+          {item.children.length ? <details class="nav-dropdown">
+            <summary role="button" aria-expanded="false" aria-controls={`nav-group-${i}`} class:list={{'current':current.startsWith(item.url)}}>
+              <span class="nav-label">{item.label}</span>
+              <span aria-hidden="true" class="chevron">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" focusable="false"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </span>
+            </summary>
+            <ul class="dropdown-links" id={`nav-group-${i}`}>
+              {item.children.map(child => <li><a href={child.url} aria-current={current === child.url ? 'page' : undefined}>{child.label}</a></li>)}
+            </ul>
+          </details> : <a class="nav-link" href={item.url} aria-current={current === item.url ? 'page' : undefined}>{item.label}</a>}
+        </li>)}
+        <li><a class="nav-cta" href={settings.data.cta_button_link}>{settings.data.cta_button_text}</a></li>
+      </ul>
     </nav>
-
-    <!-- CTA Button -->
-    <div class="mobile-nav-link" style={`transition-delay: ${navLinks.length * 50}ms; opacity: 0; transform: translateY(10px);`}>
-      <a
-        href={ctaLink}
-        class="block w-full bg-accent-red hover:bg-red-700 text-white text-center px-6 py-4 rounded-xl text-lg font-bold transition-colors"
-      >
-        {ctaText}
-      </a>
-    </div>
-
-    <!-- Contact Info -->
-    <div class="mobile-nav-link mt-6 flex flex-col gap-3" style={`transition-delay: ${(navLinks.length + 1) * 50}ms; opacity: 0; transform: translateY(10px);`}>
-      {phone && (
-        <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="flex items-center gap-3 text-white/60 hover:text-white transition-colors">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-          <span class="text-sm font-medium">{phone}</span>
-        </a>
-      )}
-      {email && (
-        <a href={`mailto:${email}`} class="flex items-center gap-3 text-white/60 hover:text-white transition-colors">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-          <span class="text-sm font-medium">{email}</span>
-        </a>
-      )}
-    </div>
   </div>
-</div>
-
+</header>
+<style>
+  .site-header{background:white;border-bottom:1px solid #f0efed;position:sticky;top:0;z-index:60}
+  .header-inner{max-width:1280px;margin:auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;min-height:80px;gap:24px}
+  .logo{flex-shrink:0}.logo img{height:80px;width:auto}
+  .nav-items{display:flex;align-items:center;gap:22px;list-style:none;margin:0;padding:0}
+  .nav-link,summary{font-size:14px;font-weight:600;color:#4b5563;white-space:nowrap;padding:14px 0}
+  summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;line-height:20px}summary::-webkit-details-marker{display:none}
+  .nav-label{display:block}
+  .chevron{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;flex:0 0 16px}
+  .chevron svg{display:block;width:16px;height:16px;transform:rotate(0deg);transform-box:view-box;transform-origin:50% 50%;transition:transform 160ms ease-out}
+  .nav-dropdown[open]>summary .chevron svg{transform:rotate(180deg)}
+  .nav-dropdown{position:relative}.dropdown-links{position:absolute;top:100%;left:-18px;min-width:260px;max-height:calc(100dvh - 112px);overflow:auto;padding:10px;background:white;border:1px solid #e5e0d8;border-radius:12px;box-shadow:0 12px 30px #1112;list-style:none}
+  .dropdown-links a{display:block;padding:12px;border-radius:6px;font-size:14px;color:#374151}
+  .dropdown-links a:hover,.dropdown-links a[aria-current]{background:#f5f3ef;color:#111}.dropdown-links a[aria-current]{font-weight:700}
+  .nav-link:hover,summary:hover,.current,.nav-link[aria-current]{color:#111}
+  .nav-cta{display:block;background:#c8102e;color:white;padding:12px 20px;border-radius:8px;font-size:14px;font-weight:700;white-space:nowrap}.nav-cta:hover{background:#a80d26}
+  .menu-toggle{display:none}
+  a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #b4975a;outline-offset:4px;border-radius:4px}
+  @media(max-width:1150px){
+    .header-inner{flex-wrap:wrap;padding:0 20px;gap:0}.menu-toggle{display:flex;align-items:center;gap:12px;padding:12px;font-weight:700;cursor:pointer}
+    nav{width:100%;max-height:calc(100dvh - 80px);overflow:auto;padding-bottom:24px}
+    .site-header.is-enhanced nav:not(.is-open){display:none}
+    .nav-items{display:block}.nav-items>li{border-top:1px solid #e5e0d8}.nav-link,summary{display:flex;padding:16px 8px;font-size:16px}.nav-cta{text-align:center;margin-top:16px}
+    summary{justify-content:space-between;line-height:24px}.dropdown-links{position:static;box-shadow:none;border:none;border-radius:0;background:#f5f3ef;margin-bottom:12px;max-height:none;min-width:0}.dropdown-links a{padding:12px 16px}
+  }
+  @media(prefers-reduced-motion:reduce){.chevron svg{transition:none}}
+</style>
 <script>
-  const btn = document.getElementById('mobile-menu-btn')
-  const menu = document.getElementById('mobile-menu')
-  const top = document.getElementById('hamburger-top')
-  const mid = document.getElementById('hamburger-mid')
-  const bot = document.getElementById('hamburger-bot')
-  const links = menu?.querySelectorAll('.mobile-nav-link')
-  let open = false
-  let savedScrollY = 0
-
-  btn?.addEventListener('click', () => {
-    open = !open
-    if (open) {
-      savedScrollY = window.scrollY
-      menu?.classList.remove('pointer-events-none', 'opacity-0')
-      menu?.classList.add('pointer-events-auto', 'opacity-100')
-      // Animate hamburger to X
-      top?.classList.add('translate-y-0', 'rotate-45')
-      top?.classList.remove('-translate-y-2')
-      mid?.classList.add('opacity-0')
-      bot?.classList.add('translate-y-0', '-rotate-45')
-      bot?.classList.remove('translate-y-2')
-      // Stagger link animations
-      links?.forEach(link => {
-        (link as HTMLElement).style.opacity = '1';
-        (link as HTMLElement).style.transform = 'translateX(0) translateY(0)';
-      })
-      // Lock body scroll (works on iOS Safari too)
-      document.body.style.overflow = 'hidden'
-      document.body.style.position = 'fixed'
-      document.body.style.width = '100%'
-      document.body.style.top = `-${window.scrollY}px`
-    } else {
-      menu?.classList.add('pointer-events-none', 'opacity-0')
-      menu?.classList.remove('pointer-events-auto', 'opacity-100')
-      // Animate X back to hamburger
-      top?.classList.remove('translate-y-0', 'rotate-45')
-      top?.classList.add('-translate-y-2')
-      mid?.classList.remove('opacity-0')
-      bot?.classList.remove('translate-y-0', '-rotate-45')
-      bot?.classList.add('translate-y-2')
-      // Reset links
-      links?.forEach((link, i) => {
-        (link as HTMLElement).style.opacity = '0';
-        (link as HTMLElement).style.transform = i < (links.length - 2) ? 'translateX(-20px)' : 'translateY(10px)';
-      })
-      // Restore scroll
-      document.body.style.overflow = ''
-      document.body.style.position = ''
-      document.body.style.width = ''
-      document.body.style.top = ''
-      window.scrollTo(0, savedScrollY)
-    }
+  const header = document.querySelector<HTMLElement>('.site-header')!
+  const menuButton = document.querySelector<HTMLButtonElement>('#mobile-menu-btn')!
+  const navigation = document.querySelector<HTMLElement>('#primary-navigation')!
+  const dropdowns = [...header.querySelectorAll<HTMLDetailsElement>('details')]
+  header.classList.add('is-enhanced')
+  function closeDropdowns(except?: HTMLDetailsElement) {
+    dropdowns.forEach(detail => { if(detail !== except) detail.open = false })
+  }
+  function closeMenu() {
+    navigation.classList.remove('is-open')
+    menuButton.setAttribute('aria-expanded','false')
+    closeDropdowns()
+  }
+  menuButton.addEventListener('click', () => {
+    const open = menuButton.getAttribute('aria-expanded') !== 'true'
+    navigation.classList.toggle('is-open',open)
+    menuButton.setAttribute('aria-expanded',String(open))
+    if(!open) closeDropdowns()
   })
+  dropdowns.forEach(detail => {
+    detail.addEventListener('toggle', () => {
+      detail.querySelector('summary')?.setAttribute('aria-expanded',String(detail.open))
+      if(detail.open) closeDropdowns(detail)
+    })
+    detail.addEventListener('focusout', () => {
+      setTimeout(() => { if(!detail.contains(document.activeElement)) detail.open = false },0)
+    })
+  })
+  document.addEventListener('click', event => { if(!header.contains(event.target as Node)) closeMenu() })
+  header.addEventListener('keydown', event => {
+    if(event.key !== 'Escape') return
+    const detail = (event.target as HTMLElement).closest<HTMLDetailsElement>('details[open]')
+    if(detail){ detail.open = false; detail.querySelector('summary')?.focus() }
+    else if(navigation.classList.contains('is-open')){closeMenu();menuButton.focus()}
+  })
+  navigation.addEventListener('click', event => {if((event.target as HTMLElement).closest('a')) closeMenu()})
+  window.addEventListener('pageshow', closeMenu)
+  window.matchMedia('(min-width:1151px)').addEventListener('change', closeMenu)
 </script>

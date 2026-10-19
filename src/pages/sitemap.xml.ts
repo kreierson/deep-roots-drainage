@@ -10,6 +10,7 @@ const staticRoutes = [
   '/about',
   '/team',
   '/services',
+  '/service-areas',
   '/projects',
   '/contact',
   '/careers',
@@ -17,15 +18,17 @@ const staticRoutes = [
 ];
 
 export const GET: APIRoute = async () => {
-  const [projects, careers, services] = await Promise.all([
+  const [projects, careers, services, locations] = await Promise.all([
     getCollection('projects', ({ data }) => data.active !== false),
     getCollection('careers', ({ data }) => data.active),
     getCollection('services'),
+    getCollection('locations', ({ data }) => data.active),
   ]);
 
   const urls = [
     ...staticRoutes.map((path) => new URL(path, SITE_URL).toString()),
     ...services.map((service) => new URL(`/services/${service.slug}`, SITE_URL).toString()),
+    ...locations.map((location) => new URL(`/service-areas/${location.slug}`, SITE_URL).toString()),
     ...projects.map((project) => new URL(`/projects/${project.slug}`, SITE_URL).toString()),
     ...careers.map((career) => new URL(`/careers/${career.slug}`, SITE_URL).toString()),
   ];

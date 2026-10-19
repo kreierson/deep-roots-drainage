@@ -2,8 +2,7 @@
 title: Land Clearing and Grubbing Services in North Dakota
 nav_title: Land Clearing and Grubbing
 seo_title: Land Clearing and Grubbing Services in North Dakota | Deep Roots Drainage
-seo_description: Reclaim productive acres with tree, shelterbelt, and rock
-  removal services across North Dakota.
+seo_description: Deep Roots Drainage transforms nonproductive ground into high value farmland. Tree removal, shelterbelt clearing, and rock removal across North Dakota.
 description: Reclaim productive acres with tree, shelterbelt, and rock removal
   services across North Dakota.
 schema_description: "Reclaim productive acres with tree, shelterbelt, and rock removal services across North Dakota. Deep Roots Drainage uses specialized equipment to access challenging terrain and remove barriers both above and below the soil surface, converting idle acreage into productive farmland."

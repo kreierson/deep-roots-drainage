@@ -3,8 +3,10 @@ import Layout from '../../layouts/Layout.astro'
 import { getCollection } from 'astro:content'
 export const prerender = true
 const locations = (await getCollection('locations', ({data}) => data.active)).sort((a,b) => a.data.city.localeCompare(b.data.city))
+const cities = locations.map(l => l.data.city)
+const cityList = cities.length > 1 ? `${cities.slice(0, -1).join(', ')}, and ${cities.at(-1)}` : cities.join('')
 ---
-<Layout title="North Dakota Agricultural Drainage Service Areas" description="Explore Deep Roots Drainage agricultural drain tile installation services in Fargo, Grand Forks, Valley City, and Wahpeton, North Dakota.">
+<Layout title="North Dakota Agricultural Drainage Service Areas" description={`Explore Deep Roots Drainage agricultural drain tile installation services in ${cityList}, North Dakota.`}>
   <link slot="head" rel="canonical" href="https://www.deeprootsdrainage.com/service-areas" />
   <section class="bg-surface py-16 md:py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

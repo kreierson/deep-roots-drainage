@@ -34,7 +34,10 @@ const schema = {
           <p class="text-lg text-gray-600 leading-relaxed mt-6">{data.description}</p>
           <a href="/contact" class="inline-block mt-8 bg-primary hover:bg-primary-light text-white px-8 py-4 rounded-lg font-bold transition-colors">Request a Free Estimate</a>
         </div>
-        <img src="/images/uploads/drain-tile-installation.webp" alt="Drainage pipe laid alongside agricultural land" class="w-full aspect-[3/2] object-cover rounded-2xl shadow-xl" loading="eager" fetchpriority="high" decoding="async" />
+        <figure>
+          <img src={data.image ?? '/images/uploads/drain-tile-installation.webp'} alt={data.image ? (data.image_alt ?? '') : 'Drainage pipe laid alongside agricultural land'} class="w-full aspect-[3/2] object-cover rounded-2xl shadow-xl" loading="eager" fetchpriority="high" decoding="async" />
+          {data.image && data.image_credit && <figcaption class="text-xs text-gray-500 mt-3">Photo: {data.image_credit}</figcaption>}
+        </figure>
       </div>
     </div>
   </section>

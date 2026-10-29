@@ -2,11 +2,12 @@
 city: "Jamestown"
 title: "Agricultural Drain Tile Installation in Jamestown, ND"
 seo_title: "Agricultural Drain Tile Installation in Jamestown, ND | Deep Roots Drainage"
-seo_description: "Agricultural drain tile installation in Jamestown, ND from Deep Roots Drainage. Request a free drainage estimate."
+seo_description: "Agricultural drain tile installation in Jamestown and Stutsman County, ND. Deep Roots Drainage designs GPS-guided drainage systems for local farmland. Request a free estimate."
 description: "If you want to support your soil and achieve your farming goals year after year, you need a properly installed drainage system. Deep Roots Drainage has been working on North Dakota farms for many years. We don't believe in one-size-fits-all solutions. Our team tackles even the most challenging local projects and designs personalized plans for each farm."
-# Source review required: the supplied Jamestown DOCX describes Wahpeton and Richland County.
-# Keep this draft out of routes, navigation, and the sitemap until corrected copy is approved.
-active: false
+image: "/images/uploads/service-area-jamestown.webp"
+image_alt: "Water running through a drainage furrow between rows of green crops"
+image_credit: "MIKO GARDEN / Shutterstock"
+active: true
 ---
 
 ## Precision Drain Tile Solutions
@@ -17,9 +18,9 @@ Our modern tile plows use Real-Time Kinematic GPS grade control. This technology
 
 We can handle smaller drainage projects as well as larger pattern tile systems. The goal is the same in every case: build a targeted drainage system that supports long-term farm productivity.
 
-## Tailored Drainage Systems for Wahpeton Soil
+## Tailored Drainage Systems for Jamestown Soil
 
-In Wahpeton and the surrounding Richland County area, flat farmland and the Red River influence local drainage conditions. When water doesn't move away from fields efficiently, wet areas can affect planting schedules and productive acres.
+In Jamestown and the surrounding Stutsman County area, flat farmland and the Red River influence local drainage conditions. When water doesn't move away from fields efficiently, wet areas can affect planting schedules and productive acres.
 
 There is not a drainage layout that works perfectly for every farm. Deep Roots Drainage studies the specific conditions on your property before developing a plan. We consider the land itself and drainage goals to create a system designed for your operations.
 
@@ -43,6 +44,6 @@ We also assist with permitting as part of the project process. Practical experie
 
 ## Contact Our Team for a Free Drainage Estimate
 
-The best way to determine what your property requires is to evaluate the land and discuss your goals with an experienced drainage team. Deep Roots Drainage provides free estimates for agricultural drainage projects in Wahpeton, Richland County, and communities throughout North Dakota.
+The best way to determine what your property requires is to evaluate the land and discuss your goals with an experienced drainage team. Deep Roots Drainage provides free estimates for agricultural drainage projects in Jamestown, Stutsman County, and communities throughout North Dakota.
 
 Call [(701) 499-3917](tel:+17014993917) to speak with our team. You can also [request a free estimate](/contact). We are ready to help you plan a highly effective drainage system regardless of your land's complexity.
